@@ -1,0 +1,103 @@
+TBox 1291 triples | ABox 383 triples | thư mục: /home/claude/ich/out
+
+======== 1. OWL 2 DL profile
+[OWLAPI OWL2DLProfile trên TBox+ABox gộp]
+axioms=1367 logical=432
+OWL2_DL in_profile=true violations=0
+[Kiểm Python: simple property, regularity, kiểu giá trị]
+non-simple properties: ich:broaderTerm, ich:consistsOf, ich:featuredIn, ich:featuredInEvent, ich:hasCue, ich:includesPractice, ich:locatedWithin
+chains: 3 | regular order (đồ thị Ri→S không chu trình): OK
+    ich:typicallyIncludes ∘ ich:usedObjectOfType ⊑ ich:hasCue
+    ich:featuredInOccurrence ∘ ich:occurrenceOf ⊑ ich:featuredInEvent
+    ich:typicallyIncludes ∘ ich:realizesPractice ⊑ ich:includesPractice
+vi phạm: không có
+
+======== 2a. HermiT qua owlready2 (sync_reasoner_hermit, infer_property_values=True)
+kết quả: CONSISTENT | class unsatisfiable: không
+
+======== 2b. HermiT CLI trên RDF/XML nguyên bản (đối chứng)
+kết quả: CONSISTENT (classify không lỗi) | unsatisfiable: không
+
+======== 2c. Entailment bằng HermiT/OWLAPI (property chain, sub-property, inverse, symmetric, transitive)
+  [TBox+ABox] HermiT entailment (OWLAPI):
+    OocOmBocSocTrang.includesPractice ⊇ ['MuaRomVong_Heritage']  ✓
+    CholChnamThmay.includesPractice ⊇ ['MuaRomVong_Heritage']  ✓
+    MuaRomVong_Heritage.featuredInEvent ⊇ ['CholChnamThmay', 'OocOmBocSocTrang']  ✓
+    MuaRomVong_Heritage.featuredIn ⊇ ['CholChnamThmay', 'OocOmBocSocTrang', 'OocOmBocSocTrang_2024']  ✓
+    OocOmBocSocTrang.hasCue ⊇ ['ComDep', 'ConDam', 'GheNgo', 'LeCungTrang', 'MuaRomVong', 'TrangPhucKhmer']  ✓
+    ChoNoiCaiRang.hasCue ⊇ ['CayBeo', 'DungCayBeo', 'MatSongDongGhe', 'SangSom', 'ThuongHo']  ✓
+    ChoNoiPhongDien.confusableWith ⊇ ['ChoNoiCaiRang']  ✓
+    SongMaspero_CauQuay_CauCao.locatedWithin ⊇ ['Place_CanThoNewArea', 'Place_SocTrangArea']  ✓
+  [ABox tối thiểu] mỗi chain chạy riêng:
+    chain 1 typicallyIncludes ∘ realizesPractice ⊑ includesPractice: ✓
+    chain 2 typicallyIncludes ∘ usedObjectOfType ⊑ hasCue (usedObjectOfType KHÔNG ⊑ hasCue): ✓
+    chain 3 featuredInOccurrence ∘ occurrenceOf ⊑ featuredInEvent: ✓
+
+======== 3. SPARQL
+
+======== (a) Nhiều tầng: Rom vong → ứng viên bối cảnh (cue còn lại trong ảnh: ghe Ngo, thả đèn nước)
+  tầng 1 = Múa Rom vong | tầng 2 = Oóc Om Bóc Sóc Trăng     | support = 2
+  tầng 1 = Múa Rom vong | tầng 2 = Tết Chôl Chnăm Thmây     | support = 0
+
+======== (b) Cue → CueBearer (đếm để tính idf = ln(N/n))
+  N (số CueBearer) = 8
+  cue                   kind        n    idf  bearers
+  CayBeo                object      4   0.69  ChoNoiPhongDien, ChoNoiCaiBe, ChoNoiNgaBay, ChoNoiCaiRang
+  GheThuongHo           object      4   0.69  ChoNoiPhongDien, ChoNoiCaiBe, ChoNoiNgaBay, ChoNoiCaiRang
+  MuaRomVong            activity    2   1.39  CholChnamThmay, OocOmBocSocTrang
+  TrangPhucKhmer        object      2   1.39  CholChnamThmay, OocOmBocSocTrang
+  SongCanTho            place       2   1.39  ChoNoiPhongDien, ChoNoiCaiRang
+  BuonBanTrenSong       activity    1   2.08  ChoNoiCaiRang
+  ComDep                object      1   2.08  OocOmBocSocTrang
+  ConDam                role        1   2.08  OocOmBocSocTrang
+  DapNuiCat             activity    1   2.08  CholChnamThmay
+  DuaGheNgo             activity    1   2.08  OocOmBocSocTrang
+  DungCayBeo            activity    1   2.08  ChoNoiCaiRang
+  GheNgo                object      1   2.08  OocOmBocSocTrang
+  LeCungTrang           activity    1   2.08  OocOmBocSocTrang
+  LeTamPhat             activity    1   2.08  CholChnamThmay
+  MatSongDongGhe        venue       1   2.08  ChoNoiCaiRang
+  SangSom               temporal    1   2.08  ChoNoiCaiRang
+  ThaDenNuoc            activity    1   2.08  OocOmBocSocTrang
+  ThuongHo              role        1   2.08  ChoNoiCaiRang
+
+======== (c) Lọc đáp án: cue {cây bẹo, ghe thương hồ, sông Cần Thơ} → chỉ HeritageElement
+  Không lọc (mọi CueBearer):   Văn hóa chợ nổi Cái Răng=3, Chợ nổi Phong Điền=3, Chợ nổi Cái Bè=2, Chợ nổi Ngã Bảy=2
+  Đáp án (chỉ HeritageElement): Văn hóa chợ nổi Cái Răng=3
+  → top-1 không lọc hòa điểm giữa Cái Răng và decoy Phong Điền ⇒ pipeline phải hỏi lại 'ở đâu' (discriminator place).
+
+======== (d) CQ13: EventHeritage có TemporalRule chứa ngày (cùng calendarSystem, vắt tháng)
+  vn_lunar     15/10 → ['OocOmBocSocTrang']         ✓
+  vn_lunar     30/8  → ['SeneDolta']                ✓
+  vn_lunar      1/9  → ['SeneDolta']                ✓
+  solar        14/4  → ['CholChnamThmay']           ✓
+  khmer_lunar  15/10 → ∅                            ✓
+  vn_lunar     14/4  → ∅                            ✓
+
+======== 4. Test âm (phải inconsistent)
+  N1 một individual vừa HeritageElement vừa LookalikeElement
+      → inconsistent ✓
+  N2 PracticeHeritage có hasTemporalRule (≤0 + domain EventHeritage)
+      → inconsistent ✓
+  N3 Occurrence có 2 startDate (=1)
+      → inconsistent ✓
+  N4 LookalikeElement dùng typicallyIncludes (domain HeritageElement)
+      → inconsistent ✓
+  N5 PracticeHeritage typicallyIncludes activity có realizesPractice (chain → includesPractice ∈ EventHeritage)
+      → inconsistent ✓
+  N6 calendarSystem ngoài enum
+      → inconsistent ✓
+  N7 monthStart = 13 (ngoài 1..12)
+      → inconsistent ✓
+
+======== TỔNG KẾT
+  profile_owlapi     PASS
+  profile_python     PASS
+  owlready2          PASS
+  hermit_cli         PASS
+  entailments        PASS
+  sparql_a           PASS
+  sparql_b           PASS
+  sparql_c           PASS
+  sparql_d           PASS
+  negative           PASS

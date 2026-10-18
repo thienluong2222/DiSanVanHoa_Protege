@@ -1,0 +1,1174 @@
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix ich: <https://example.org/ich#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+geo:asWKT a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:comment "WKT POINT(lon lat). Mặc định range xsd:string để HermiT chạy được; dùng --wkt-typed để sinh geo:wktLiteral cho triple store."@vi ;
+    rdfs:domain geo:Geometry ;
+    rdfs:range xsd:string .
+
+geo:hasGeometry a owl:ObjectProperty ;
+    rdfs:comment "GeoSPARQL tối thiểu: Place → geo:Geometry (POINT) + ich:radiusKm."@vi ;
+    rdfs:domain ich:Place ;
+    rdfs:range geo:Geometry .
+
+<https://example.org/ich> a owl:Ontology ;
+    rdfs:label "Intangible cultural heritage ontology (TBox) for image/video recognition"@en,
+        "Ontology di sản văn hóa phi vật thể (TBox) phục vụ nhận diện ảnh/video"@vi ;
+    rdfs:comment "Align CIDOC CRM 7.1.3 chỉ qua annotation ich:crmMapping (không import ECRM). Ghi [chưa verify] khi không có nguồn."@vi ;
+    owl:versionInfo "0.3 - Prompt 3 (CueBearer/LookalikeElement, ListingEntry, GeoSPARQL tối thiểu)" .
+
+ich:Costume a owl:Class ;
+    rdfs:label "Costume"@en,
+        "Trang phục"@vi ;
+    rdfs:comment "Traditional dress."@en,
+        "Y phục truyền thống."@vi ;
+    rdfs:subClassOf ich:CulturalArtifact ;
+    ich:crmMapping "E55 + P125 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E55 ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P125" ;
+    ich:nerLabel "COSTUME" .
+
+ich:CulturalSpace a owl:Class ;
+    rdfs:label "Cultural space"@en,
+        "Không gian văn hóa"@vi ;
+    rdfs:comment "A fixed structure or space tied to a cultural practice."@en,
+        "Công trình hay không gian cố định gắn thực hành văn hóa."@vi ;
+    rdfs:subClassOf ich:Place ;
+    ich:crmMapping "E22/E24 + P156 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E22 ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E24 ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P156 [chưa verify scope note: E22, E24]" ;
+    ich:nerLabel "CULTURAL_SPACE" .
+
+ich:HistoricalFigure a owl:Class ;
+    rdfs:label "Historical figure"@en,
+        "Nhân vật lịch sử"@vi ;
+    rdfs:comment "A person documented as historical."@en,
+        "Nhân vật được coi là có thật."@vi ;
+    rdfs:subClassOf ich:CulturalFigure ;
+    ich:crmMapping "E21 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E21" ;
+    ich:nerLabel "HISTORICAL_FIGURE" .
+
+ich:MusicalInstrument a owl:Class ;
+    rdfs:label "Musical instrument"@en,
+        "Nhạc cụ"@vi ;
+    rdfs:comment "A musical instrument."@en,
+        "Nhạc cụ."@vi ;
+    rdfs:subClassOf ich:CulturalArtifact ;
+    ich:crmMapping "E55 + P125 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E55 ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P125" ;
+    ich:nerLabel "MUSICAL_INSTRUMENT" .
+
+ich:MythicalBeing a owl:Class ;
+    rdfs:label "Mythical being"@en,
+        "Thần linh / nhân vật thần thoại"@vi ;
+    rdfs:comment "A deity or mythical character."@en,
+        "Thần linh, nhân vật thần thoại."@vi ;
+    rdfs:subClassOf ich:CulturalFigure ;
+    ich:crmMapping "E28 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E28" ;
+    ich:nerLabel "MYTHICAL_BEING" .
+
+ich:NaturalFeature a owl:Class ;
+    rdfs:label "Natural feature"@en,
+        "Đối tượng tự nhiên"@vi ;
+    rdfs:comment "A named natural feature (river, canal)."@en,
+        "Đối tượng tự nhiên có tên (sông, rạch)."@vi ;
+    rdfs:subClassOf ich:Place ;
+    ich:crmMapping "E26 + P156 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E26 ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P156" ;
+    ich:nerLabel "NATURAL_FEATURE" .
+
+ich:Offering a owl:Class ;
+    rdfs:label "Offering"@en,
+        "Lễ vật"@vi ;
+    rdfs:comment "An offering."@en,
+        "Lễ vật."@vi ;
+    rdfs:subClassOf ich:CulturalArtifact ;
+    ich:crmMapping "E55 + P125 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E55 ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P125" ;
+    ich:nerLabel "OFFERING" .
+
+ich:Performance a owl:Class ;
+    rdfs:label "Performance"@en,
+        "Trình diễn"@vi ;
+    rdfs:comment "A type of artistic performance."@en,
+        "Loại hoạt động trình diễn nghệ thuật."@vi ;
+    rdfs:subClassOf ich:ActivityType ;
+    ich:crmMapping "E55 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E55" ;
+    ich:nerLabel "PERFORMANCE" .
+
+ich:PerformingTroupe a owl:Class ;
+    rdfs:label "Performing troupe"@en,
+        "Đoàn nghệ thuật"@vi ;
+    rdfs:comment "A performing troupe."@en,
+        "Đoàn nghệ thuật."@vi ;
+    rdfs:subClassOf ich:Organization ;
+    ich:crmMapping "E74 + P2 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E74 ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P2" ;
+    ich:nerLabel "PERFORMING_TROUPE" .
+
+ich:Person a owl:Class ;
+    rdfs:label "Person"@en,
+        "Cá nhân"@vi ;
+    rdfs:comment "A named individual (social roles live in Participation, not subclasses)."@en,
+        "Cá nhân cụ thể có tên (vai trò xã hội nằm ở Participation, không phải subclass)."@vi ;
+    rdfs:subClassOf ich:Agent ;
+    owl:disjointWith ich:Group ;
+    ich:crmMapping "E21 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E21" ;
+    ich:nerLabel "PERSON" .
+
+ich:Ritual a owl:Class ;
+    rdfs:label "Ritual"@en,
+        "Nghi lễ"@vi ;
+    rdfs:comment "A type of ceremonial procedure."@en,
+        "Loại nghi lễ có trình tự và ý nghĩa tín ngưỡng."@vi ;
+    rdfs:subClassOf ich:ActivityType ;
+    ich:crmMapping "E55 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E55" ;
+    ich:nerLabel "RITUAL" .
+
+ich:SocialPractice a owl:Class ;
+    rdfs:label "Social practice"@en,
+        "Tập quán xã hội"@vi ;
+    rdfs:comment "A type of social custom, including games and contests."@en,
+        "Loại tập quán xã hội, gồm trò chơi và cuộc thi."@vi ;
+    rdfs:subClassOf ich:ActivityType ;
+    ich:crmMapping "E55 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E55" ;
+    ich:nerLabel "SOCIAL_PRACTICE" .
+
+ich:ToolEquipment a owl:Class ;
+    rdfs:label "Tool / equipment"@en,
+        "Công cụ / dụng cụ"@vi ;
+    rdfs:comment "A tool or piece of equipment."@en,
+        "Công cụ, dụng cụ."@vi ;
+    rdfs:subClassOf ich:CulturalArtifact ;
+    ich:crmMapping "E55 + P125 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E55 ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P125" ;
+    ich:nerLabel "TOOL_EQUIPMENT" .
+
+ich:VehicleVessel a owl:Class ;
+    rdfs:label "Vehicle / vessel"@en,
+        "Phương tiện (ghe thuyền)"@vi ;
+    rdfs:comment "A means of transport, mainly boats."@en,
+        "Phương tiện di chuyển, chủ yếu ghe thuyền."@vi ;
+    rdfs:subClassOf ich:CulturalArtifact ;
+    ich:crmMapping "E55 + P125 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E55 ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P125" ;
+    ich:nerLabel "VEHICLE_VESSEL" .
+
+ich:adminLevel a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "admin level"@en,
+        "cấp hành chính"@vi ;
+    rdfs:comment "Administrative level (province, commune...)."@en,
+        "Cấp hành chính (province, commune...)."@vi ;
+    rdfs:domain ich:AdminUnit ;
+    rdfs:range xsd:string ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:altLabelKhmerTranslit a owl:AnnotationProperty ;
+    rdfs:label "phiên âm Khmer"@vi ;
+    rdfs:subPropertyOf skos:altLabel .
+
+ich:altLabelListing a owl:AnnotationProperty ;
+    rdfs:label "tên theo Danh mục"@vi ;
+    rdfs:subPropertyOf skos:altLabel .
+
+ich:altLabelLocal a owl:AnnotationProperty ;
+    rdfs:label "tên địa phương"@vi ;
+    rdfs:subPropertyOf skos:altLabel .
+
+ich:altLabelNoDiacritics a owl:AnnotationProperty ;
+    rdfs:label "tên không dấu"@vi ;
+    rdfs:subPropertyOf skos:altLabel .
+
+ich:bearerGroup a owl:ObjectProperty ;
+    rdfs:label "bearer group"@en,
+        "cộng đồng nắm giữ"@vi ;
+    rdfs:comment "Community that bears the heritage."@en,
+        "Cộng đồng nắm giữ di sản."@vi ;
+    rdfs:domain ich:HeritageElement ;
+    rdfs:range ich:CommunityGroup ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:broaderTerm a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "broader term"@en,
+        "khái niệm rộng hơn"@vi ;
+    rdfs:comment "Broader/narrower between vocabulary items. Transitive."@en,
+        "Quan hệ rộng-hẹp giữa các mục từ vựng (đàn kìm → đàn). Transitive."@vi ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ich:HeritageElement ich:ActivityType ich:CulturalArtifact ich:CulturalConcept ich:PracticeVenue ich:RoleType ich:TemporalCue ich:HeritageDomain ) ] ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ich:HeritageElement ich:ActivityType ich:CulturalArtifact ich:CulturalConcept ich:PracticeVenue ich:RoleType ich:TemporalCue ich:HeritageDomain ) ] ;
+    ich:crmMapping "P127 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P127" .
+
+ich:confusableWith a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "confusable with"@en,
+        "dễ nhầm với"@vi ;
+    rdfs:comment "Two nodes that are easily confused (symmetric)."@en,
+        "Hai nút dễ nhầm với nhau (đối xứng)."@vi ;
+    rdfs:domain ich:CueBearer ;
+    rdfs:range ich:CueBearer ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:consistsOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "consists of"@en,
+        "gồm"@vi ;
+    rdfs:comment "(Optional) An occurrence/activity consists of sub-activities. Transitive, hence non-simple."@en,
+        "(Optional) Lần diễn ra/hoạt động gồm các hoạt động con. Transitive nên non-simple."@vi ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ich:Occurrence ich:CulturalActivity ) ] ;
+    rdfs:range ich:CulturalActivity ;
+    ich:crmMapping "P9 (hai đầu cùng là E7 ⊂ E4) | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P9" ;
+    ich:optional true .
+
+ich:coversPlace a owl:ObjectProperty ;
+    rdfs:label "covers place"@en,
+        "bao phủ"@vi ;
+    rdfs:comment "An admin unit covers a place."@en,
+        "Đơn vị hành chính bao phủ một Place."@vi ;
+    rdfs:domain ich:AdminUnit ;
+    rdfs:range ich:Place ;
+    ich:crmMapping "~P7 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P7" .
+
+ich:crmMapping a owl:AnnotationProperty ;
+    rdfs:comment "Ánh xạ tới CIDOC CRM 7.1.3 kèm URL; [chưa verify scope note] nếu chưa đối chiếu."@vi .
+
+ich:cueKind a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "cue kind"@en,
+        "loại cue"@vi ;
+    rdfs:comment "Encodes only the KIND of cue (for the pipeline's w_kind). Distinctiveness is handled by idf and hasDistinctiveCue."@en,
+        "Chỉ mã hóa LOẠI cue (để pipeline gán trọng số w_loại). Độ đặc trưng do idf và hasDistinctiveCue đảm nhận."@vi ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ich:ActivityType ich:RoleType ich:CulturalArtifact ich:PracticeVenue ich:TemporalCue ich:Place ich:AdminUnit ich:CulturalFigure ich:CommunityGroup ) ] ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:oneOf ( "name" "datePlace" "object" "venue" "role" "activity" "temporal" "place" ) ] ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:dayEnd a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "end day"@en,
+        "ngày kết thúc (trong tháng)"@vi ;
+    rdfs:comment "End day of the window (1-31)."@en,
+        "Ngày kết thúc cửa sổ (1-31)."@vi ;
+    rdfs:domain ich:TemporalRule ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:onDatatype xsd:integer ;
+            owl:withRestrictions ( [ xsd:minInclusive 1 ] [ xsd:maxInclusive 31 ] ) ] ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:dayStart a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "start day"@en,
+        "ngày bắt đầu (trong tháng)"@vi ;
+    rdfs:comment "Start day of the window (1-31)."@en,
+        "Ngày bắt đầu cửa sổ (1-31)."@vi ;
+    rdfs:domain ich:TemporalRule ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:onDatatype xsd:integer ;
+            owl:withRestrictions ( [ xsd:minInclusive 1 ] [ xsd:maxInclusive 31 ] ) ] ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:decisionDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "decision date"@en,
+        "ngày quyết định"@vi ;
+    rdfs:comment "Decision date."@en,
+        "Ngày quyết định công bố."@vi ;
+    rdfs:domain ich:ListingEntry ;
+    rdfs:range xsd:dateTime ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:decisionNumber a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "decision number"@en,
+        "số quyết định"@vi ;
+    rdfs:comment "Decision number."@en,
+        "Số quyết định công bố."@vi ;
+    rdfs:domain ich:ListingEntry ;
+    rdfs:range xsd:string ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:discriminatorKind a owl:DatatypeProperty ;
+    rdfs:label "discriminator kind"@en,
+        "loại discriminator"@vi ;
+    rdfs:comment "Discriminating dimension: place, cue, temporal... (not functional)."@en,
+        "Chiều phân biệt: place, cue, temporal... (không functional)."@vi ;
+    rdfs:domain ich:ConfusablePair ;
+    rdfs:range xsd:string ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:discriminatorNote a owl:DatatypeProperty ;
+    rdfs:label "discriminator note"@en,
+        "ghi chú discriminator"@vi ;
+    rdfs:comment "How to tell them apart."@en,
+        "Ghi chú cách phân biệt."@vi ;
+    rdfs:domain ich:ConfusablePair ;
+    rdfs:range rdf:PlainLiteral ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:durationDays a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "duration (days)"@en,
+        "số ngày kéo dài"@vi ;
+    rdfs:comment "Used only when the rule has no concrete days; dayStart/dayEnd take precedence."@en,
+        "Chỉ dùng khi rule không có ngày cụ thể; dayStart/dayEnd ưu tiên khi có."@vi ;
+    rdfs:domain ich:TemporalRule ;
+    rdfs:range xsd:positiveInteger ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:hasActivityType a owl:ObjectProperty ;
+    rdfs:label "has activity type"@en,
+        "có loại hoạt động"@vi ;
+    rdfs:comment "(Optional) Types a concrete activity with an ActivityType."@en,
+        "(Optional) Phân loại instance hoạt động theo ActivityType."@vi ;
+    rdfs:domain ich:CulturalActivity ;
+    rdfs:range ich:ActivityType ;
+    ich:crmMapping "P2 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P2" ;
+    ich:optional true .
+
+ich:hasArtisticElement a owl:ObjectProperty ;
+    rdfs:label "has artistic element"@en,
+        "có yếu tố nghệ thuật"@vi ;
+    rdfs:comment "Artistic element of the heritage."@en,
+        "Yếu tố nghệ thuật của di sản."@vi ;
+    rdfs:domain ich:HeritageElement ;
+    rdfs:range ich:ArtisticElement ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:hasBelief a owl:ObjectProperty ;
+    rdfs:label "has belief system"@en,
+        "gắn tín ngưỡng"@vi ;
+    rdfs:comment "Related belief system."@en,
+        "Hệ thống tín ngưỡng liên quan."@vi ;
+    rdfs:domain ich:HeritageElement ;
+    rdfs:range ich:BeliefSystem ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:hasDistinctiveCue a owl:ObjectProperty ;
+    rdfs:label "has distinctive cue"@en,
+        "có cue đặc trưng"@vi ;
+    rdfs:comment "A cue declared distinctive for the node (actual distinctiveness is decided by idf)."@en,
+        "Cue được khai là đặc trưng của nút (độ đặc trưng thực tế do idf quyết định)."@vi ;
+    rdfs:subPropertyOf ich:hasCue ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:hasListing a owl:ObjectProperty ;
+    rdfs:label "has listing entry"@en,
+        "có mục Danh mục"@vi ;
+    rdfs:comment "Listing entry that contains the heritage (CQ21)."@en,
+        "Mục Danh mục chứa di sản (CQ21)."@vi ;
+    rdfs:domain ich:HeritageElement ;
+    rdfs:range ich:ListingEntry ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:hasLocality a owl:ObjectProperty ;
+    rdfs:label "has locality"@en,
+        "có địa phương"@vi ;
+    rdfs:comment "Spatial extent of the node (GPS check in B4; decoys need it to discriminate by place)."@en,
+        "Vùng không gian của nút (dùng cho kiểm GPS ở B4; decoy cũng cần để phân biệt theo place)."@vi ;
+    rdfs:domain ich:CueBearer ;
+    rdfs:range ich:Place ;
+    ich:crmMapping "custom (shortcut P7)" .
+
+ich:hasMember a owl:ObjectProperty ;
+    rdfs:label "has member"@en,
+        "có thành viên"@vi ;
+    rdfs:comment "Member of a confusable pair."@en,
+        "Thành viên của cặp dễ nhầm."@vi ;
+    rdfs:domain ich:ConfusablePair ;
+    rdfs:range ich:CueBearer ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:hasOriginStory a owl:ObjectProperty ;
+    rdfs:label "has origin story"@en,
+        "có sự tích"@vi ;
+    rdfs:comment "Origin narrative."@en,
+        "Sự tích giải thích nguồn gốc."@vi ;
+    rdfs:domain ich:HeritageElement ;
+    rdfs:range ich:OriginStory ;
+    ich:crmMapping "nghịch đảo P129 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P129" .
+
+ich:hasPurpose a owl:ObjectProperty ;
+    rdfs:label "has purpose"@en,
+        "có mục đích"@vi ;
+    rdfs:comment "Purpose of the heritage/activity."@en,
+        "Mục đích của di sản/hoạt động."@vi ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ich:HeritageElement ich:Occurrence ich:CulturalActivity ) ] ;
+    rdfs:range ich:Purpose ;
+    ich:crmMapping "P21 (instance-level) | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P21" .
+
+ich:hasSignificance a owl:ObjectProperty ;
+    rdfs:label "has significance"@en,
+        "có ý nghĩa"@vi ;
+    rdfs:comment "Symbolic meaning of the heritage."@en,
+        "Ý nghĩa biểu tượng của di sản."@vi ;
+    rdfs:domain ich:HeritageElement ;
+    rdfs:range ich:Significance ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:hasTemporalCue a owl:ObjectProperty ;
+    rdfs:label "has temporal cue"@en,
+        "có cue thời gian"@vi ;
+    rdfs:comment "A weak temporal cue (time of day, season)."@en,
+        "Cue thời gian yếu (giờ, mùa)."@vi ;
+    rdfs:domain ich:HeritageElement ;
+    rdfs:range ich:TemporalCue ;
+    rdfs:subPropertyOf ich:hasCue ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:includesPractice a owl:ObjectProperty ;
+    rdfs:label "includes practice"@en,
+        "bao gồm thực hành"@vi ;
+    rdfs:comment "Inverse of featuredInEvent; derived from typicallyIncludes ∘ realizesPractice."@en,
+        "Nghịch đảo featuredInEvent; suy ra từ typicallyIncludes ∘ realizesPractice."@vi ;
+    rdfs:domain ich:EventHeritage ;
+    rdfs:range ich:PracticeHeritage ;
+    owl:inverseOf ich:featuredInEvent ;
+    owl:propertyChainAxiom ( ich:typicallyIncludes ich:realizesPractice ) ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:incompatibleCue a owl:ObjectProperty ;
+    rdfs:label "incompatible cue"@en,
+        "cue loại trừ"@vi ;
+    rdfs:comment "A cue whose presence rules this node out (explicit only, due to OWA)."@en,
+        "Cue mà nếu thấy thì loại nút này (chỉ có nghĩa khi khai tường minh, do OWA)."@vi ;
+    rdfs:domain ich:CueBearer ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ich:ActivityType ich:RoleType ich:CulturalArtifact ich:PracticeVenue ich:TemporalCue ich:Place ich:AdminUnit ich:CulturalFigure ich:CommunityGroup ) ] ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:involvesRole a owl:ObjectProperty ;
+    rdfs:label "involves role"@en,
+        "liên quan vai trò"@vi ;
+    rdfs:comment "The heritage typically involves this social role (cue)."@en,
+        "Di sản thường có vai trò xã hội này (cue)."@vi ;
+    rdfs:domain ich:HeritageElement ;
+    rdfs:range ich:RoleType ;
+    rdfs:subPropertyOf ich:hasCue ;
+    ich:crmMapping "custom (instance-level là PC14 qua Participation)" .
+
+ich:listType a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "list type"@en,
+        "loại danh mục"@vi ;
+    rdfs:comment "QG = national list; UNESCO."@en,
+        "QG = Danh mục quốc gia; UNESCO."@vi ;
+    rdfs:domain ich:ListingEntry ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:oneOf ( "QG" "UNESCO" ) ] ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:listingName a owl:DatatypeProperty ;
+    rdfs:label "listing name"@en,
+        "tên theo Danh mục"@vi ;
+    rdfs:comment "Name as in the list; distinct from rdfs:label."@en,
+        "Tên mục theo Danh mục, khác rdfs:label."@vi ;
+    rdfs:domain ich:HeritageElement ;
+    rdfs:range rdf:PlainLiteral ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:locatedWithin a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:label "located within"@en,
+        "nằm trong"@vi ;
+    rdfs:comment "A place lies within another place. Transitive."@en,
+        "Place nằm trong Place khác. Transitive."@vi ;
+    rdfs:domain ich:Place ;
+    rdfs:range ich:Place ;
+    ich:crmMapping "P89 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P89" .
+
+ich:monthEnd a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "end month"@en,
+        "tháng kết thúc"@vi ;
+    rdfs:comment "End month of the window; differs from monthStart when the window crosses months."@en,
+        "Tháng kết thúc cửa sổ; khác monthStart nếu vắt tháng (vd 29/8-1/9 âm)."@vi ;
+    rdfs:domain ich:TemporalRule ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:onDatatype xsd:integer ;
+            owl:withRestrictions ( [ xsd:minInclusive 1 ] [ xsd:maxInclusive 12 ] ) ] ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:monthStart a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "start month"@en,
+        "tháng bắt đầu"@vi ;
+    rdfs:comment "Start month of the window (1-12)."@en,
+        "Tháng bắt đầu cửa sổ (1-12)."@vi ;
+    rdfs:domain ich:TemporalRule ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:onDatatype xsd:integer ;
+            owl:withRestrictions ( [ xsd:minInclusive 1 ] [ xsd:maxInclusive 12 ] ) ] ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:nerLabel a owl:AnnotationProperty ;
+    rdfs:comment "Nhãn NER gốc từ Khung thực thể."@vi .
+
+ich:operationalNote a owl:AnnotationProperty ;
+    rdfs:comment "Ghi chú mốc VẬN HÀNH của AdminUnit, chỉ dùng khi có nguồn (validFrom là mốc pháp lý)."@vi .
+
+ich:optional a owl:AnnotationProperty ;
+    rdfs:comment "xsd:boolean; true = lớp/property instance-level không bắt buộc nhập liệu."@vi .
+
+ich:organizedBy a owl:ObjectProperty ;
+    rdfs:label "organized by"@en,
+        "do ... tổ chức"@vi ;
+    rdfs:comment "Organising body."@en,
+        "Đơn vị tổ chức."@vi ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ich:HeritageElement ich:Occurrence ) ] ;
+    rdfs:range ich:Organizer ;
+    ich:crmMapping "~P14 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P14" .
+
+ich:radiusKm a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "radius (km)"@en,
+        "bán kính (km)"@vi ;
+    rdfs:comment "Radius around the point geometry, for the GPS check (CQ14)."@en,
+        "Bán kính vùng quanh geometry điểm, dùng cho kiểm GPS (CQ14)."@vi ;
+    rdfs:domain ich:Place ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:onDatatype xsd:decimal ;
+            owl:withRestrictions ( [ xsd:minExclusive 0.0 ] ) ] ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:recurrence a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "recurrence"@en,
+        "chu kỳ"@vi ;
+    rdfs:comment "Recurrence (e.g. annual)."@en,
+        "Chu kỳ lặp (vd annual)."@vi ;
+    rdfs:domain ich:TemporalRule ;
+    rdfs:range xsd:string ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:source a owl:AnnotationProperty ;
+    rdfs:comment "URL nguồn của một individual (xsd:anyURI); không reify từng triple (CQ23)."@vi .
+
+ich:sourceURL a owl:DatatypeProperty ;
+    rdfs:label "source URL"@en,
+        "URL nguồn"@vi ;
+    rdfs:comment "Source URL of the entry."@en,
+        "URL nguồn của mục Danh mục."@vi ;
+    rdfs:domain ich:ListingEntry ;
+    rdfs:range xsd:anyURI ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:succeededBy a owl:ObjectProperty ;
+    rdfs:label "succeeded by"@en,
+        "được thay bởi"@vi ;
+    rdfs:comment "Successor admin unit (merger/renaming)."@en,
+        "Đơn vị hành chính kế nhiệm (sáp nhập/đổi tên)."@vi ;
+    rdfs:domain ich:AdminUnit ;
+    rdfs:range ich:AdminUnit ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:unescoDomain a owl:ObjectProperty ;
+    rdfs:label "UNESCO domain"@en,
+        "lĩnh vực UNESCO"@vi ;
+    rdfs:comment "Domain under the 2003 UNESCO Convention."@en,
+        "Lĩnh vực theo Công ước UNESCO 2003."@vi ;
+    rdfs:range ich:UnescoDomain ;
+    rdfs:subPropertyOf ich:hasDomain ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:validFrom a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "valid from"@en,
+        "hiệu lực từ"@vi ;
+    rdfs:comment "LEGAL start of validity. The operational date (if sourced) goes in the annotation ich:operationalNote."@en,
+        "Mốc PHÁP LÝ bắt đầu hiệu lực. Mốc vận hành (nếu có nguồn) ghi bằng annotation ich:operationalNote."@vi ;
+    rdfs:domain ich:AdminUnit ;
+    rdfs:range xsd:dateTime ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:validTo a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "valid to"@en,
+        "hiệu lực đến"@vi ;
+    rdfs:comment "Legal end of validity."@en,
+        "Mốc pháp lý kết thúc hiệu lực."@vi ;
+    rdfs:domain ich:AdminUnit ;
+    rdfs:range xsd:dateTime ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:verificationStatus a owl:AnnotationProperty ;
+    rdfs:comment "Giá trị: \"verified\" | \"unverified\"; gắn trên individual (CQ23)."@vi .
+
+ich:vnCategory a owl:ObjectProperty ;
+    rdfs:label "Vietnamese category"@en,
+        "loại hình theo pháp luật VN"@vi ;
+    rdfs:comment "Category under Vietnamese law."@en,
+        "Loại hình theo pháp luật Việt Nam."@vi ;
+    rdfs:range ich:VnCategory ;
+    rdfs:subPropertyOf ich:hasDomain ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:ArtisticElement a owl:Class ;
+    rdfs:label "Artistic element"@en,
+        "Yếu tố nghệ thuật"@vi ;
+    rdfs:comment "An artistic element (repertoire, role)."@en,
+        "Yếu tố nghệ thuật (bài bản, vai diễn)."@vi ;
+    rdfs:subClassOf ich:CulturalConcept ;
+    ich:crmMapping "E55 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E55" ;
+    ich:nerLabel "ARTISTIC_ELEMENT" .
+
+ich:BeliefSystem a owl:Class ;
+    rdfs:label "Belief system"@en,
+        "Hệ thống tín ngưỡng"@vi ;
+    rdfs:comment "A belief system."@en,
+        "Hệ thống tín ngưỡng hoặc tôn giáo."@vi ;
+    rdfs:subClassOf ich:CulturalConcept ;
+    ich:crmMapping "E55 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E55" ;
+    ich:nerLabel "BELIEF_SYSTEM" .
+
+ich:KnowledgeNatureUniverse a owl:NamedIndividual,
+        ich:UnescoDomain ;
+    rdfs:label "Knowledge and practices concerning nature and the universe"@en,
+        "Tri thức và tập quán liên quan đến tự nhiên và vũ trụ"@vi ;
+    ich:source "https://ich.unesco.org/doc/src/01857-EN.pdf"^^xsd:anyURI ;
+    ich:verificationStatus "verified" .
+
+ich:LookalikeElement a owl:Class ;
+    rdfs:label "Lookalike element"@en,
+        "Nút gây nhầm"@vi ;
+    rdfs:comment "A node outside the KG (e.g. another floating market) used as a decoy for correct idf and ConfusablePair; never an answer."@en,
+        "Nút ngoài KG (vd chợ nổi khác) làm decoy để idf đúng và lập ConfusablePair; không bao giờ là đáp án."@vi ;
+    rdfs:subClassOf ich:CueBearer ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:OralTraditionsExpressions a owl:NamedIndividual,
+        ich:UnescoDomain ;
+    rdfs:label "Oral traditions and expressions"@en,
+        "Các truyền thống và biểu đạt truyền khẩu"@vi ;
+    ich:source "https://ich.unesco.org/doc/src/01857-EN.pdf"^^xsd:anyURI ;
+    ich:verificationStatus "verified" .
+
+ich:Organizer a owl:Class ;
+    rdfs:label "Organizer"@en,
+        "Đơn vị tổ chức"@vi ;
+    rdfs:comment "A body organising an event."@en,
+        "Đơn vị tổ chức lễ hội/sự kiện."@vi ;
+    rdfs:subClassOf ich:Organization ;
+    ich:crmMapping "E74 + P2; P14 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E74 ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P2 ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P14" ;
+    ich:nerLabel "ORGANIZER" .
+
+ich:OriginStory a owl:Class ;
+    rdfs:label "Origin story"@en,
+        "Sự tích"@vi ;
+    rdfs:comment "An origin narrative."@en,
+        "Sự tích giải thích nguồn gốc."@vi ;
+    rdfs:subClassOf ich:CulturalConcept ;
+    ich:crmMapping "E73 + P129⁻ | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E73 ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P129" ;
+    ich:nerLabel "ORIGIN_STORY" .
+
+ich:PerformingArts a owl:NamedIndividual,
+        ich:UnescoDomain ;
+    rdfs:label "Performing arts"@en,
+        "Nghệ thuật trình diễn"@vi ;
+    ich:source "https://ich.unesco.org/doc/src/01857-EN.pdf"^^xsd:anyURI ;
+    ich:verificationStatus "verified" .
+
+ich:Significance a owl:Class ;
+    rdfs:label "Significance"@en,
+        "Ý nghĩa"@vi ;
+    rdfs:comment "Symbolic meaning."@en,
+        "Ý nghĩa biểu tượng."@vi ;
+    rdfs:subClassOf ich:CulturalConcept ;
+    owl:disjointWith ich:Purpose ;
+    ich:crmMapping "E55 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E55" ;
+    ich:nerLabel "SIGNIFICANCE" .
+
+ich:SocialPracticesRitualsFestive a owl:NamedIndividual,
+        ich:UnescoDomain ;
+    rdfs:label "Social practices, rituals and festive events"@en,
+        "Tập quán xã hội, tín ngưỡng và các lễ hội"@vi ;
+    ich:source "https://ich.unesco.org/doc/src/01857-EN.pdf"^^xsd:anyURI ;
+    ich:verificationStatus "verified" .
+
+ich:TraditionalCraftsmanship a owl:NamedIndividual,
+        ich:UnescoDomain ;
+    rdfs:label "Traditional craftsmanship"@en,
+        "Nghề thủ công truyền thống"@vi ;
+    ich:source "https://ich.unesco.org/doc/src/01857-EN.pdf"^^xsd:anyURI ;
+    ich:verificationStatus "verified" .
+
+ich:activity a owl:ObjectProperty ;
+    rdfs:label "activity"@en,
+        "hoạt động"@vi ;
+    rdfs:comment "(Optional) The E7 activity the agent took part in."@en,
+        "(Optional) Activity (E7) mà agent tham gia."@vi ;
+    rdfs:domain ich:Participation ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ich:Occurrence ich:CulturalActivity ) ] ;
+    ich:crmMapping "PC14 | CIDOC CRM 7.1.3: http://www.cidoc-crm.org/cidoc-crm/PC14_carried_out_by" ;
+    ich:optional true .
+
+ich:agent a owl:ObjectProperty ;
+    rdfs:label "agent"@en,
+        "tác nhân"@vi ;
+    rdfs:comment "(Optional) Participating agent."@en,
+        "(Optional) Agent tham gia."@vi ;
+    rdfs:domain ich:Participation ;
+    rdfs:range ich:Agent ;
+    ich:crmMapping "PC14 | CIDOC CRM 7.1.3: http://www.cidoc-crm.org/cidoc-crm/PC14_carried_out_by" ;
+    ich:optional true .
+
+ich:calendarSystem a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "calendar system"@en,
+        "hệ lịch"@vi ;
+    rdfs:comment "Calendar system of the rule. Month numbering for khmer_lunar: [chưa verify], enum only. B4 compares only within the same system."@en,
+        "Hệ lịch của rule. Quy ước đánh số tháng khmer_lunar: [chưa verify], chỉ khai enum. B4 chỉ so khi cùng hệ lịch."@vi ;
+    rdfs:domain ich:TemporalRule ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:oneOf ( "vn_lunar" "khmer_lunar" "solar" ) ] ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:endDate a owl:DatatypeProperty ;
+    rdfs:label "end date"@en,
+        "ngày kết thúc"@vi ;
+    rdfs:comment "Actual end date, inclusive (00:00:00 by convention; endDate ≥ startDate is checked by SHACL/pipeline)."@en,
+        "Ngày kết thúc thực tế, bao gồm cả ngày đó (00:00:00 theo quy ước; endDate ≥ startDate do SHACL/pipeline kiểm)."@vi ;
+    rdfs:domain ich:Occurrence ;
+    rdfs:range xsd:dateTime ;
+    ich:crmMapping "P4 → E52 → P82b | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P4 ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E52 ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P82b" .
+
+ich:featuredInEvent a owl:ObjectProperty ;
+    rdfs:label "featured in event"@en,
+        "xuất hiện trong sự kiện"@vi ;
+    rdfs:comment "This practice typically appears in the event (derived by chain; non-simple)."@en,
+        "Thực hành này thường xuất hiện trong sự kiện (suy ra từ chain; non-simple)."@vi ;
+    rdfs:domain ich:PracticeHeritage ;
+    rdfs:range ich:EventHeritage ;
+    rdfs:subPropertyOf ich:featuredIn ;
+    owl:propertyChainAxiom ( ich:featuredInOccurrence ich:occurrenceOf ) ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:featuredInOccurrence a owl:ObjectProperty ;
+    rdfs:label "featured in occurrence"@en,
+        "xuất hiện trong lần diễn ra"@vi ;
+    rdfs:comment "(Optional) The practice was observed in one concrete occurrence."@en,
+        "(Optional) Thực hành được quan sát trong một lần diễn ra cụ thể."@vi ;
+    rdfs:domain ich:PracticeHeritage ;
+    rdfs:range ich:Occurrence ;
+    rdfs:subPropertyOf ich:featuredIn ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" ;
+    ich:optional true .
+
+ich:hasOccurrence a owl:ObjectProperty ;
+    rdfs:label "has occurrence"@en,
+        "có lần diễn ra"@vi ;
+    rdfs:comment "Inverse of occurrenceOf."@en,
+        "Nghịch đảo occurrenceOf."@vi ;
+    rdfs:domain ich:EventHeritage ;
+    rdfs:range ich:Occurrence ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:realizesPractice a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "realizes practice"@en,
+        "hiện thực hóa thực hành"@vi ;
+    rdfs:comment "Links an activity type (the linked cue) to its practice heritage (tier-1 answer)."@en,
+        "Nối loại hoạt động (cue đã link) với mục di sản thực hành tương ứng (tầng 1 của đáp án)."@vi ;
+    rdfs:domain ich:ActivityType ;
+    rdfs:range ich:PracticeHeritage ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:role a owl:ObjectProperty ;
+    rdfs:label "role"@en,
+        "vai trò"@vi ;
+    rdfs:comment "(Optional) Role of the participation (P14.1)."@en,
+        "(Optional) Vai trò trong sự tham gia (P14.1)."@vi ;
+    rdfs:domain ich:Participation ;
+    rdfs:range ich:RoleType ;
+    ich:crmMapping "PC14 | CIDOC CRM 7.1.3: http://www.cidoc-crm.org/cidoc-crm/PC14_carried_out_by" ;
+    ich:optional true .
+
+ich:startDate a owl:DatatypeProperty ;
+    rdfs:label "start date"@en,
+        "ngày bắt đầu"@vi ;
+    rdfs:comment "Actual start date (xsd:dateTime because xsd:date is not in the OWL 2 datatype map; 00:00:00 by convention, only the date part is meaningful)."@en,
+        "Ngày bắt đầu thực tế (xsd:dateTime vì xsd:date không thuộc OWL 2 datatype map; quy ước 00:00:00, chỉ phần ngày có nghĩa)."@vi ;
+    rdfs:domain ich:Occurrence ;
+    rdfs:range xsd:dateTime ;
+    ich:crmMapping "P4 → E52 → P82a | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P4 ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E52 ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P82a" .
+
+ich:tookPlaceAt a owl:ObjectProperty ;
+    rdfs:label "took place at"@en,
+        "diễn ra tại"@vi ;
+    rdfs:comment "Where an occurrence took place."@en,
+        "Địa điểm diễn ra của một Occurrence."@vi ;
+    rdfs:domain ich:Occurrence ;
+    rdfs:range ich:Place ;
+    ich:crmMapping "P7 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P7" .
+
+ich:usedObjectOfType a owl:ObjectProperty ;
+    rdfs:label "used object of type"@en,
+        "dùng loại vật thể"@vi ;
+    rdfs:comment "The activity/heritage uses this type of artifact. Not a sub-property of hasCue; the cue is derived via the chain typicallyIncludes ∘ usedObjectOfType."@en,
+        "Loại hoạt động/di sản dùng loại vật phẩm này. Không phải sub-property của hasCue; cue suy ra qua chain typicallyIncludes ∘ usedObjectOfType."@vi ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ich:HeritageElement ich:ActivityType ich:CulturalActivity ich:Occurrence ) ] ;
+    rdfs:range ich:CulturalArtifact ;
+    ich:crmMapping "P125 ở E7; ở E55 là shortcut tùy biến | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P125" .
+
+ich:Purpose a owl:Class ;
+    rdfs:label "Purpose"@en,
+        "Mục đích"@vi ;
+    rdfs:comment "Purpose of an act."@en,
+        "Mục đích của hành vi."@vi ;
+    rdfs:subClassOf ich:CulturalConcept ;
+    ich:crmMapping "E55 (range P21) | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E55 ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P21" ;
+    ich:nerLabel "PURPOSE" .
+
+ich:VnCategory a owl:Class ;
+    rdfs:label "Vietnamese legal category"@en,
+        "Loại hình theo pháp luật VN"@vi ;
+    rdfs:comment "Heritage categories under Vietnamese law."@en,
+        "Loại hình di sản theo pháp luật Việt Nam."@vi ;
+    rdfs:subClassOf ich:HeritageDomain ;
+    ich:crmMapping "E55 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E55" .
+
+ich:featuredIn a owl:ObjectProperty ;
+    rdfs:label "featured in"@en,
+        "xuất hiện trong"@vi ;
+    rdfs:comment "Super-property of featuredInEvent and featuredInOccurrence."@en,
+        "Super-property của featuredInEvent và featuredInOccurrence."@vi ;
+    rdfs:domain ich:PracticeHeritage ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ich:EventHeritage ich:Occurrence ) ] ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:hasDomain a owl:ObjectProperty ;
+    rdfs:label "has domain"@en,
+        "thuộc lĩnh vực"@vi ;
+    rdfs:comment "Domain(s) of the heritage; multi-valued, not disjoint."@en,
+        "Lĩnh vực của di sản; nhiều giá trị, không disjoint."@vi ;
+    rdfs:domain ich:HeritageElement ;
+    rdfs:range ich:HeritageDomain ;
+    ich:crmMapping "P2 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P2" .
+
+ich:hasTemporalRule a owl:ObjectProperty ;
+    rdfs:label "has temporal rule"@en,
+        "có quy tắc thời gian"@vi ;
+    rdfs:comment "The canonical calendar rule of the event."@en,
+        "Quy tắc thời gian chuẩn của sự kiện."@vi ;
+    rdfs:domain ich:EventHeritage ;
+    rdfs:range ich:TemporalRule ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:occurrenceOf a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "occurrence of"@en,
+        "là lần diễn ra của"@vi ;
+    rdfs:comment "The occurrence belongs to one EventHeritage."@en,
+        "Lần diễn ra thuộc về một EventHeritage."@vi ;
+    rdfs:domain ich:Occurrence ;
+    rdfs:range ich:EventHeritage ;
+    owl:inverseOf ich:hasOccurrence ;
+    ich:crmMapping "P2 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P2" .
+
+ich:typicallyIncludes a owl:ObjectProperty ;
+    rdfs:label "typically includes"@en,
+        "thường gồm"@vi ;
+    rdfs:comment "The heritage typically includes this activity type (type level); inverse of P150."@en,
+        "Di sản thường gồm loại hoạt động này (type-level); nghịch đảo P150."@vi ;
+    rdfs:domain ich:HeritageElement ;
+    rdfs:range ich:ActivityType ;
+    rdfs:subPropertyOf ich:hasCue ;
+    ich:crmMapping "nghịch đảo P150 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P150" .
+
+ich:Group a owl:Class ;
+    rdfs:label "Group"@en,
+        "Nhóm"@vi ;
+    rdfs:comment "A collection of people, not necessarily a legal body."@en,
+        "Tập hợp người, không nhất thiết có tư cách pháp lý."@vi ;
+    rdfs:subClassOf ich:Agent ;
+    ich:crmMapping "E74 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E74" ;
+    ich:nerLabel "GROUP" .
+
+ich:Organization a owl:Class ;
+    rdfs:label "Organization"@en,
+        "Tổ chức"@vi ;
+    rdfs:comment "A legal organisation."@en,
+        "Tổ chức có tư cách hành chính/pháp lý."@vi ;
+    rdfs:subClassOf ich:Group ;
+    ich:crmMapping "E74 + P2 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E74 ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P2" ;
+    ich:nerLabel "ORGANIZATION" .
+
+skos:altLabel a owl:AnnotationProperty .
+
+ich:CommunityGroup a owl:Class ;
+    rdfs:label "Community group"@en,
+        "Nhóm cộng đồng"@vi ;
+    rdfs:comment "A bearer community."@en,
+        "Cộng đồng xã hội nắm giữ di sản."@vi ;
+    rdfs:subClassOf ich:Group ;
+    owl:disjointWith ich:Organization ;
+    ich:crmMapping "E74 + P2 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E74 ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P2" ;
+    ich:nerLabel "COMMUNITY_GROUP" .
+
+ich:hasCue a owl:ObjectProperty ;
+    rdfs:label "has cue"@en,
+        "có cue"@vi ;
+    rdfs:comment "Generic cue from a cue bearer to a recognition signal; super-property of the specialised cue properties. Non-simple because it heads a chain."@en,
+        "Cue tổng quát từ nút mang cue đến tín hiệu giúp nhận diện; super-property của các cue chuyên biệt. Non-simple vì là đầu ra của chain."@vi ;
+    rdfs:domain ich:CueBearer ;
+    rdfs:range [ a owl:Class ;
+            owl:unionOf ( ich:ActivityType ich:RoleType ich:CulturalArtifact ich:PracticeVenue ich:TemporalCue ich:Place ich:AdminUnit ich:CulturalFigure ich:CommunityGroup ) ] ;
+    owl:propertyChainAxiom ( ich:typicallyIncludes ich:usedObjectOfType ) ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+geo:Geometry a owl:Class .
+
+ich:Agent a owl:Class ;
+    rdfs:label "Agent"@en,
+        "Tác nhân"@vi ;
+    rdfs:comment "An intentional actor."@en,
+        "Chủ thể hành động có chủ đích."@vi ;
+    ich:crmMapping "E39 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E39 [chưa verify scope note: E39]" ;
+    ich:nerLabel "AGENT" .
+
+ich:CulturalFigure a owl:Class ;
+    rdfs:label "Cultural figure"@en,
+        "Nhân vật văn hóa"@vi ;
+    rdfs:comment "A commemorated spiritual subject."@en,
+        "Chủ thể tinh thần được tưởng niệm hoặc quy chiếu niềm tin."@vi ;
+    owl:disjointWith geo:Geometry,
+        ich:ActivityType,
+        ich:AdminUnit,
+        ich:ConfusablePair,
+        ich:CueBearer,
+        ich:CulturalArtifact,
+        ich:CulturalConcept,
+        ich:HeritageDomain,
+        ich:ListingEntry,
+        ich:Occurrence,
+        ich:Participation,
+        ich:Place,
+        ich:PracticeVenue,
+        ich:RoleType,
+        ich:TemporalCue,
+        ich:TemporalRule ;
+    ich:crmMapping "trừu tượng (abstract), không ánh xạ trực tiếp" ;
+    ich:nerLabel "CULTURAL_FIGURE" .
+
+ich:ConfusablePair a owl:Class ;
+    rdfs:label "Confusable pair"@en,
+        "Cặp dễ nhầm"@vi ;
+    rdfs:comment "A confusable pair with discriminator (reified; OWL cannot annotate a property assertion)."@en,
+        "Cặp dễ nhầm kèm discriminator (reify vì OWL không gắn thuộc tính lên property assertion)."@vi ;
+    ich:crmMapping "Không có tương đương" .
+
+ich:CulturalActivity a owl:Class ;
+    rdfs:label "Cultural activity (instance)"@en,
+        "Hoạt động văn hóa (instance)"@vi ;
+    rdfs:comment "(Optional) A concrete action within an occurrence."@en,
+        "(Optional) Hành động cụ thể diễn ra trong một Occurrence."@vi ;
+    owl:disjointWith geo:Geometry,
+        ich:ActivityType,
+        ich:AdminUnit,
+        ich:Agent,
+        ich:ConfusablePair,
+        ich:CueBearer,
+        ich:CulturalArtifact,
+        ich:CulturalConcept,
+        ich:HeritageDomain,
+        ich:ListingEntry,
+        ich:Participation,
+        ich:Place,
+        ich:PracticeVenue,
+        ich:RoleType,
+        ich:TemporalCue,
+        ich:TemporalRule ;
+    ich:crmMapping "E7; phân loại qua P2 → ActivityType | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E7 ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P2" ;
+    ich:optional true .
+
+ich:EventHeritage a owl:Class ;
+    rdfs:label "Event heritage"@en,
+        "Di sản sự kiện"@vi ;
+    rdfs:comment "A recurring heritage tied to a calendar window."@en,
+        "Di sản định kỳ gắn cửa sổ thời gian, có TemporalRule."@vi ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ich:hasTemporalRule ],
+        ich:HeritageElement ;
+    owl:disjointWith ich:PracticeHeritage ;
+    ich:crmMapping "E55 (loại của E7) | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E55 ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E7" ;
+    ich:nerLabel "CULTURAL_EVENT" .
+
+ich:Participation a owl:Class ;
+    rdfs:label "Participation"@en,
+        "Sự tham gia"@vi ;
+    rdfs:comment "(Optional) An agent's role in an activity."@en,
+        "(Optional) Sự tham gia của một agent với một vai trò trong một activity."@vi ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ich:role ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ich:activity ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ich:agent ] ;
+    ich:crmMapping "PC14 = P14 + P14.1 | CIDOC CRM 7.1.3: http://www.cidoc-crm.org/cidoc-crm/PC14_carried_out_by ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P14" ;
+    ich:optional true .
+
+ich:PracticeHeritage a owl:Class ;
+    rdfs:label "Practice heritage"@en,
+        "Di sản thực hành"@vi ;
+    rdfs:comment "A heritage practice with no calendar window."@en,
+        "Di sản thực hành không có cửa sổ ngày."@vi ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "0"^^xsd:nonNegativeInteger ;
+            owl:onProperty ich:hasTemporalRule ],
+        ich:HeritageElement ;
+    ich:crmMapping "E55 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E55" ;
+    ich:nerLabel "CULTURAL_FORM" .
+
+ich:UnescoDomain a owl:Class ;
+    rdfs:label "UNESCO domain"@en,
+        "Lĩnh vực UNESCO"@vi ;
+    rdfs:comment "The five domains of the 2003 Convention."@en,
+        "Năm lĩnh vực theo Công ước 2003."@vi ;
+    rdfs:subClassOf ich:HeritageDomain ;
+    owl:disjointWith ich:VnCategory ;
+    ich:crmMapping "E55 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E55" ;
+    ich:nerLabel "CULTURAL_DOMAIN" .
+
+ich:HeritageDomain a owl:Class ;
+    rdfs:label "Heritage domain"@en,
+        "Lĩnh vực di sản"@vi ;
+    rdfs:comment "A vocabulary of heritage domains."@en,
+        "Hệ phân loại lĩnh vực di sản."@vi ;
+    ich:crmMapping "E55 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E55" ;
+    ich:nerLabel "CULTURAL_DOMAIN" .
+
+ich:ListingEntry a owl:Class ;
+    rdfs:label "Listing entry"@en,
+        "Mục Danh mục"@vi ;
+    rdfs:comment "An entry in a national or UNESCO list with decision number, date and source."@en,
+        "Một mục trong Danh mục (quốc gia hoặc UNESCO) kèm số quyết định, ngày, nguồn."@vi ;
+    ich:crmMapping "E32 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E32 [chưa verify scope note: E32]" .
+
+ich:PracticeVenue a owl:Class ;
+    rdfs:label "Practice venue"@en,
+        "Không gian thực hành"@vi ;
+    rdfs:comment "A type of practice setting."@en,
+        "Loại bối cảnh thực hành (trên ghe, sân chùa, mặt sông đông ghe)."@vi ;
+    ich:crmMapping "E55 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E55" ;
+    ich:nerLabel "PRACTICE_VENUE" .
+
+ich:TemporalCue a owl:Class ;
+    rdfs:label "Temporal cue"@en,
+        "Cue thời gian"@vi ;
+    rdfs:comment "A weak temporal cue (time of day, season)."@en,
+        "Tín hiệu thời gian yếu (giờ trong ngày, mùa)."@vi ;
+    ich:crmMapping "E55 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E55" ;
+    ich:nerLabel "TIME_OF_DAY" .
+
+ich:CulturalConcept a owl:Class ;
+    rdfs:label "Cultural concept"@en,
+        "Khái niệm văn hóa"@vi ;
+    rdfs:comment "An abstract heritage concept."@en,
+        "Khái niệm trừu tượng gắn với di sản."@vi ;
+    ich:crmMapping "trừu tượng (abstract), không ánh xạ trực tiếp" ;
+    ich:nerLabel "CULTURAL_CONCEPT" .
+
+ich:RoleType a owl:Class ;
+    rdfs:label "Role type"@en,
+        "Vai trò"@vi ;
+    rdfs:comment "A practitioner's social role."@en,
+        "Vai trò xã hội của người thực hành (ngư dân, thương hồ, con dầm...)."@vi ;
+    ich:crmMapping "E55 (range P14.1) | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E55 ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P14" ;
+    ich:nerLabel "PRACTITIONER" .
+
+ich:CueBearer a owl:Class ;
+    rdfs:label "Cue bearer"@en,
+        "Nút mang cue"@vi ;
+    rdfs:comment "A node that may carry recognition cues: a real heritage element or a lookalike; lets idf count both."@en,
+        "Nút có thể mang cue nhận diện: di sản thật (HeritageElement) hoặc nút gây nhầm (LookalikeElement); để idf đếm được cả hai."@vi ;
+    ich:crmMapping "custom - không có tương đương trong CIDOC CRM 7.1.3" .
+
+ich:TemporalRule a owl:Class ;
+    rdfs:label "Temporal rule"@en,
+        "Quy tắc thời gian"@vi ;
+    rdfs:comment "The canonical calendar rule of an EventHeritage (a day-month window in one calendar system)."@en,
+        "Quy tắc thời gian chuẩn của EventHeritage (khoảng ngày-tháng theo một hệ lịch)."@vi ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ich:calendarSystem ] ;
+    ich:crmMapping "Không có tương đương (E52 không phù hợp)" ;
+    ich:nerLabel "DATE_LUNAR",
+        "DATE_SOLAR",
+        "DURATION",
+        "FREQUENCY" .
+
+ich:AdminUnit a owl:Class ;
+    rdfs:label "Administrative unit"@en,
+        "Đơn vị hành chính"@vi ;
+    rdfs:comment "An administrative unit with a name and validity period; separate from the stable Place, linked via coversPlace."@en,
+        "Đơn vị hành chính có tên và hiệu lực; tách khỏi Place ổn định, nối qua coversPlace."@vi ;
+    ich:crmMapping "E4 + P7 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E4 ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P7" ;
+    ich:nerLabel "GEOPOLITICAL_ENTITY" .
+
+ich:CulturalArtifact a owl:Class ;
+    rdfs:label "Cultural artifact"@en,
+        "Vật phẩm văn hóa"@vi ;
+    rdfs:comment "A type of object tied to a practice."@en,
+        "Loại vật phẩm gắn với thực hành."@vi ;
+    ich:crmMapping "E55 + P125 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E55 ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P125" ;
+    ich:nerLabel "CULTURAL_ARTIFACT" .
+
+ich:Occurrence a owl:Class ;
+    rdfs:label "Occurrence"@en,
+        "Lần diễn ra"@vi ;
+    rdfs:comment "One yearly realisation."@en,
+        "Một lần diễn ra cụ thể trong một năm."@vi ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ich:startDate ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ich:occurrenceOf ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ich:tookPlaceAt ],
+        [ a owl:Restriction ;
+            owl:cardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty ich:endDate ] ;
+    ich:crmMapping "E7 + P4 → E52 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E7 ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#P4 ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E52" .
+
+ich:ActivityType a owl:Class ;
+    rdfs:label "Activity type"@en,
+        "Loại hoạt động văn hóa"@vi ;
+    rdfs:comment "A type of cultural activity at type level."@en,
+        "Loại hoạt động văn hóa ở mức type (Lễ cúng trăng, đua ghe Ngo...)."@vi ;
+    ich:crmMapping "E55 (loại của E7) | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E55 ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E7" ;
+    ich:nerLabel "CULTURAL_ACTIVITY" .
+
+ich:Place a owl:Class ;
+    rdfs:label "Place"@en,
+        "Địa điểm"@vi ;
+    rdfs:comment "A stable spatial referent."@en,
+        "Tham chiếu không gian ổn định."@vi ;
+    ich:crmMapping "E53 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E53" ;
+    ich:nerLabel "LOCATION" .
+
+ich:HeritageElement a owl:Class ;
+    rdfs:label "Heritage element"@en,
+        "Di sản"@vi ;
+    rdfs:comment "A named heritage element at type level; only this branch may be returned as an answer."@en,
+        "Đơn vị di sản phi vật thể ở mức loại hình; chỉ nhánh này được trả làm đáp án."@vi ;
+    rdfs:subClassOf ich:CueBearer ;
+    owl:disjointWith ich:LookalikeElement ;
+    ich:crmMapping "E55 ⊂ E28 | CIDOC CRM 7.1.3: https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E55 ; https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E28" ;
+    ich:nerLabel "CULTURAL_HERITAGE" .
+
+[] a owl:AllDifferent ;
+    owl:distinctMembers ( ich:OralTraditionsExpressions ich:PerformingArts ich:SocialPracticesRitualsFestive ich:KnowledgeNatureUniverse ich:TraditionalCraftsmanship ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( ich:CueBearer ich:HeritageDomain ich:TemporalCue ich:TemporalRule ich:Occurrence ich:Place ich:AdminUnit ich:Agent ich:RoleType ich:Participation ich:ActivityType ich:PracticeVenue ich:CulturalArtifact ich:CulturalConcept ich:ConfusablePair ich:ListingEntry geo:Geometry ) .
+
