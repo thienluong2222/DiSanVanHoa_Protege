@@ -1,15 +1,15 @@
-TBox 1291 triples | ABox 383 triples | thư mục: /home/claude/ich/out
+TBox 1451 triples | ABox 1891 triples | thư mục: /home/claude/ich/out
 
 ======== 1. OWL 2 DL profile
 [OWLAPI OWL2DLProfile trên TBox+ABox gộp]
-axioms=1367 logical=432
+axioms=2976 logical=1248
 OWL2_DL in_profile=true violations=0
 [Kiểm Python: simple property, regularity, kiểu giá trị]
 non-simple properties: ich:broaderTerm, ich:consistsOf, ich:featuredIn, ich:featuredInEvent, ich:hasCue, ich:includesPractice, ich:locatedWithin
 chains: 3 | regular order (đồ thị Ri→S không chu trình): OK
-    ich:typicallyIncludes ∘ ich:usedObjectOfType ⊑ ich:hasCue
-    ich:featuredInOccurrence ∘ ich:occurrenceOf ⊑ ich:featuredInEvent
     ich:typicallyIncludes ∘ ich:realizesPractice ⊑ ich:includesPractice
+    ich:featuredInOccurrence ∘ ich:occurrenceOf ⊑ ich:featuredInEvent
+    ich:typicallyIncludes ∘ ich:usedObjectOfType ⊑ ich:hasCue
 vi phạm: không có
 
 ======== 2a. HermiT qua owlready2 (sync_reasoner_hermit, infer_property_values=True)
@@ -40,26 +40,42 @@ kết quả: CONSISTENT (classify không lỗi) | unsatisfiable: không
   tầng 1 = Múa Rom vong | tầng 2 = Tết Chôl Chnăm Thmây     | support = 0
 
 ======== (b) Cue → CueBearer (đếm để tính idf = ln(N/n))
-  N (số CueBearer) = 8
+  N (số CueBearer) = 23
   cue                   kind        n    idf  bearers
-  CayBeo                object      4   0.69  ChoNoiPhongDien, ChoNoiCaiBe, ChoNoiNgaBay, ChoNoiCaiRang
-  GheThuongHo           object      4   0.69  ChoNoiPhongDien, ChoNoiCaiBe, ChoNoiNgaBay, ChoNoiCaiRang
-  MuaRomVong            activity    2   1.39  CholChnamThmay, OocOmBocSocTrang
-  TrangPhucKhmer        object      2   1.39  CholChnamThmay, OocOmBocSocTrang
-  SongCanTho            place       2   1.39  ChoNoiPhongDien, ChoNoiCaiRang
-  BuonBanTrenSong       activity    1   2.08  ChoNoiCaiRang
-  ComDep                object      1   2.08  OocOmBocSocTrang
-  ConDam                role        1   2.08  OocOmBocSocTrang
-  DapNuiCat             activity    1   2.08  CholChnamThmay
-  DuaGheNgo             activity    1   2.08  OocOmBocSocTrang
-  DungCayBeo            activity    1   2.08  ChoNoiCaiRang
-  GheNgo                object      1   2.08  OocOmBocSocTrang
-  LeCungTrang           activity    1   2.08  OocOmBocSocTrang
-  LeTamPhat             activity    1   2.08  CholChnamThmay
-  MatSongDongGhe        venue       1   2.08  ChoNoiCaiRang
-  SangSom               temporal    1   2.08  ChoNoiCaiRang
-  ThaDenNuoc            activity    1   2.08  OocOmBocSocTrang
-  ThuongHo              role        1   2.08  ChoNoiCaiRang
+  CayBeo                object      4   1.75  ChoNoiCaiBe, ChoNoiNgaBay, ChoNoiPhongDien, ChoNoiCaiRang
+  GheThuongHo           object      4   1.75  ChoNoiCaiBe, ChoNoiNgaBay, ChoNoiPhongDien, ChoNoiCaiRang
+  ChuaKhmer             venue       3   2.04  SeneDolta, CholChnamThmay, NhacNguAmSocTrang
+  LeNghinhThanNamHai    activity    3   2.04  NghinhOngSongDoc, NghinhOngTranDe, CungBienMyLong
+  SongCanTho            place       2   2.44  ChoNoiPhongDien, ChoNoiCaiRang
+  ComDep                object      2   2.44  OkOmBokTraVinh, OocOmBocSocTrang
+  DuaGheNgo             activity    2   2.44  OkOmBokTraVinh, OocOmBocSocTrang
+  GheNgo                object      2   2.44  OkOmBokTraVinh, OocOmBocSocTrang
+  LeCungTrang           activity    2   2.44  OkOmBokTraVinh, OocOmBocSocTrang
+  MuaRomVong            activity    2   2.44  CholChnamThmay, OocOmBocSocTrang
+  NguDan                role        2   2.44  NghinhOngSongDoc, NghinhOngTranDe
+  TrangPhucKhmer        object      2   2.44  CholChnamThmay, OocOmBocSocTrang
+  TrongGiaDinh          venue       2   2.44  SeneDolta, CholChnamThmay
+  SongLongBinh          place       1   3.14  OkOmBokTraVinh
+  BuonBanTrenSong       activity    1   3.14  ChoNoiCaiRang
+  ConDam                role        1   3.14  OocOmBocSocTrang
+  DanKim                object      1   3.14  DonCaTaiTu
+  DanNhacNguAm          object      1   3.14  NhacNguAmSocTrang
+  DanTranh              object      1   3.14  DonCaTaiTu
+  DapNuiCat             activity    1   3.14  CholChnamThmay
+  DuaBo                 activity    1   3.14  HoiDuaBoBayNui
+  DungCayBeo            activity    1   3.14  ChoNoiCaiRang
+  GuitarPhimLom         object      1   3.14  DonCaTaiTu
+  LeTamPhat             activity    1   3.14  CholChnamThmay
+  LeTeThanNong          activity    1   3.14  CungBienMyLong
+  MatSongDongGhe        venue       1   3.14  ChoNoiCaiRang
+  MieuNeakTa            venue       1   3.14  DomLongNeakTa
+  RuocTuongBa           activity    1   3.14  ViaBaChuaXuNuiSam
+  SangSom               temporal    1   3.14  ChoNoiCaiRang
+  SongLan               object      1   3.14  DonCaTaiTu
+  TauCa                 object      1   3.14  NghinhOngTranDe
+  ThaDenNuoc            activity    1   3.14  OocOmBocSocTrang
+  ThuongHo              role        1   3.14  ChoNoiCaiRang
+  TongTau               activity    1   3.14  CungBienMyLong
 
 ======== (c) Lọc đáp án: cue {cây bẹo, ghe thương hồ, sông Cần Thơ} → chỉ HeritageElement
   Không lọc (mọi CueBearer):   Văn hóa chợ nổi Cái Răng=3, Chợ nổi Phong Điền=3, Chợ nổi Cái Bè=2, Chợ nổi Ngã Bảy=2
@@ -67,12 +83,28 @@ kết quả: CONSISTENT (classify không lỗi) | unsatisfiable: không
   → top-1 không lọc hòa điểm giữa Cái Răng và decoy Phong Điền ⇒ pipeline phải hỏi lại 'ở đâu' (discriminator place).
 
 ======== (d) CQ13: EventHeritage có TemporalRule chứa ngày (cùng calendarSystem, vắt tháng)
-  vn_lunar     15/10 → ['OocOmBocSocTrang']         ✓
-  vn_lunar     30/8  → ['SeneDolta']                ✓
-  vn_lunar      1/9  → ['SeneDolta']                ✓
+  vn_lunar     15/10 → ['OkOmBokTraVinh', 'OocOmBocSocTrang'] ✓
+  vn_lunar     30/8  → ['HoiDuaBoBayNui', 'SeneDolta'] ✓
+  vn_lunar      1/9  → ['HoiDuaBoBayNui', 'SeneDolta'] ✓
+  vn_lunar     27/8  → ['LeHoiDinhNguyenTrungTruc'] ✓
+  vn_lunar     15/2  → ['ChroiRumChek', 'NghinhOngSongDoc', 'ViaBaThuyLong'] ✓
+  vn_lunar     14/4  → ['DomLongNeakTa', 'KyYenDinhBinhThuy'] ✓
   solar        14/4  → ['CholChnamThmay']           ✓
   khmer_lunar  15/10 → ∅                            ✓
-  vn_lunar     14/4  → ∅                            ✓
+  vn_lunar      1/6  → ∅                            ✓
+
+======== (e) Occurrence vs TemporalRule: strict / có dung sai
+  21 occurrence kiểm được | strict lệch: 10 | có dung sai lệch: 0
+    strict ✗ HoiDuaBoBayNui_2024              (dung sai ✓)
+    strict ✗ HoiDuaBoBayNui_2025              (dung sai ✓)
+    strict ✗ KyYenDinhBinhThuy_2025           (dung sai ✓)
+    strict ✗ NghinhOngSongDoc_2025            (dung sai ✓)
+    strict ✗ OkOmBokTraVinh_2024              (dung sai ✓)
+    strict ✗ OkOmBokTraVinh_2025              (dung sai ✓)
+    strict ✗ OocOmBocSocTrang_2023            (dung sai ✓)
+    strict ✗ OocOmBocSocTrang_2025            (dung sai ✓)
+    strict ✗ SeneDolta_2025                   (dung sai ✓)
+    strict ✗ ViaBaChuaXuNuiSam_2025           (dung sai ✓)
 
 ======== 4. Test âm (phải inconsistent)
   N1 một individual vừa HeritageElement vừa LookalikeElement
@@ -89,6 +121,12 @@ kết quả: CONSISTENT (classify không lỗi) | unsatisfiable: không
       → inconsistent ✓
   N7 monthStart = 13 (ngoài 1..12)
       → inconsistent ✓
+  N8 ruleStrength ngoài enum
+      → inconsistent ✓
+  N9 Occurrence có lunarStartDay = 31 (ngoài 1..30)
+      → inconsistent ✓
+  N10 HeritageElement có 2 registryStatus (functional, enum)
+      → inconsistent ✓
 
 ======== TỔNG KẾT
   profile_owlapi     PASS
@@ -100,4 +138,5 @@ kết quả: CONSISTENT (classify không lỗi) | unsatisfiable: không
   sparql_b           PASS
   sparql_c           PASS
   sparql_d           PASS
+  sparql_e           PASS
   negative           PASS

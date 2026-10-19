@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-gen_ich_owl.py  -  Sinh ich-tbox.ttl và ich-test-abox.ttl (rdflib).
+gen_ich_owl.py  -  Sinh ich-tbox.ttl, ich-abox.ttl, ich-full.owl (rdflib). ABox nạp từ 2 CSV qua abox_registry.py.
 
 Ontology di sản văn hóa phi vật thể (ICH) phục vụ nhận diện ảnh/video.
 - CIDOC CRM 7.1.3 chỉ align qua annotation `ich:crmMapping` (không import ECRM).
@@ -14,12 +14,12 @@ from pathlib import Path
 from rdflib import Graph, Namespace, URIRef, Literal, BNode, RDF, RDFS, OWL, XSD
 from rdflib.collection import Collection
 
-ICH = Namespace("https://example.org/ich#")
-EX = Namespace("https://example.org/ich/data#")
+ICH = Namespace("https://w3id.org/ich-mekong/ontology#")
+EX = Namespace("https://w3id.org/ich-mekong/data#")
 SKOS = Namespace("http://www.w3.org/2004/02/skos/core#")
 GEO = Namespace("http://www.opengis.net/ont/geosparql#")
-TBOX_IRI = URIRef("https://example.org/ich")
-ABOX_IRI = URIRef("https://example.org/ich/test-abox")
+TBOX_IRI = URIRef("https://w3id.org/ich-mekong/ontology")
+ABOX_IRI = URIRef("https://w3id.org/ich-mekong/data")
 
 CRM_BASE = "https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#"
 PC14_URL = "http://www.cidoc-crm.org/cidoc-crm/PC14_carried_out_by"
@@ -31,6 +31,7 @@ UNVERIFIED_SCOPE = {"E22", "E24", "E29", "E32", "E33", "E39", "E99"}
 WKT_TYPED = "--wkt-typed" in sys.argv
 
 UNESCO_PDF = "https://ich.unesco.org/doc/src/01857-EN.pdf"
+CSV_DIR = Path(__file__).resolve().parent   # chứa 20_di_san_verify.csv, 20_di_san_occurrence_2023_2025.csv
 DSVH_LIST = "https://dsvh.gov.vn/danh-muc-di-san-van-hoa-phi-vat-the-quoc-gia-1789"
 
 
@@ -330,6 +331,12 @@ def build_properties(g):
     op("incompatibleCue", "CueBearer", cue_rng(), "cue loại trừ",
        "Cue mà nếu thấy thì loại nút này (chỉ có nghĩa khi khai tường minh, do OWA).", "incompatible cue",
        "A cue whose presence rules this node out (explicit only, due to OWA).")
+    op("associatedWithEvent", "EventHeritage", "EventHeritage", "gắn với sự kiện",
+       "Sự kiện này được tổ chức nhân dịp sự kiện kia nhưng không nằm trong nó (vd Hội đua bò Bảy Núi ↔ Sene Dolta).",
+       "associated with event", "This event is held on the occasion of the other one but is not part of it.")
+    op("veneratesFigure", "HeritageElement", "CulturalFigure", "tôn thờ / tưởng niệm",
+       "Nhân vật văn hóa được thờ hoặc tưởng niệm trong di sản (Thần Nam Hải, Bà Chúa Xứ, Nguyễn Trung Trực...).",
+       "venerates figure", "Cultural figure worshipped or commemorated by the heritage.")
     # ---- phân loại & mô tả ----
     op("hasDomain", "HeritageElement", "HeritageDomain", "thuộc lĩnh vực", "Lĩnh vực của di sản; nhiều giá trị, không disjoint.",
        "has domain", "Domain(s) of the heritage; multi-valued, not disjoint.", crmstr=crm("P2", "P2"))
@@ -401,6 +408,24 @@ def build_properties(g):
        "Used only when the rule has no concrete days; dayStart/dayEnd take precedence.", functional=True)
     dp("recurrence", "TemporalRule", XSD.string, "chu kỳ", "Chu kỳ lặp (vd annual).", "recurrence", "Recurrence (e.g. annual).",
        functional=True)
+    dp("ruleStrength", "TemporalRule", data_enum(g, ["hard", "soft", "approx"]), "độ cứng của rule",
+       "hard = nguồn ghi ngày cố định; soft = ngày thực tế dao động ±toleranceDays; approx = quy đổi từ hệ lịch khác (vd Khmer → âm Việt), có thể lệch ±toleranceMonths tháng. B4 chỉ trừ điểm nặng với hard.",
+       "rule strength", "hard = fixed by source; soft = actual dates drift ±toleranceDays; approx = converted from another calendar, may shift ±toleranceMonths.",
+       functional=True)
+    dp("toleranceDays", "TemporalRule", XSD.nonNegativeInteger, "dung sai (ngày)", "Số ngày cho phép lệch quanh cửa sổ.",
+       "tolerance (days)", "Allowed drift in days around the window.", functional=True)
+    dp("toleranceMonths", "TemporalRule", int_range(g, 0, 2), "dung sai (tháng)",
+       "Số tháng có thể lệch do khác hệ lịch (tháng nhuận Khmer vs Việt).", "tolerance (months)",
+       "Months the window may shift because of calendar mismatch (leap months).", functional=True)
+    dp("monthName", "TemporalRule", XSD.string, "tên tháng", "Tên tháng trong hệ lịch gốc khi chưa chốt cách đánh số (vd Kadeuk).",
+       "month name", "Month name in the source calendar when numbering is not settled (e.g. Kadeuk).", functional=True)
+    for nm, vi, en, hi in [("lunarStartMonth", "tháng âm bắt đầu", "lunar start month", 12), ("lunarStartDay", "ngày âm bắt đầu", "lunar start day", 30),
+                           ("lunarEndMonth", "tháng âm kết thúc", "lunar end month", 12), ("lunarEndDay", "ngày âm kết thúc", "lunar end day", 30)]:
+        dp(nm, "Occurrence", int_range(g, 1, hi), vi, "Ngày âm lịch Việt tương ứng của lần diễn ra (kiểm rule thời gian; bỏ trống nếu rơi vào tháng nhuận).",
+           en, "Vietnamese lunar equivalent of the occurrence (for rule checks; empty for leap months).", functional=True)
+    dp("registryStatus", "HeritageElement", data_enum(g, ["listed", "not_listed", "unverified"]), "trạng thái Danh mục",
+       "listed = có mục Danh mục QG/UNESCO đã xác nhận; not_listed = đã tra, không thấy; unverified = có tin nhưng chưa đối chiếu được.",
+       "registry status", "listed / not_listed / unverified.", functional=True)
     dp("validFrom", "AdminUnit", XSD.dateTime, "hiệu lực từ",
        "Mốc PHÁP LÝ bắt đầu hiệu lực. Mốc vận hành (nếu có nguồn) ghi bằng annotation ich:operationalNote.",
        "valid from", "LEGAL start of validity. The operational date (if sourced) goes in the annotation ich:operationalNote.",
@@ -444,10 +469,10 @@ def build_tbox():
     g.add((TBOX_IRI, RDFS.label, Literal("Intangible cultural heritage ontology (TBox) for image/video recognition", lang="en")))
     g.add((TBOX_IRI, RDFS.comment, Literal(
         "Align CIDOC CRM 7.1.3 chỉ qua annotation ich:crmMapping (không import ECRM). Ghi [chưa verify] khi không có nguồn.", lang="vi")))
-    g.add((TBOX_IRI, OWL.versionInfo, Literal("0.3 - Prompt 3 (CueBearer/LookalikeElement, ListingEntry, GeoSPARQL tối thiểu)")))
+    g.add((TBOX_IRI, OWL.versionInfo, Literal("0.4 - namespace w3id; TemporalRule có ruleStrength/tolerance; ABox 20 di sản nạp từ CSV")))
 
     # Annotation properties
-    for a in ["nerLabel", "crmMapping", "optional", "source", "verificationStatus", "operationalNote"]:
+    for a in ["nerLabel", "crmMapping", "optional", "source", "verificationStatus", "operationalNote", "datasetId"]:
         g.add((ICH[a], RDF.type, OWL.AnnotationProperty))
     g.add((ICH.nerLabel, RDFS.comment, Literal("Nhãn NER gốc từ Khung thực thể.", lang="vi")))
     g.add((ICH.crmMapping, RDFS.comment, Literal("Ánh xạ tới CIDOC CRM 7.1.3 kèm URL; [chưa verify scope note] nếu chưa đối chiếu.", lang="vi")))
@@ -456,6 +481,7 @@ def build_tbox():
     g.add((ICH.verificationStatus, RDFS.comment, Literal('Giá trị: "verified" | "unverified"; gắn trên individual (CQ23).', lang="vi")))
     g.add((ICH.operationalNote, RDFS.comment, Literal(
         "Ghi chú mốc VẬN HÀNH của AdminUnit, chỉ dùng khi có nguồn (validFrom là mốc pháp lý).", lang="vi")))
+    g.add((ICH.datasetId, RDFS.comment, Literal("id dòng trong 20_di_san_verify.csv (truy vết nguồn dữ liệu).", lang="vi")))
     g.add((SKOS.altLabel, RDF.type, OWL.AnnotationProperty))
     for a, vi in [("altLabelNoDiacritics", "tên không dấu"), ("altLabelKhmerTranslit", "phiên âm Khmer"),
                   ("altLabelLocal", "tên địa phương"), ("altLabelListing", "tên theo Danh mục")]:
@@ -668,7 +694,7 @@ def build_abox():
         ind(iri, ICH.Place, vi)
     add(songMaspero, ICH.locatedWithin, placeSoc)
     add(placeSoc, ICH.locatedWithin, placeCanTho)
-    add(placeCaiRang, ICH.locatedWithin, placeCanTho, songCanTho)
+    add(placeCaiRang, ICH.locatedWithin, EX.Place_CanThoOldArea, songCanTho)   # Place_CanThoOldArea do abox_registry tạo
     # Geometry (GeoSPARQL tối thiểu) - TỌA ĐỘ XẤP XỈ MINH HỌA, CHƯA VERIFY
     for place, gid, wkt, rad in [(songMaspero, EX.Geom_SongMaspero, "POINT(105.9715 9.6030)", "1.0"),
                                  (placeCaiRang, EX.Geom_ChoNoiCaiRang, "POINT(105.7925 10.0067)", "2.0")]:
@@ -706,18 +732,9 @@ def build_abox():
     khmer = ind(EX.DongBaoKhmer, ICH.CommunityGroup, "Đồng bào Khmer")
     add(ooc, ICH.hasSignificance, sig)
     add(ooc, ICH.bearerGroup, khmer)
-    rule = ind(EX.OocOmBocSocTrang_Rule, ICH.TemporalRule, comment='Nguồn ghi "15/10 âm" (Prompt 1); nếu hồ sơ gốc theo lịch Khmer thì đổi calendarSystem.')
-    for p, v in [(ICH.calendarSystem, Literal("vn_lunar")), (ICH.monthStart, Literal(10)), (ICH.monthEnd, Literal(10)),
-                 (ICH.dayStart, Literal(15)), (ICH.dayEnd, Literal(15)), (ICH.recurrence, Literal("annual"))]:
-        g.add((rule, p, v))
-    add(ooc, ICH.hasTemporalRule, rule)
+    # TemporalRule, Occurrence, ListingEntry của cả 20 di sản: abox_registry.py (nạp từ CSV)
 
-    occ = ind(EX.OocOmBocSocTrang_2024, ICH.Occurrence, "Oóc Om Bóc Sóc Trăng 2024",
-              comment='"2024 đua 14-15/11" (Prompt 1 #3).')
-    add(occ, ICH.occurrenceOf, ooc)
-    g.add((occ, ICH.startDate, Literal("2024-11-14T00:00:00", datatype=XSD.dateTime)))
-    g.add((occ, ICH.endDate, Literal("2024-11-15T00:00:00", datatype=XSD.dateTime)))
-    add(occ, ICH.tookPlaceAt, songMaspero)
+    occ = EX.OocOmBocSocTrang_2024   # Occurrence do abox_registry tạo từ CSV
     # optional extension
     duaAct = ind(EX.DuaGheNgo_SocTrang_2024, ICH.CulturalActivity, "Đua ghe Ngo Sóc Trăng 2024")
     add(duaAct, ICH.hasActivityType, ICH.DuaGheNgo)
@@ -734,11 +751,6 @@ def build_abox():
     add(romH, ICH.unescoDomain, ICH.PerformingArts)
     add(ICH.MuaRomVong, ICH.realizesPractice, romH)
     add(romH, ICH.featuredInOccurrence, occ)   # kiểm chain featuredInOccurrence ∘ occurrenceOf
-    lstRom = ind(EX.Listing_MuaRomVong_QG, ICH.ListingEntry, "Múa Rom vong (Danh mục QG)", source=DSVH_LIST,
-                 comment="QG 2019 (Prompt 1 #16, năm chưa verify): chưa ghi decisionNumber/decisionDate.")
-    g.add((lstRom, ICH.listType, Literal("QG")))
-    g.add((lstRom, ICH.sourceURL, Literal(DSVH_LIST, datatype=XSD.anyURI)))
-    add(romH, ICH.hasListing, lstRom)
 
     chol = ind(EX.CholChnamThmay, ICH.EventHeritage, "Tết Chôl Chnăm Thmây",
                comment="Đối chứng với Oóc Om Bóc (ứng viên B trong khung gốc).")
@@ -746,21 +758,9 @@ def build_abox():
     add(chol, ICH.unescoDomain, ICH.SocialPracticesRitualsFestive)
     add(chol, ICH.typicallyIncludes, ICH.DapNuiCat, ICH.LeTamPhat, ICH.MuaRomVong)
     add(chol, ICH.hasCue, ICH.TrangPhucKhmer)
-    ruleC = ind(EX.CholChnamThmay_Rule, ICH.TemporalRule, comment='Khung gốc ghi "13-16/4 dương lịch"; ngày thực tế dao động [chưa verify].')
-    for p, v in [(ICH.calendarSystem, Literal("solar")), (ICH.monthStart, Literal(4)), (ICH.monthEnd, Literal(4)),
-                 (ICH.dayStart, Literal(13)), (ICH.dayEnd, Literal(16)), (ICH.recurrence, Literal("annual"))]:
-        g.add((ruleC, p, v))
-    add(chol, ICH.hasTemporalRule, ruleC)
 
-    sene = ind(EX.SeneDolta, ICH.EventHeritage, "Sene Dolta",
-               comment="Chỉ có rule vắt tháng để kiểm monthStart/monthEnd.")
+    sene = ind(EX.SeneDolta, ICH.EventHeritage, "Lễ Sene Dolta")
     alt(sene, noacc="Sene Dolta")
-    ruleS = ind(EX.SeneDolta_Rule, ICH.TemporalRule,
-                comment='"29/8-1/9 âm" (Prompt 1 #13); lịch VN hay Khmer: [chưa verify].')
-    for p, v in [(ICH.calendarSystem, Literal("vn_lunar")), (ICH.monthStart, Literal(8)), (ICH.monthEnd, Literal(9)),
-                 (ICH.dayStart, Literal(29)), (ICH.dayEnd, Literal(1)), (ICH.recurrence, Literal("annual"))]:
-        g.add((ruleS, p, v))
-    add(sene, ICH.hasTemporalRule, ruleS)
 
     pA1 = ind(EX.Pair_A1, ICH.ConfusablePair)
     add(pA1, ICH.hasMember, ooc, chol)
@@ -781,11 +781,6 @@ def build_abox():
     add(cr, ICH.hasTemporalCue, ICH.SangSom)
     add(cr, ICH.involvesRole, ICH.ThuongHo)
     add(cr, ICH.typicallyIncludes, ICH.DungCayBeo, ICH.BuonBanTrenSong)
-    lstCR = ind(EX.Listing_ChoNoiCaiRang_QG, ICH.ListingEntry, "Văn hóa chợ nổi Cái Răng (Danh mục QG)", source=DSVH_LIST,
-                comment="Đưa vào Danh mục QG năm 2016 (báo chí); số quyết định [chưa verify], dsvh.gov.vn không lấy được.")
-    g.add((lstCR, ICH.listType, Literal("QG")))
-    g.add((lstCR, ICH.sourceURL, Literal(DSVH_LIST, datatype=XSD.anyURI)))
-    add(cr, ICH.hasListing, lstCR)
 
     decoys = [(EX.ChoNoiPhongDien, "Chợ nổi Phong Điền", EX.Place_PhongDien, [ICH.CayBeo, ICH.GheThuongHo, songCanTho]),
               (EX.ChoNoiNgaBay, "Chợ nổi Ngã Bảy", EX.Place_NgaBay, [ICH.CayBeo, ICH.GheThuongHo]),
@@ -806,6 +801,9 @@ def build_abox():
             g.add((p, ICH.discriminatorKind, Literal(k)))
         g.add((p, ICH.discriminatorNote, Literal(note, lang="vi")))
 
+    # ---------------- 20 di sản từ CSV ----------------
+    import abox_registry
+    abox_registry.build(g, ind, add, kind, alt, CSV_DIR)
     return g
 
 
@@ -815,14 +813,27 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     tb, ab = build_tbox(), build_abox()
     tb.serialize(out / "ich-tbox.ttl", format="turtle")
-    ab.serialize(out / "ich-test-abox.ttl", format="turtle")
-    # catalog cho Protégé: owl:imports https://example.org/ich -> ich-tbox.ttl (mở ABox mà không cần mạng)
+    ab.serialize(out / "ich-abox.ttl", format="turtle")
+    # catalog cho Protégé: owl:imports <TBOX_IRI> -> ich-tbox.ttl (mở ABox mà không cần mạng)
     (out / "catalog-v001.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n'
         '<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">\n'
-        '    <uri name="https://example.org/ich" uri="ich-tbox.ttl"/>\n'
+        f'    <uri name="{TBOX_IRI}" uri="ich-tbox.ttl"/>\n'
         '</catalog>\n', encoding="utf-8")
-    print(f"ich-tbox.ttl: {len(tb)} triples | ich-test-abox.ttl: {len(ab)} triples -> {out.resolve()}")
+    # Bản gộp một file (RDF/XML) để mở thẳng trong Protégé, không phụ thuộc owl:imports/catalog
+    full = Graph()
+    for p, ns in [("ich", ICH), ("ex", EX), ("owl", OWL), ("rdfs", RDFS), ("xsd", XSD), ("skos", SKOS), ("geo", GEO)]:
+        full.bind(p, ns)
+    FULL_IRI = URIRef(str(TBOX_IRI) + "/full")
+    full.add((FULL_IRI, RDF.type, OWL.Ontology))
+    full.add((FULL_IRI, RDFS.label, Literal("ICH Mekong - TBox + ABox gộp (để xem đồ thị trong Protégé)", lang="vi")))
+    for gg in (tb, ab):
+        for t in gg:
+            if t[0] in (TBOX_IRI, ABOX_IRI) and t[1] in (RDF.type, OWL.imports, RDFS.label, RDFS.comment, OWL.versionInfo):
+                continue
+            full.add(t)
+    full.serialize(out / "ich-full.owl", format="xml")
+    print(f"ich-tbox.ttl: {len(tb)} | ich-abox.ttl: {len(ab)} | ich-full.owl: {len(full)} triples -> {out.resolve()}")
 
 
 if __name__ == "__main__":

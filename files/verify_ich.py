@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-verify_ich.py - Kiểm ich-tbox.ttl + ich-test-abox.ttl.
+verify_ich.py - Kiểm ich-tbox.ttl + ich-abox.ttl (+ ich-full.owl).
 
   1. OWL 2 DL profile: OWLAPI (bundled trong HermiT.jar của owlready2) + kiểm Python
      (non-simple property không cardinality/functional/asymmetric/...; regularity của chain).
@@ -27,10 +27,10 @@ from rdflib.collection import Collection
 
 warnings.filterwarnings("ignore")
 
-ICH = "https://example.org/ich#"
-EXN = "https://example.org/ich/data#"
-TBOX_IRI = "https://example.org/ich"
-ABOX_IRI = "https://example.org/ich/test-abox"
+ICH = "https://w3id.org/ich-mekong/ontology#"
+EXN = "https://w3id.org/ich-mekong/data#"
+TBOX_IRI = "https://w3id.org/ich-mekong/ontology"
+ABOX_IRI = "https://w3id.org/ich-mekong/data"
 PFX = f"""PREFIX ich: <{ICH}> PREFIX ex: <{EXN}>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> """
 CUE_PATH = ("(ich:hasCue|ich:hasDistinctiveCue|ich:typicallyIncludes|ich:involvesRole|ich:hasTemporalCue"
@@ -49,7 +49,7 @@ def hr(title):
 # --------------------------------------------------------------------------
 def load():
     tb = Graph().parse(HERE / "ich-tbox.ttl", format="turtle")
-    ab = Graph().parse(HERE / "ich-test-abox.ttl", format="turtle")
+    ab = Graph().parse(HERE / "ich-abox.ttl", format="turtle")
     merged = Graph()
     for t in tb:
         merged.add(t)
@@ -361,8 +361,9 @@ def sparql_suite(g):
         n = int(r.n)
         byname[str(r.cue).split('#')[-1]] = n
         print(f"  {str(r.cue).split('#')[-1]:<22}{str(r.kind):<10}{n:>3}{math.log(N / n):>7.2f}  {r.bearers}")
-    results["b"] = (byname.get("CayBeo") == 4 and byname.get("GheNgo") == 1
-                    and byname.get("TrangPhucKhmer") == 2 and byname.get("ComDep") == 1)
+    # GheNgo, ComDep = 2: Oóc Om Bóc Sóc Trăng + Ok Om Bok Trà Vinh (qua chain typicallyIncludes ∘ usedObjectOfType)
+    results["b"] = (N == 23 and byname.get("CayBeo") == 4 and byname.get("GheNgo") == 2
+                    and byname.get("TrangPhucKhmer") == 2 and byname.get("ComDep") == 2 and byname.get("DuaGheNgo") == 2)
 
     # (c) chỉ trả HeritageElement, không trả LookalikeElement
     hr("(c) Lọc đáp án: cue {cây bẹo, ghe thương hồ, sông Cần Thơ} → chỉ HeritageElement")
@@ -384,9 +385,15 @@ def sparql_suite(g):
 
     # (d) EventHeritage có rule trùng một ngày âm (CQ13), xử lý vắt tháng và đúng hệ lịch
     hr("(d) CQ13: EventHeritage có TemporalRule chứa ngày (cùng calendarSystem, vắt tháng)")
-    probes = [("vn_lunar", 10, 15, {"OocOmBocSocTrang"}), ("vn_lunar", 8, 30, {"SeneDolta"}),
-              ("vn_lunar", 9, 1, {"SeneDolta"}), ("solar", 4, 14, {"CholChnamThmay"}),
-              ("khmer_lunar", 10, 15, set()), ("vn_lunar", 4, 14, set())]
+    probes = [("vn_lunar", 10, 15, {"OocOmBocSocTrang", "OkOmBokTraVinh"}),
+              ("vn_lunar", 8, 30, {"SeneDolta", "HoiDuaBoBayNui"}),
+              ("vn_lunar", 9, 1, {"SeneDolta", "HoiDuaBoBayNui"}),
+              ("vn_lunar", 8, 27, {"LeHoiDinhNguyenTrungTruc"}),
+              ("vn_lunar", 2, 15, {"NghinhOngSongDoc", "ChroiRumChek", "ViaBaThuyLong"}),
+              ("vn_lunar", 4, 14, {"KyYenDinhBinhThuy", "DomLongNeakTa"}),
+              ("solar", 4, 14, {"CholChnamThmay"}),
+              ("khmer_lunar", 10, 15, set()),        # rule Khmer không có monthStart (chưa chốt cách đánh số)
+              ("vn_lunar", 6, 1, set())]
     ok = True
     for cal, m, d, expect in probes:
         rows = q(g, f"""
@@ -402,6 +409,40 @@ def sparql_suite(g):
         shown = str(sorted(got)) if got else "∅"
         print(f"  {cal:<12} {d:>2}/{m:<2} → {shown:<28} {'✓' if got == expect else '✗ mong đợi ' + str(sorted(expect))}")
     results["d"] = ok
+
+    # (e) Occurrence thực tế (ngày âm) so với rule vn_lunar/solar: strict vs có dung sai (toleranceDays/Months)
+    hr("(e) Occurrence vs TemporalRule: strict / có dung sai")
+    rows = q(g, """
+      SELECT ?o ?e ?cal ?ms ?ds ?me ?de ?td ?tm ?lm ?ld ?sd WHERE {
+        ?o a ich:Occurrence ; ich:occurrenceOf ?e ; ich:startDate ?sd .
+        ?e ich:hasTemporalRule ?r . ?r ich:calendarSystem ?cal ; ich:monthStart ?ms ; ich:dayStart ?ds ;
+           ich:monthEnd ?me ; ich:dayEnd ?de ; ich:toleranceDays ?td ; ich:toleranceMonths ?tm .
+        OPTIONAL { ?o ich:lunarStartMonth ?lm ; ich:lunarStartDay ?ld }
+      } ORDER BY ?o""")
+    idx = lambda m, d: (int(m) - 1) * 30 + int(d)
+    best = {}
+    for r in rows:
+        cal = str(r.cal)
+        if cal == "vn_lunar":
+            if r.lm is None:
+                continue
+            k = idx(r.lm, r.ld)
+        else:   # solar: dùng startDate
+            dt = r.sd.toPython()
+            k = idx(dt.month, dt.day)
+        s, e = idx(r.ms, r.ds), idx(r.me, r.de)
+        strict = s <= k <= e
+        tol = any(s - int(r.td) <= k + 30 * j <= e + int(r.td) for j in range(-int(r.tm), int(r.tm) + 1))
+        name = str(r.o).split("#")[-1]
+        prev = best.get(name, (False, False))
+        best[name] = (prev[0] or strict, prev[1] or tol)
+    strict_fail = sorted(n for n, (st, tl) in best.items() if not st)
+    tol_fail = sorted(n for n, (st, tl) in best.items() if not tl)
+    print(f"  {len(best)} occurrence kiểm được | strict lệch: {len(strict_fail)} | có dung sai lệch: {len(tol_fail)}")
+    for n in strict_fail:
+        print(f"    strict ✗ {n:<32} {'(dung sai ✓)' if n not in tol_fail else '(dung sai ✗)'}")
+    must_shift = {"OocOmBocSocTrang_2025", "SeneDolta_2025", "HoiDuaBoBayNui_2025", "OkOmBokTraVinh_2025"}
+    results["e"] = (not tol_fail) and must_shift <= set(strict_fail) and len(best) == 21
     return results
 
 
@@ -425,6 +466,12 @@ NEG = {
         ex:r a ich:TemporalRule ; ich:calendarSystem "lunar_khmer" .""",
     "N7 monthStart = 13 (ngoài 1..12)": """
         ex:r a ich:TemporalRule ; ich:calendarSystem "solar" ; ich:monthStart 13 .""",
+    "N8 ruleStrength ngoài enum": """
+        ex:r a ich:TemporalRule ; ich:calendarSystem "solar" ; ich:ruleStrength "strict" .""",
+    "N9 Occurrence có lunarStartDay = 31 (ngoài 1..30)": """
+        ex:e a ich:EventHeritage . ex:o a ich:Occurrence ; ich:occurrenceOf ex:e ; ich:lunarStartDay 31 .""",
+    "N10 HeritageElement có 2 registryStatus (functional, enum)": """
+        ex:h a ich:PracticeHeritage ; ich:registryStatus "listed" , "not_listed" .""",
 }
 
 

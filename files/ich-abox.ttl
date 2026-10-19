@@ -1,0 +1,2087 @@
+@prefix ex: <https://w3id.org/ich-mekong/data#> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix ich: <https://w3id.org/ich-mekong/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/ich-mekong/data> a owl:Ontology ;
+    rdfs:comment "ABox kiểm thử. Quy ước: individual từ vựng (loại hoạt động, vật phẩm, vai trò...) dùng tiền tố ich:, di sản/địa điểm/lần diễn ra dùng ex:. Mọi dữ kiện đều unverified trừ khi ghi khác; tọa độ chỉ xấp xỉ minh họa."@vi ;
+    owl:imports <https://w3id.org/ich-mekong/ontology> .
+
+ex:Admin_AnGiang_pre2025 a owl:NamedIndividual,
+        ich:AdminUnit ;
+    rdfs:label "Tỉnh An Giang (trước sáp nhập)"@vi ;
+    rdfs:comment "Sáp nhập tỉnh theo NQ 202/2025/QH15 (validTo/validFrom theo quy ước đã dùng trong ABox; mốc vận hành [chưa verify])."@vi ;
+    ich:adminLevel "province" ;
+    ich:coversPlace ex:Place_AnGiangOldArea ;
+    ich:succeededBy ex:Admin_AnGiang_2025 ;
+    ich:validTo "2025-06-11T00:00:00"^^xsd:dateTime ;
+    ich:verificationStatus "unverified" .
+
+ex:Admin_CaMau_pre2025 a owl:NamedIndividual,
+        ich:AdminUnit ;
+    rdfs:label "Tỉnh Cà Mau (trước sáp nhập)"@vi ;
+    rdfs:comment "Sáp nhập tỉnh theo NQ 202/2025/QH15 (validTo/validFrom theo quy ước đã dùng trong ABox; mốc vận hành [chưa verify])."@vi ;
+    ich:adminLevel "province" ;
+    ich:coversPlace ex:Place_CaMauOldArea ;
+    ich:succeededBy ex:Admin_CaMau_2025 ;
+    ich:validTo "2025-06-11T00:00:00"^^xsd:dateTime ;
+    ich:verificationStatus "unverified" .
+
+ex:Admin_KienGiang_pre2025 a owl:NamedIndividual,
+        ich:AdminUnit ;
+    rdfs:label "Tỉnh Kiên Giang"@vi ;
+    rdfs:comment "Sáp nhập tỉnh theo NQ 202/2025/QH15 (validTo/validFrom theo quy ước đã dùng trong ABox; mốc vận hành [chưa verify])."@vi ;
+    ich:adminLevel "province" ;
+    ich:coversPlace ex:Place_KienGiangArea ;
+    ich:succeededBy ex:Admin_AnGiang_2025 ;
+    ich:validTo "2025-06-11T00:00:00"^^xsd:dateTime ;
+    ich:verificationStatus "unverified" .
+
+ex:Admin_SocTrang_pre2025 a owl:NamedIndividual,
+        ich:AdminUnit ;
+    rdfs:label "Tỉnh Sóc Trăng"@vi ;
+    ich:adminLevel "province" ;
+    ich:coversPlace ex:Place_SocTrangArea ;
+    ich:succeededBy ex:Admin_TPCanTho_2025 ;
+    ich:validTo "2025-06-11T00:00:00"^^xsd:dateTime ;
+    ich:verificationStatus "unverified" .
+
+ex:Admin_TPCanTho_pre2025 a owl:NamedIndividual,
+        ich:AdminUnit ;
+    rdfs:label "Thành phố Cần Thơ (trước sáp nhập)"@vi ;
+    rdfs:comment "Sáp nhập tỉnh theo NQ 202/2025/QH15 (validTo/validFrom theo quy ước đã dùng trong ABox; mốc vận hành [chưa verify])."@vi ;
+    ich:adminLevel "province" ;
+    ich:coversPlace ex:Place_CanThoOldArea ;
+    ich:succeededBy ex:Admin_TPCanTho_2025 ;
+    ich:validTo "2025-06-11T00:00:00"^^xsd:dateTime ;
+    ich:verificationStatus "unverified" .
+
+ex:Admin_TraVinh_pre2025 a owl:NamedIndividual,
+        ich:AdminUnit ;
+    rdfs:label "Tỉnh Trà Vinh"@vi ;
+    rdfs:comment "Sáp nhập tỉnh theo NQ 202/2025/QH15 (validTo/validFrom theo quy ước đã dùng trong ABox; mốc vận hành [chưa verify])."@vi ;
+    ich:adminLevel "province" ;
+    ich:coversPlace ex:Place_TraVinhArea ;
+    ich:succeededBy ex:Admin_VinhLong_2025 ;
+    ich:validTo "2025-06-11T00:00:00"^^xsd:dateTime ;
+    ich:verificationStatus "unverified" .
+
+ex:CholChnamThmay_2023 a owl:NamedIndividual,
+        ich:Occurrence ;
+    rdfs:label "Tết Chôl Chnăm Thmây 2023"@vi ;
+    rdfs:comment "CSV: 14–16/4/2023 (=24–26/2 nhuận âm Việt)"@vi,
+        "Suy diễn: Rơi vào tháng 2 nhuận âm Việt nên không ghi ngày âm."@vi ;
+    ich:endDate "2023-04-16T00:00:00"^^xsd:dateTime ;
+    ich:occurrenceOf ex:CholChnamThmay ;
+    ich:source "https://pbgdpl.cantho.gov.vn/thong-bao-nghi-tet-co-truyen-chol-chnam-thmay-cua-dong-bao-dan-toc-khmer-nam-2023"^^xsd:anyURI ;
+    ich:startDate "2023-04-14T00:00:00"^^xsd:dateTime ;
+    ich:tookPlaceAt ex:Place_DBSCL ;
+    ich:verificationStatus "unverified" .
+
+ex:CholChnamThmay_2024 a owl:NamedIndividual,
+        ich:Occurrence ;
+    rdfs:label "Tết Chôl Chnăm Thmây 2024"@vi ;
+    rdfs:comment "CSV: 13–16/4/2024 (=5–8/3 âm Việt)"@vi ;
+    ich:endDate "2024-04-16T00:00:00"^^xsd:dateTime ;
+    ich:lunarEndDay 8 ;
+    ich:lunarEndMonth 3 ;
+    ich:lunarStartDay 5 ;
+    ich:lunarStartMonth 3 ;
+    ich:occurrenceOf ex:CholChnamThmay ;
+    ich:source "https://tapchitoaan.vn/thu-tuong-chuc-mung-dong-bao-khmer-nhan-dip-tet-co-truyen-chol-chnam-thmay10597.html"^^xsd:anyURI ;
+    ich:startDate "2024-04-13T00:00:00"^^xsd:dateTime ;
+    ich:tookPlaceAt ex:Place_DBSCL ;
+    ich:verificationStatus "unverified" .
+
+ex:CholChnamThmay_2025 a owl:NamedIndividual,
+        ich:Occurrence ;
+    rdfs:label "Tết Chôl Chnăm Thmây 2025"@vi ;
+    rdfs:comment "CSV: 14–16/4/2025 (=17–19/3 âm Việt)"@vi ;
+    ich:endDate "2025-04-16T00:00:00"^^xsd:dateTime ;
+    ich:lunarEndDay 19 ;
+    ich:lunarEndMonth 3 ;
+    ich:lunarStartDay 17 ;
+    ich:lunarStartMonth 3 ;
+    ich:occurrenceOf ex:CholChnamThmay ;
+    ich:source "https://vietnamnet.vn/nhung-nghi-le-chinh-cua-tet-chol-chnam-thmay-2391081.html"^^xsd:anyURI ;
+    ich:startDate "2025-04-14T00:00:00"^^xsd:dateTime ;
+    ich:tookPlaceAt ex:Place_DBSCL ;
+    ich:verificationStatus "unverified" .
+
+ex:ChroiRumChek_2025 a owl:NamedIndividual,
+        ich:Occurrence ;
+    rdfs:label "Lễ hội Chrôi Rum Chếk (Phước Biển) 2025"@vi ;
+    rdfs:comment "CSV: 12–14/3/2025 (=13–15/2 âm)"@vi ;
+    ich:endDate "2025-03-14T00:00:00"^^xsd:dateTime ;
+    ich:lunarEndDay 15 ;
+    ich:lunarEndMonth 2 ;
+    ich:lunarStartDay 13 ;
+    ich:lunarStartMonth 2 ;
+    ich:occurrenceOf ex:ChroiRumChek ;
+    ich:source "https://soctrangtourism.vn/vi/detailnews/?t=thi-xa-vinh-chau-to-chuc-le-hoi-cung-phuoc-bien-nam-2025-va-don-bang-chung-nhan-di-san-van-hoa-phi-vat-the-quoc-gia&id=news_3807 | https://tuoitre.vn/le-hoi-phuoc-bien-cua-dong-bao-khmer-la-di-san-van-hoa-phi-vat-the-quoc-gia-20250312185105743.htm"^^xsd:anyURI ;
+    ich:startDate "2025-03-12T00:00:00"^^xsd:dateTime ;
+    ich:tookPlaceAt ex:TrungTamChroiRumChek ;
+    ich:verificationStatus "unverified" .
+
+ex:CungBienMyLong a owl:NamedIndividual,
+        ich:EventHeritage ;
+    rdfs:label "Lễ hội cúng biển Mỹ Long"@vi ;
+    rdfs:comment "Ghi chú (CSV): Prompt 1 chỉ có blog; nay đã có dsvh + cổng Trà Vinh → nâng cấp mức tin cậy. Nghi thức: Tiền giảng, Nghinh Nam Hải, Tế Thần Nông và chiến sĩ trận vong, Chánh tế Chúa Xứ, Nghinh ngũ phương, Tống tàu."@vi,
+        "Mức verify (CSV): Cao (QĐ, rule, địa điểm gốc)"@vi,
+        "Quy tắc thời gian (CSV): 10–12/5 âm; tống tàu 12/5"@vi,
+        "Địa bàn gốc trong Danh mục: xã Mỹ Long Bắc, xã Mỹ Long Nam và thị trấn Mỹ Long, huyện Cầu Ngang, tỉnh Trà Vinh"@vi,
+        "Địa bàn sau 2025 (CSV): xã Mỹ Long (hoặc tương đương): [chưa verify]"@vi ;
+    ich:altLabelNoDiacritics "Le hoi cung bien My Long" ;
+    ich:datasetId 11 ;
+    ich:hasListing ex:Listing_CungBienMyLong_QG ;
+    ich:hasLocality ex:MieuBaChuaXuMyLong ;
+    ich:hasTemporalRule ex:CungBienMyLong_Rule_Main ;
+    ich:listingName "Lễ hội cúng biển Mỹ Long"@vi ;
+    ich:registryStatus "listed" ;
+    ich:source "https://dangcongsan.org.vn/travinh/tin-tuc-hoat-dong/di-san-van-hoa-phi-vat-the-quoc-gia-o-tinh-tra-vinh.html"^^xsd:anyURI,
+        "https://dsvh.gov.vn/danh-muc-di-san-van-hoa-phi-vat-the-quoc-gia-1789"^^xsd:anyURI ;
+    ich:typicallyIncludes ich:LeNghinhThanNamHai,
+        ich:LeTeThanNong,
+        ich:TongTau ;
+    ich:unescoDomain ich:SocialPracticesRitualsFestive ;
+    ich:verificationStatus "verified" ;
+    ich:vnCategory ich:LeHoiTruyenThong .
+
+ex:DomLongNeakTa a owl:NamedIndividual,
+        ich:EventHeritage ;
+    rdfs:label "Lễ hội Đom Lơng Néak Tà"@vi ;
+    rdfs:comment "Ghi chú (CSV): Không có 'ngày chung' → rule thời gian không dùng được cho B4; chỉ dùng như cue nghi lễ/địa điểm. Ít dữ liệu ảnh → hợp làm ca test event ít dữ liệu như Prompt 1 gợi ý."@vi,
+        "Mức verify (CSV): Trung bình: ngày xác nhận, số QĐ chưa"@vi,
+        "Quy tắc thời gian (CSV): Hầu hết tháng 3, 4, 5 âm; thường 2 ngày; mỗi nơi chọn ngày riêng"@vi,
+        "Địa bàn gốc trong Danh mục: tỉnh Trà Vinh"@vi,
+        "Địa bàn sau 2025 (CSV): [chưa verify]"@vi ;
+    ich:altLabelNoDiacritics "Le hoi Dom Long Neak Ta" ;
+    ich:bearerGroup ex:DongBaoKhmer ;
+    ich:datasetId 20 ;
+    ich:hasCue ich:MieuNeakTa ;
+    ich:hasListing ex:Listing_DomLongNeakTa_QG ;
+    ich:hasLocality ex:Place_TraVinhArea ;
+    ich:hasTemporalRule ex:DomLongNeakTa_Rule_Main ;
+    ich:listingName "Lễ hội Đom Lơng Néak Tà của người Khmer"@vi ;
+    ich:registryStatus "unverified" ;
+    ich:source "https://dangcongsan.org.vn/travinh/tin-tuc-hoat-dong/di-san-van-hoa-phi-vat-the-quoc-gia-o-tinh-tra-vinh.html"^^xsd:anyURI ;
+    ich:unescoDomain ich:SocialPracticesRitualsFestive ;
+    ich:verificationStatus "unverified" .
+
+ex:HoiDuaBoBayNui_2023 a owl:NamedIndividual,
+        ich:Occurrence ;
+    rdfs:label "Hội đua bò Bảy Núi 2023"@vi ;
+    rdfs:comment "CSV: 14/10/2023 (=30/8 âm) – Khu TT–DL Tà Pạ – Soài Chek, huyện Tri Tôn, lần 28"@vi ;
+    ich:endDate "2023-10-14T00:00:00"^^xsd:dateTime ;
+    ich:lunarEndDay 30 ;
+    ich:lunarEndMonth 8 ;
+    ich:lunarStartDay 30 ;
+    ich:lunarStartMonth 8 ;
+    ich:occurrenceOf ex:HoiDuaBoBayNui ;
+    ich:source "https://dantocmiennui.baotintuc.vn/tung-bung-hoi-dua-bo-bay-nui-an-giang-nam-2023-post1366443.html"^^xsd:anyURI ;
+    ich:startDate "2023-10-14T00:00:00"^^xsd:dateTime ;
+    ich:tookPlaceAt ex:SanDuaBoTaPa ;
+    ich:verificationStatus "unverified" .
+
+ex:HoiDuaBoBayNui_2024 a owl:NamedIndividual,
+        ich:Occurrence ;
+    rdfs:label "Hội đua bò Bảy Núi 2024"@vi ;
+    rdfs:comment "CSV: 29/9/2024 (=27/8 âm) – sân xã Vĩnh Trung, TX Tịnh Biên, lần 29"@vi ;
+    ich:endDate "2024-09-29T00:00:00"^^xsd:dateTime ;
+    ich:lunarEndDay 27 ;
+    ich:lunarEndMonth 8 ;
+    ich:lunarStartDay 27 ;
+    ich:lunarStartMonth 8 ;
+    ich:occurrenceOf ex:HoiDuaBoBayNui ;
+    ich:source "https://angiang.gov.vn/vi/hoi-dua-bo-bay-nui-tranh-cup-truyen-hinh-giang-lan-thu-29-nam-2024-se-dien-ra-vao-ngay-2992024 | https://nhandan.vn/hao-hung-dua-bo-bay-nui-an-giang-post833793.html"^^xsd:anyURI ;
+    ich:startDate "2024-09-29T00:00:00"^^xsd:dateTime ;
+    ich:tookPlaceAt ex:SanDuaBoVinhTrung ;
+    ich:verificationStatus "unverified" .
+
+ex:HoiDuaBoBayNui_2025 a owl:NamedIndividual,
+        ich:Occurrence ;
+    rdfs:label "Hội đua bò Bảy Núi 2025"@vi ;
+    rdfs:comment "CSV: 20/9/2025 (=29/7 âm) – sân xã Tri Tôn, lần 30; Sene Dolta 2025 bắt đầu 21/9"@vi ;
+    ich:endDate "2025-09-20T00:00:00"^^xsd:dateTime ;
+    ich:lunarEndDay 29 ;
+    ich:lunarEndMonth 7 ;
+    ich:lunarStartDay 29 ;
+    ich:lunarStartMonth 7 ;
+    ich:occurrenceOf ex:HoiDuaBoBayNui ;
+    ich:source "https://dantocphattrien.vietnamnet.vn/64-doi-bo-tranh-tai-kich-tinh-tai-hoi-dua-bo-bay-nui-o-an-giang-nam-2025-69431.html | https://baoangiang.com.vn/hoi-dua-bo-bay-nui-tranh-cup-truyen-hinh-an-giang-lan-thu-30-dien-ra-ngay-20-9-a425814.html"^^xsd:anyURI ;
+    ich:startDate "2025-09-20T00:00:00"^^xsd:dateTime ;
+    ich:tookPlaceAt ex:SanDuaBoTaPa ;
+    ich:verificationStatus "unverified" .
+
+ex:KyYenDinhBinhThuy_2023 a owl:NamedIndividual,
+        ich:Occurrence ;
+    rdfs:label "Lễ hội Kỳ Yên đình Bình Thủy 2023"@vi ;
+    rdfs:comment "CSV: 30/5–2/6/2023 (12–15/4 âm)"@vi ;
+    ich:endDate "2023-06-02T00:00:00"^^xsd:dateTime ;
+    ich:lunarEndDay 15 ;
+    ich:lunarEndMonth 4 ;
+    ich:lunarStartDay 12 ;
+    ich:lunarStartMonth 4 ;
+    ich:occurrenceOf ex:KyYenDinhBinhThuy ;
+    ich:source "https://baovanhoa.vn/doi-song-van-hoa/doc-dao-le-hoi-ky-yen-dinh-binh-thuy-can-tho-16933.html"^^xsd:anyURI ;
+    ich:startDate "2023-05-30T00:00:00"^^xsd:dateTime ;
+    ich:tookPlaceAt ex:DinhBinhThuy ;
+    ich:verificationStatus "unverified" .
+
+ex:KyYenDinhBinhThuy_2024 a owl:NamedIndividual,
+        ich:Occurrence ;
+    rdfs:label "Lễ hội Kỳ Yên đình Bình Thủy 2024"@vi ;
+    rdfs:comment "CSV: 19–21/5/2024 (12–14/4 âm)"@vi ;
+    ich:endDate "2024-05-21T00:00:00"^^xsd:dateTime ;
+    ich:lunarEndDay 14 ;
+    ich:lunarEndMonth 4 ;
+    ich:lunarStartDay 12 ;
+    ich:lunarStartMonth 4 ;
+    ich:occurrenceOf ex:KyYenDinhBinhThuy ;
+    ich:source "https://baovanhoa.vn/van-hoa/khai-mac-le-hoi-ky-yen-thuong-dien-dinh-binh-thuy-2024-94279.html"^^xsd:anyURI ;
+    ich:startDate "2024-05-19T00:00:00"^^xsd:dateTime ;
+    ich:tookPlaceAt ex:DinhBinhThuy ;
+    ich:verificationStatus "unverified" .
+
+ex:KyYenDinhBinhThuy_2025 a owl:NamedIndividual,
+        ich:Occurrence ;
+    rdfs:label "Lễ hội Kỳ Yên đình Bình Thủy 2025"@vi ;
+    rdfs:comment "CSV: 8–12/5/2025 (11–15/4 âm)"@vi ;
+    ich:endDate "2025-05-12T00:00:00"^^xsd:dateTime ;
+    ich:lunarEndDay 15 ;
+    ich:lunarEndMonth 4 ;
+    ich:lunarStartDay 11 ;
+    ich:lunarStartMonth 4 ;
+    ich:occurrenceOf ex:KyYenDinhBinhThuy ;
+    ich:source "https://baovanhoa.vn/van-hoa/bao-ton-va-phat-huy-gia-tri-di-san-le-hoi-ky-yen-dinh-binh-thuy-132890.html"^^xsd:anyURI ;
+    ich:startDate "2025-05-08T00:00:00"^^xsd:dateTime ;
+    ich:tookPlaceAt ex:DinhBinhThuy ;
+    ich:verificationStatus "unverified" .
+
+ex:LeHoiDinhNguyenTrungTruc_2023 a owl:NamedIndividual,
+        ich:Occurrence ;
+    rdfs:label "Lễ hội đình thần Nguyễn Trung Trực 2023"@vi ;
+    rdfs:comment "CSV: Khai mạc tối 10/10/2023 (=26/8 âm) + đón bằng di sản"@vi,
+        "Suy diễn: Chỉ có ngày khai mạc; ngày kết thúc chưa có nguồn nên không ghi endDate."@vi ;
+    ich:lunarStartDay 26 ;
+    ich:lunarStartMonth 8 ;
+    ich:occurrenceOf ex:LeHoiDinhNguyenTrungTruc ;
+    ich:source "https://tuoitre.vn/le-hoi-dinh-than-nguyen-trung-truc-nhan-bang-di-san-van-hoa-phi-vat-the-20231010193054044.htm | https://nvsk.vnanet.vn/su-kien/le-hoi-dinh-than-nguyen-trung-truc-la-di-san-van-hoa-phi-vat-the-quoc-gia-2-126032.vna"^^xsd:anyURI ;
+    ich:startDate "2023-10-10T00:00:00"^^xsd:dateTime ;
+    ich:tookPlaceAt ex:DinhThanNguyenTrungTruc ;
+    ich:verificationStatus "unverified" .
+
+ex:NghinhOngSongDoc_2025 a owl:NamedIndividual,
+        ich:Occurrence ;
+    rdfs:label "Lễ hội Nghinh Ông Sông Đốc 2025"@vi ;
+    rdfs:comment "CSV: 11–17/3/2025 (=12–18/2 âm); khai mạc tối 13/3"@vi ;
+    ich:endDate "2025-03-17T00:00:00"^^xsd:dateTime ;
+    ich:lunarEndDay 18 ;
+    ich:lunarEndMonth 2 ;
+    ich:lunarStartDay 12 ;
+    ich:lunarStartMonth 2 ;
+    ich:occurrenceOf ex:NghinhOngSongDoc ;
+    ich:source "https://www.vietnamplus.vn/nghinh-ong-song-doc-le-hoi-100-tuoi-dac-sac-cua-ngu-dan-ca-mau-post1020739.vnp | https://chinhsachcuocsong.vnanet.vn/ton-vinh-gia-tri-di-san-tram-nam-le-hoi-nghinh-ong-song-doc/57317.html"^^xsd:anyURI ;
+    ich:startDate "2025-03-11T00:00:00"^^xsd:dateTime ;
+    ich:tookPlaceAt ex:LangOngSongDoc ;
+    ich:verificationStatus "unverified" .
+
+ex:OkOmBokTraVinh_2024 a owl:NamedIndividual,
+        ich:Occurrence ;
+    rdfs:label "Lễ hội Ok Om Bok Trà Vinh 2024"@vi ;
+    rdfs:comment "CSV: Tuần lễ VH–DL 9–15/11/2024; đêm hội tại Khu VH–DL ao Bà Om"@vi,
+        "Suy diễn: Ngày âm suy từ 14/11/2024 = 14/10 âm (CSV dòng #3 cùng năm)."@vi ;
+    ich:endDate "2024-11-15T00:00:00"^^xsd:dateTime ;
+    ich:lunarEndDay 15 ;
+    ich:lunarEndMonth 10 ;
+    ich:lunarStartDay 9 ;
+    ich:lunarStartMonth 10 ;
+    ich:occurrenceOf ex:OkOmBokTraVinh ;
+    ich:source "https://nhandan.vn/dac-sac-dem-hoi-ok-om-bok-cua-dong-bao-khmer-tai-tra-vinh-post845154.html"^^xsd:anyURI ;
+    ich:startDate "2024-11-09T00:00:00"^^xsd:dateTime ;
+    ich:tookPlaceAt ex:AoBaOm ;
+    ich:verificationStatus "unverified" .
+
+ex:OkOmBokTraVinh_2025 a owl:NamedIndividual,
+        ich:Occurrence ;
+    rdfs:label "Lễ hội Ok Om Bok Trà Vinh 2025"@vi ;
+    rdfs:comment "CSV: Tuần lễ 30/10–5/11/2025; đêm hội 5/11/2025 (=16/9 âm Việt)"@vi,
+        "Suy diễn: Ngày âm của 30/10 suy từ mốc 5/11 = 16/9 âm."@vi ;
+    ich:endDate "2025-11-05T00:00:00"^^xsd:dateTime ;
+    ich:lunarEndDay 16 ;
+    ich:lunarEndMonth 9 ;
+    ich:lunarStartDay 10 ;
+    ich:lunarStartMonth 9 ;
+    ich:occurrenceOf ex:OkOmBokTraVinh ;
+    ich:source "https://nhandan.vn/tung-bung-dem-hoi-ok-om-bok-cua-dong-bao-khmer-tai-vinh-long-post920832.html"^^xsd:anyURI ;
+    ich:startDate "2025-10-30T00:00:00"^^xsd:dateTime ;
+    ich:tookPlaceAt ex:AoBaOm ;
+    ich:verificationStatus "unverified" .
+
+ex:OocOmBocSocTrang_2023 a owl:NamedIndividual,
+        ich:Occurrence ;
+    rdfs:label "Oóc Om Bóc Sóc Trăng 2023"@vi ;
+    rdfs:comment "CSV: Lễ hội 25–27/11/2023; đua 26–27/11 (=14–15/10 âm)"@vi,
+        "Suy diễn: Ngày âm của 25/11 suy từ mốc 26/11 = 14/10 âm trong CSV."@vi ;
+    ich:endDate "2023-11-27T00:00:00"^^xsd:dateTime ;
+    ich:lunarEndDay 15 ;
+    ich:lunarEndMonth 10 ;
+    ich:lunarStartDay 13 ;
+    ich:lunarStartMonth 10 ;
+    ich:occurrenceOf ex:OocOmBocSocTrang ;
+    ich:source "https://www.sggp.org.vn/soc-trang-khai-mac-le-hoi-ooc-om-boc-dua-ghe-ngo-nam-2023-vao-ngay-25-11-post714542.html | https://mekongasean.vn/46-doi-tham-gia-tranh-tai-tai-giai-dua-ghe-ngo-tinh-soc-trang-27167.html"^^xsd:anyURI ;
+    ich:startDate "2023-11-25T00:00:00"^^xsd:dateTime ;
+    ich:tookPlaceAt ex:SongMaspero_CauQuay_CauCao ;
+    ich:verificationStatus "unverified" .
+
+ex:OocOmBocSocTrang_2025 a owl:NamedIndividual,
+        ich:Occurrence ;
+    rdfs:label "Oóc Om Bóc Sóc Trăng 2025"@vi ;
+    rdfs:comment "CSV: Lễ hội 3–5/11/2025; đua 4–5/11; cúng trăng 19h 4/11 (=15–16/9 âm Việt; rằm 10 âm Việt 2025 = 4/12/2025)"@vi,
+        "Suy diễn: Ngày âm của 3/11 suy từ mốc 4/11 = 15/9 âm trong CSV. Cúng trăng tại chùa Khleang."@vi ;
+    ich:endDate "2025-11-05T00:00:00"^^xsd:dateTime ;
+    ich:lunarEndDay 16 ;
+    ich:lunarEndMonth 9 ;
+    ich:lunarStartDay 14 ;
+    ich:lunarStartMonth 9 ;
+    ich:occurrenceOf ex:OocOmBocSocTrang ;
+    ich:source "https://baodautu.vn/sap-dien-ra-le-hoi-ooc-om-boc---dua-ghe-ngo-tp-can-tho-nam-2025-d425136.html | https://nhandan.vn/can-tho-khai-mac-le-hoi-ooc-om-boc-dua-ghe-ngo-nam-2025-post920322.html"^^xsd:anyURI ;
+    ich:startDate "2025-11-03T00:00:00"^^xsd:dateTime ;
+    ich:tookPlaceAt ex:ChuaKhleang,
+        ex:SongMaspero_CauQuay_CauCao ;
+    ich:verificationStatus "unverified" .
+
+ex:Pair_A1 a owl:NamedIndividual,
+        ich:ConfusablePair ;
+    rdfs:label "Pair A1"@vi ;
+    ich:discriminatorKind "cue",
+        "temporal" ;
+    ich:discriminatorNote "Cùng Khmer, cùng trang phục; phân biệt bằng ghe Ngo/thả đèn nước (Oóc Om Bóc) vs núi cát/tắm Phật (Chôl Chnăm Thmây) và hệ lịch."@vi ;
+    ich:hasMember ex:CholChnamThmay,
+        ex:OocOmBocSocTrang ;
+    ich:verificationStatus "unverified" .
+
+ex:Pair_B1 a owl:NamedIndividual,
+        ich:ConfusablePair ;
+    rdfs:label "Pair B1"@vi ;
+    ich:discriminatorKind "cue",
+        "place" ;
+    ich:discriminatorNote "Cùng trên sông Cần Thơ, cùng cây bẹo; phân biệt bằng vị trí (GPS/OCR). Phong Điền thưa ghe hơn (yếu, tương đối, chưa có ngưỡng)."@vi ;
+    ich:hasMember ex:ChoNoiCaiRang,
+        ex:ChoNoiPhongDien ;
+    ich:verificationStatus "unverified" .
+
+ex:Pair_B2 a owl:NamedIndividual,
+        ich:ConfusablePair ;
+    rdfs:label "Pair B2"@vi ;
+    ich:discriminatorKind "place" ;
+    ich:discriminatorNote "Cùng cue chung; chỉ phân biệt bằng vị trí."@vi ;
+    ich:hasMember ex:ChoNoiCaiRang,
+        ex:ChoNoiNgaBay ;
+    ich:verificationStatus "unverified" .
+
+ex:Pair_B3 a owl:NamedIndividual,
+        ich:ConfusablePair ;
+    rdfs:label "Pair B3"@vi ;
+    ich:discriminatorKind "place" ;
+    ich:discriminatorNote "Sông Tiền vs sông Cần Thơ (OCR/GPS)."@vi ;
+    ich:hasMember ex:ChoNoiCaiBe,
+        ex:ChoNoiCaiRang ;
+    ich:verificationStatus "unverified" .
+
+ex:Pair_C1 a owl:NamedIndividual,
+        ich:ConfusablePair ;
+    rdfs:label "Cặp dễ nhầm: Oóc Om Bóc Sóc Trăng / Lễ hội Ok Om Bok Trà Vinh"@vi ;
+    ich:discriminatorKind "place" ;
+    ich:discriminatorNote "Cùng lễ cúng trăng và đua ghe Ngo của người Khmer; phân biệt bằng địa điểm (sông Maspéro/Sóc Trăng vs Ao Bà Om, sông Long Bình/Trà Vinh)."@vi ;
+    ich:hasMember ex:OkOmBokTraVinh,
+        ex:OocOmBocSocTrang ;
+    ich:verificationStatus "unverified" .
+
+ex:Pair_C2 a owl:NamedIndividual,
+        ich:ConfusablePair ;
+    rdfs:label "Cặp dễ nhầm: Lễ hội Nghinh Ông Trần Đề / Lễ hội Nghinh Ông Sông Đốc"@vi ;
+    ich:discriminatorKind "place",
+        "temporal" ;
+    ich:discriminatorNote "Cùng tên 'Nghinh Ông' (dsvh có ≥3 mục trùng tên); phân biệt bằng địa điểm và cửa sổ âm lịch 21–23/3 vs 14–16/2."@vi ;
+    ich:hasMember ex:NghinhOngSongDoc,
+        ex:NghinhOngTranDe ;
+    ich:verificationStatus "unverified" .
+
+ex:Pair_C3 a owl:NamedIndividual,
+        ich:ConfusablePair ;
+    rdfs:label "Cặp dễ nhầm: Lễ hội Nghinh Ông Sông Đốc / Lễ hội Chrôi Rum Chếk (Phước Biển)"@vi ;
+    ich:discriminatorKind "cue",
+        "place" ;
+    ich:discriminatorNote "Cửa sổ âm lịch chồng lấn (14–16/2 vs 13–15/2), cùng lễ hội vùng biển; phân biệt bằng địa điểm và cue Khmer."@vi ;
+    ich:hasMember ex:ChroiRumChek,
+        ex:NghinhOngSongDoc ;
+    ich:verificationStatus "unverified" .
+
+ex:Pair_C4 a owl:NamedIndividual,
+        ich:ConfusablePair ;
+    rdfs:label "Cặp dễ nhầm: Hội đua bò Bảy Núi / Lễ Sene Dolta"@vi ;
+    ich:discriminatorKind "cue" ;
+    ich:discriminatorNote "Diễn ra cùng dịp; ảnh có bò đua/sân đua → Hội đua bò, cảnh chùa/cúng ông bà → Sene Dolta."@vi ;
+    ich:hasMember ex:HoiDuaBoBayNui,
+        ex:SeneDolta ;
+    ich:verificationStatus "unverified" .
+
+ex:Part_001 a owl:NamedIndividual,
+        ich:Participation ;
+    rdfs:label "Part 001"@vi ;
+    ich:activity ex:DuaGheNgo_SocTrang_2024 ;
+    ich:agent ex:Agent_001 ;
+    ich:role ich:ConDam ;
+    ich:verificationStatus "unverified" .
+
+ex:SeneDolta_2023 a owl:NamedIndividual,
+        ich:Occurrence ;
+    rdfs:label "Lễ Sene Dolta 2023"@vi ;
+    rdfs:comment "CSV: 13–15/10/2023 (=29/8, 30/8, 1/9 âm)"@vi ;
+    ich:endDate "2023-10-15T00:00:00"^^xsd:dateTime ;
+    ich:lunarEndDay 1 ;
+    ich:lunarEndMonth 9 ;
+    ich:lunarStartDay 29 ;
+    ich:lunarStartMonth 8 ;
+    ich:occurrenceOf ex:SeneDolta ;
+    ich:source "https://en.cand.com.vn/business/tra-vinh-officials-congratulate-local-khmer-on-sene-dolta-festival-i595287"^^xsd:anyURI ;
+    ich:startDate "2023-10-13T00:00:00"^^xsd:dateTime ;
+    ich:tookPlaceAt ex:Place_DBSCL ;
+    ich:verificationStatus "unverified" .
+
+ex:SeneDolta_2024 a owl:NamedIndividual,
+        ich:Occurrence ;
+    rdfs:label "Lễ Sene Dolta 2024"@vi ;
+    rdfs:comment "CSV: 1–3/10/2024 (=29/8, 30/8, 1/9 âm)"@vi ;
+    ich:endDate "2024-10-03T00:00:00"^^xsd:dateTime ;
+    ich:lunarEndDay 1 ;
+    ich:lunarEndMonth 9 ;
+    ich:lunarStartDay 29 ;
+    ich:lunarStartMonth 8 ;
+    ich:occurrenceOf ex:SeneDolta ;
+    ich:source "https://english.vtv.vn/news/khmer-community-in-the-south-joyfully-celebrate-sene-dolta-festival-20241112013949004.htm"^^xsd:anyURI ;
+    ich:startDate "2024-10-01T00:00:00"^^xsd:dateTime ;
+    ich:tookPlaceAt ex:Place_DBSCL ;
+    ich:verificationStatus "unverified" .
+
+ex:SeneDolta_2025 a owl:NamedIndividual,
+        ich:Occurrence ;
+    rdfs:label "Lễ Sene Dolta 2025"@vi ;
+    rdfs:comment "CSV: 21–23/9/2025 (=30/7–2/8 âm Việt; theo âm Việt 29/8–1/9 sẽ là 20–21/10/2025)"@vi ;
+    ich:endDate "2025-09-23T00:00:00"^^xsd:dateTime ;
+    ich:lunarEndDay 2 ;
+    ich:lunarEndMonth 8 ;
+    ich:lunarStartDay 30 ;
+    ich:lunarStartMonth 7 ;
+    ich:occurrenceOf ex:SeneDolta ;
+    ich:source "https://pbgdpl.cantho.gov.vn/to-chuc-cac-hoat-dong-mung-le-sene-dolta-cua-dong-bao-khmer-nam-2025 | https://baovanhoa.vn/dan-toc-ton-giao/dong-bao-khmer-vui-don-le-sene-don-ta-dam-am-170419.html"^^xsd:anyURI ;
+    ich:startDate "2025-09-21T00:00:00"^^xsd:dateTime ;
+    ich:tookPlaceAt ex:Place_DBSCL ;
+    ich:verificationStatus "unverified" .
+
+ex:ViaBaChuaXuNuiSam_2025 a owl:NamedIndividual,
+        ich:Occurrence ;
+    rdfs:label "Lễ hội Vía Bà Chúa Xứ núi Sam 2025"@vi ;
+    rdfs:comment "CSV: Cả đợt 11–24/5/2025 (=14–27/4 âm); rước tượng tối 19/5 (=22/4 âm); lễ đón bằng UNESCO + khai hội 19/3/2025"@vi ;
+    ich:endDate "2025-05-24T00:00:00"^^xsd:dateTime ;
+    ich:lunarEndDay 27 ;
+    ich:lunarEndMonth 4 ;
+    ich:lunarStartDay 14 ;
+    ich:lunarStartMonth 4 ;
+    ich:occurrenceOf ex:ViaBaChuaXuNuiSam ;
+    ich:source "https://www.vietnamplus.vn/hang-ngan-du-khach-va-nguoi-dan-ruoc-tuong-ba-chua-xu-nui-sam-o-an-giang-post1039507.vnp | https://angiang.gov.vn/vi/an-giang-chao-mung-su-kien-don-bang-unesco-ghi-danh-le-hoi-ba-chua-xu-nui-sam"^^xsd:anyURI ;
+    ich:startDate "2025-05-11T00:00:00"^^xsd:dateTime ;
+    ich:tookPlaceAt ex:MieuBaChuaXuNuiSam ;
+    ich:verificationStatus "unverified" .
+
+ex:ViaBaThuyLong a owl:NamedIndividual,
+        ich:EventHeritage ;
+    rdfs:label "Lễ hội Vía Bà Thủy Long"@vi ;
+    rdfs:comment "Ghi chú (CSV): Cần dsvh hoặc cổng Cà Mau để lấy số QĐ/ngày, quy tắc thời gian và chủ thể."@vi,
+        "Mức verify (CSV): Thấp – chỉ xác nhận có trong Danh mục (11/2023)"@vi,
+        "Quy tắc thời gian (CSV): 15–17/2 âm theo Prompt 1: [chưa verify] (chưa tìm nguồn mới)"@vi,
+        "Địa bàn gốc trong Danh mục: xã Thanh Tùng, huyện Đầm Dơi, tỉnh Cà Mau"@vi,
+        "Địa bàn sau 2025 (CSV): [chưa verify]"@vi ;
+    ich:altLabelNoDiacritics "Le hoi Via Ba Thuy Long" ;
+    ich:datasetId 10 ;
+    ich:hasListing ex:Listing_ViaBaThuyLong_QG ;
+    ich:hasLocality ex:Place_CaMauOldArea ;
+    ich:hasTemporalRule ex:ViaBaThuyLong_Rule_Main ;
+    ich:listingName "Lễ hội vía Bà Thủy Long"@vi ;
+    ich:registryStatus "unverified" ;
+    ich:source "https://dantri.com.vn/van-hoa/nghe-lam-tom-kho-va-le-hoi-via-ba-thuy-long-o-ca-mau-vao-di-san-quoc-gia-20231114105821913.htm"^^xsd:anyURI ;
+    ich:unescoDomain ich:SocialPracticesRitualsFestive ;
+    ich:verificationStatus "unverified" ;
+    ich:vnCategory ich:LeHoiTruyenThong .
+
+ich:DienTauNguAm a owl:NamedIndividual,
+        ich:Performance ;
+    rdfs:label "Diễn tấu nhạc Ngũ âm"@vi ;
+    rdfs:comment "Theo Khung thực thể / cột notes-venue của CSV; chưa đối chiếu hồ sơ gốc."@vi ;
+    ich:cueKind "activity" ;
+    ich:realizesPractice ex:NhacNguAmSocTrang ;
+    ich:usedObjectOfType ich:DanNhacNguAm ;
+    ich:verificationStatus "unverified" .
+
+ich:DonCaTaiTu_Act a owl:NamedIndividual,
+        ich:Performance ;
+    rdfs:label "Đờn ca tài tử (trình diễn)"@vi ;
+    rdfs:comment "Theo Khung thực thể / cột notes-venue của CSV; chưa đối chiếu hồ sơ gốc."@vi ;
+    ich:cueKind "activity" ;
+    ich:realizesPractice ex:DonCaTaiTu ;
+    ich:usedObjectOfType ich:DanKim,
+        ich:DanTranh,
+        ich:GuitarPhimLom,
+        ich:SongLan ;
+    ich:verificationStatus "unverified" .
+
+ich:HatDuKe a owl:NamedIndividual,
+        ich:Performance ;
+    rdfs:label "Hát Dù Kê"@vi ;
+    rdfs:comment "Theo Khung thực thể / cột notes-venue của CSV; chưa đối chiếu hồ sơ gốc."@vi ;
+    ich:cueKind "activity" ;
+    ich:realizesPractice ex:DuKe ;
+    ich:verificationStatus "unverified" .
+
+ich:MuaRoBam a owl:NamedIndividual,
+        ich:Performance ;
+    rdfs:label "Múa Rô-băm"@vi ;
+    rdfs:comment "Theo Khung thực thể / cột notes-venue của CSV; chưa đối chiếu hồ sơ gốc."@vi ;
+    ich:cueKind "activity" ;
+    ich:realizesPractice ex:RoBamSocTrang ;
+    ich:verificationStatus "unverified" .
+
+ex:Admin_CaMau_2025 a owl:NamedIndividual,
+        ich:AdminUnit ;
+    rdfs:label "Tỉnh Cà Mau (sau sáp nhập)"@vi ;
+    rdfs:comment "Sáp nhập tỉnh theo NQ 202/2025/QH15 (validTo/validFrom theo quy ước đã dùng trong ABox; mốc vận hành [chưa verify])."@vi ;
+    ich:adminLevel "province" ;
+    ich:coversPlace ex:Place_CaMauNewArea ;
+    ich:validFrom "2025-06-12T00:00:00"^^xsd:dateTime ;
+    ich:verificationStatus "unverified" .
+
+ex:Admin_VinhLong_2025 a owl:NamedIndividual,
+        ich:AdminUnit ;
+    rdfs:label "Tỉnh Vĩnh Long (sau sáp nhập)"@vi ;
+    rdfs:comment "Sáp nhập tỉnh theo NQ 202/2025/QH15 (validTo/validFrom theo quy ước đã dùng trong ABox; mốc vận hành [chưa verify])."@vi ;
+    ich:adminLevel "province" ;
+    ich:coversPlace ex:Place_VinhLongNewArea ;
+    ich:validFrom "2025-06-12T00:00:00"^^xsd:dateTime ;
+    ich:verificationStatus "unverified" .
+
+ex:Agent_001 a owl:NamedIndividual,
+        ich:Person ;
+    rdfs:label "Agent minh họa"@vi ;
+    rdfs:comment "Minh họa, không phải dữ kiện."@vi ;
+    ich:verificationStatus "unverified" .
+
+ex:BaChuaXu a owl:NamedIndividual,
+        ich:MythicalBeing ;
+    rdfs:label "Bà Chúa Xứ"@vi ;
+    ich:verificationStatus "unverified" .
+
+ex:BaiBanTo20 a owl:NamedIndividual,
+        ich:ArtisticElement ;
+    rdfs:label "20 bài bản tổ (Đờn ca tài tử)"@vi ;
+    ich:verificationStatus "unverified" .
+
+ex:CholChnamThmay_Rule_Main a owl:NamedIndividual,
+        ich:TemporalRule ;
+    rdfs:label "Quy tắc thời gian – Tết Chôl Chnăm Thmây (Main)"@vi ;
+    rdfs:comment "Giữa tháng 4 dương lịch, 3 ngày (theo lịch Khmer thiên văn); 2023–2025: 13–16/4."@vi ;
+    ich:calendarSystem "solar" ;
+    ich:dayEnd 16 ;
+    ich:dayStart 13 ;
+    ich:monthEnd 4 ;
+    ich:monthStart 4 ;
+    ich:recurrence "annual" ;
+    ich:ruleStrength "soft" ;
+    ich:toleranceDays "1"^^xsd:nonNegativeInteger ;
+    ich:toleranceMonths 0 ;
+    ich:verificationStatus "unverified" .
+
+ex:ChroiRumChek_Rule_Main a owl:NamedIndividual,
+        ich:TemporalRule ;
+    rdfs:label "Quy tắc thời gian – Lễ hội Chrôi Rum Chếk (Phước Biển) (Main)"@vi ;
+    rdfs:comment "13–15/2 âm (nguồn trước: 14–15/2 âm)."@vi ;
+    ich:calendarSystem "vn_lunar" ;
+    ich:dayEnd 15 ;
+    ich:dayStart 13 ;
+    ich:monthEnd 2 ;
+    ich:monthStart 2 ;
+    ich:recurrence "annual" ;
+    ich:ruleStrength "soft" ;
+    ich:toleranceDays "1"^^xsd:nonNegativeInteger ;
+    ich:toleranceMonths 0 ;
+    ich:verificationStatus "verified" .
+
+ex:ChuaKhleang a owl:NamedIndividual,
+        ich:CulturalSpace ;
+    rdfs:label "Chùa Khleang"@vi ;
+    ich:locatedWithin ex:Place_SocTrangArea ;
+    ich:verificationStatus "unverified" .
+
+ex:CungBienMyLong_Rule_Main a owl:NamedIndividual,
+        ich:TemporalRule ;
+    rdfs:label "Quy tắc thời gian – Lễ hội cúng biển Mỹ Long (Main)"@vi ;
+    rdfs:comment "10–12/5 âm; tống tàu 12/5."@vi ;
+    ich:calendarSystem "vn_lunar" ;
+    ich:dayEnd 12 ;
+    ich:dayStart 10 ;
+    ich:monthEnd 5 ;
+    ich:monthStart 5 ;
+    ich:recurrence "annual" ;
+    ich:ruleStrength "soft" ;
+    ich:toleranceDays "0"^^xsd:nonNegativeInteger ;
+    ich:toleranceMonths 0 ;
+    ich:verificationStatus "verified" .
+
+ex:DomLongNeakTa_Rule_Main a owl:NamedIndividual,
+        ich:TemporalRule ;
+    rdfs:label "Quy tắc thời gian – Lễ hội Đom Lơng Néak Tà (Main)"@vi ;
+    rdfs:comment "Mỗi phum sóc chọn ngày riêng trong tháng 3–5 âm; không có ngày chung → B4 chỉ dùng như cue yếu."@vi ;
+    ich:calendarSystem "vn_lunar" ;
+    ich:dayEnd 30 ;
+    ich:dayStart 1 ;
+    ich:monthEnd 5 ;
+    ich:monthStart 3 ;
+    ich:recurrence "annual" ;
+    ich:ruleStrength "soft" ;
+    ich:toleranceDays "0"^^xsd:nonNegativeInteger ;
+    ich:toleranceMonths 0 ;
+    ich:verificationStatus "unverified" .
+
+ex:DonCaTaiTu a owl:NamedIndividual,
+        ich:PracticeHeritage ;
+    rdfs:label "Đờn ca tài tử Nam Bộ"@vi ;
+    rdfs:comment "Ghi chú (CSV): Một entity nhiều địa bàn; UNESCO: https://www.vietnamplus.vn/15-di-san-van-hoa-phi-vat-the-cua-viet-nam-duoc-unesco-ghi-danh-post835795.vnp"@vi,
+        "Mức verify (CSV): Cao"@vi,
+        "Quy tắc thời gian (CSV): Biểu diễn ở lễ hội, giỗ, mừng dịp; không ngày cố định"@vi,
+        "Trạng thái khác (CSV): UNESCO Danh sách đại diện: 5/12/2013"@vi,
+        "Địa bàn gốc trong Danh mục: nhiều tỉnh/thành Nam Bộ (dsvh liệt kê An Giang, Bà Rịa–Vũng Tàu, Bạc Liêu, Bến Tre, … Vĩnh Long)"@vi,
+        "Địa bàn sau 2025 (CSV): Không áp dụng"@vi ;
+    ich:altLabelNoDiacritics "Don ca tai tu Nam Bo" ;
+    ich:bearerGroup ex:NguoiNamBo ;
+    ich:datasetId 18 ;
+    ich:hasArtisticElement ex:BaiBanTo20 ;
+    ich:hasCue ich:DanKim,
+        ich:DanTranh,
+        ich:GuitarPhimLom,
+        ich:SongLan ;
+    ich:hasListing ex:Listing_DonCaTaiTu_QG,
+        ex:Listing_DonCaTaiTu_UNESCO ;
+    ich:hasLocality ex:Place_NamBo ;
+    ich:listingName "Đờn ca Tài tử Nam Bộ"@vi ;
+    ich:registryStatus "listed" ;
+    ich:source "https://canthotourism.vn/vi/chocairang"^^xsd:anyURI,
+        "https://dsvh.gov.vn/danh-muc-di-san-van-hoa-phi-vat-the-quoc-gia-1789"^^xsd:anyURI,
+        "https://www.vietnamplus.vn/15-di-san-van-hoa-phi-vat-the-cua-viet-nam-duoc-unesco-ghi-danh-post835795.vnp"^^xsd:anyURI ;
+    ich:unescoDomain ich:PerformingArts ;
+    ich:verificationStatus "verified" ;
+    ich:vnCategory ich:NgheThuatTrinhDienDanGian .
+
+ex:DuKe a owl:NamedIndividual,
+        ich:PracticeHeritage ;
+    rdfs:label "Nghệ thuật sân khấu Dù Kê"@vi ;
+    rdfs:comment "Ghi chú (CSV): Prompt 1 để 'năm [cần kiểm tra]' → 2014 (QĐ 2684/25/8/2014)."@vi,
+        "Mức verify (CSV): Cao (QĐ từ dsvh); admin cấp xã chưa verify"@vi,
+        "Quy tắc thời gian (CSV): Không gắn ngày cố định; diễn trong các lễ hội Khmer"@vi,
+        "Địa bàn gốc trong Danh mục: tỉnh Sóc Trăng"@vi,
+        "Địa bàn sau 2025 (CSV): [chưa verify]"@vi ;
+    ich:altLabelNoDiacritics "Nghe thuat san khau Du Ke" ;
+    ich:bearerGroup ex:DongBaoKhmer ;
+    ich:datasetId 14 ;
+    ich:hasArtisticElement ex:VaiChan ;
+    ich:hasListing ex:Listing_DuKe_QG ;
+    ich:hasLocality ex:Place_SocTrangArea ;
+    ich:listingName "Nghệ thuật sân khấu Dù Kê của người Khmer"@vi ;
+    ich:registryStatus "listed" ;
+    ich:source "https://dsvh.gov.vn/danh-muc-di-san-van-hoa-phi-vat-the-quoc-gia-1789"^^xsd:anyURI,
+        "https://dulichbinhminh.com/nghe-thuat-du-ke-khmer-soc-trang-di-san-san-khau-quoc-gia"^^xsd:anyURI,
+        "https://dulieuphapluat.vn/cong-cu/di-san-phi-vat-the/tinh/can-tho.html"^^xsd:anyURI ;
+    ich:unescoDomain ich:PerformingArts ;
+    ich:verificationStatus "verified" ;
+    ich:vnCategory ich:NgheThuatTrinhDienDanGian .
+
+ex:Geom_ChoNoiCaiRang a geo:Geometry ;
+    geo:asWKT "POINT(105.7925 10.0067)" ;
+    rdfs:comment "Tọa độ xấp xỉ minh họa cho test, [chưa verify]."@vi ;
+    ich:verificationStatus "unverified" .
+
+ex:Geom_SongMaspero a geo:Geometry ;
+    geo:asWKT "POINT(105.9715 9.6030)" ;
+    rdfs:comment "Tọa độ xấp xỉ minh họa cho test, [chưa verify]."@vi ;
+    ich:verificationStatus "unverified" .
+
+ex:HoiDuaBoBayNui_Rule_VnApprox a owl:NamedIndividual,
+        ich:TemporalRule ;
+    rdfs:label "Quy tắc thời gian – Hội đua bò Bảy Núi (VnApprox)"@vi ;
+    rdfs:comment "Tổ chức nhân dịp Sene Dolta, không trùng đúng ngày; cửa sổ mượn của Sene Dolta, nới ±3 ngày ±1 tháng (CSV: 30/8, 27/8, 29/7 âm)."@vi ;
+    ich:calendarSystem "vn_lunar" ;
+    ich:dayEnd 1 ;
+    ich:dayStart 29 ;
+    ich:monthEnd 9 ;
+    ich:monthStart 8 ;
+    ich:recurrence "annual" ;
+    ich:ruleStrength "approx" ;
+    ich:toleranceDays "3"^^xsd:nonNegativeInteger ;
+    ich:toleranceMonths 1 ;
+    ich:verificationStatus "unverified" .
+
+ex:KyYenDinhBinhThuy_Rule_HaDien a owl:NamedIndividual,
+        ich:TemporalRule ;
+    rdfs:label "Quy tắc thời gian – Lễ hội Kỳ Yên đình Bình Thủy (HaDien)"@vi ;
+    rdfs:comment "Hạ điền 14(–15)/12 âm."@vi ;
+    ich:calendarSystem "vn_lunar" ;
+    ich:dayEnd 15 ;
+    ich:dayStart 14 ;
+    ich:monthEnd 12 ;
+    ich:monthStart 12 ;
+    ich:recurrence "annual" ;
+    ich:ruleStrength "soft" ;
+    ich:toleranceDays "1"^^xsd:nonNegativeInteger ;
+    ich:toleranceMonths 0 ;
+    ich:verificationStatus "verified" .
+
+ex:KyYenDinhBinhThuy_Rule_ThuongDien a owl:NamedIndividual,
+        ich:TemporalRule ;
+    rdfs:label "Quy tắc thời gian – Lễ hội Kỳ Yên đình Bình Thủy (ThuongDien)"@vi ;
+    rdfs:comment "Thượng điền; dsvh ghi 12–15/4 âm, báo ghi 12–14/4 âm; 2025 bắt đầu 11/4 âm."@vi ;
+    ich:calendarSystem "vn_lunar" ;
+    ich:dayEnd 15 ;
+    ich:dayStart 12 ;
+    ich:monthEnd 4 ;
+    ich:monthStart 4 ;
+    ich:recurrence "annual" ;
+    ich:ruleStrength "soft" ;
+    ich:toleranceDays "1"^^xsd:nonNegativeInteger ;
+    ich:toleranceMonths 0 ;
+    ich:verificationStatus "verified" .
+
+ex:LangOngNamHaiTranDe a owl:NamedIndividual,
+        ich:CulturalSpace ;
+    rdfs:label "Lăng Ông Nam Hải (Trần Đề)"@vi ;
+    ich:locatedWithin ex:Place_SocTrangArea ;
+    ich:verificationStatus "unverified" .
+
+ex:LeHoiDinhNguyenTrungTruc a owl:NamedIndividual,
+        ich:EventHeritage ;
+    rdfs:label "Lễ hội đình thần Nguyễn Trung Trực"@vi ;
+    rdfs:comment "Ghi chú (CSV): 'Hai ngày giỗ (26–28/8 vs 12/9 âm)' của Prompt 1 chưa có nguồn trong lượt này → để [chưa verify]."@vi,
+        "Mức verify (CSV): Cao (QĐ, rule); thiếu occurrence 2024–2025, cấp xã mới, chủ thể"@vi,
+        "Quy tắc thời gian (CSV): 26–28/8 âm (lễ giỗ Cụ Nguyễn)"@vi,
+        "Địa bàn gốc trong Danh mục: TP Rạch Giá, tỉnh Kiên Giang (đình tại phường Vĩnh Thanh)"@vi,
+        "Địa bàn sau 2025 (CSV): phường mới thay Vĩnh Thanh/Rạch Giá: [chưa verify] (Prompt 1 ghi 'phường Rạch Giá', chưa có nguồn đối chiếu)"@vi ;
+    ich:altLabelNoDiacritics "Le hoi dinh than Nguyen Trung Truc" ;
+    ich:datasetId 9 ;
+    ich:hasListing ex:Listing_LeHoiDinhNguyenTrungTruc_QG ;
+    ich:hasLocality ex:DinhThanNguyenTrungTruc ;
+    ich:hasTemporalRule ex:LeHoiDinhNguyenTrungTruc_Rule_Main ;
+    ich:listingName "Lễ hội Đình thần Nguyễn Trung Trực – TP Rạch Giá"@vi ;
+    ich:registryStatus "listed" ;
+    ich:source "https://chinhsachcuocsong.vnanet.vn/doc-dao-le-hoi-dac-trung-vung-song-nuoc-mien-tay-nam-bo/28002.html"^^xsd:anyURI,
+        "https://tuoitre.vn/le-hoi-dinh-than-nguyen-trung-truc-kien-giang-la-di-san-van-hoa-phi-vat-the-quoc-gia-20230204141934454.htm"^^xsd:anyURI,
+        "https://www.qdnd.vn/van-hoa/doi-song/don-nhan-bang-di-san-van-hoa-phi-vat-the-quoc-gia-le-hoi-dinh-than-nguyen-trung-truc-tp-rach-gia-tinh-kien-giang-746526"^^xsd:anyURI ;
+    ich:unescoDomain ich:SocialPracticesRitualsFestive ;
+    ich:veneratesFigure ex:NguyenTrungTruc ;
+    ich:verificationStatus "verified" ;
+    ich:vnCategory ich:LeHoiTruyenThong .
+
+ex:LeHoiDinhNguyenTrungTruc_Rule_Main a owl:NamedIndividual,
+        ich:TemporalRule ;
+    rdfs:label "Quy tắc thời gian – Lễ hội đình thần Nguyễn Trung Trực (Main)"@vi ;
+    rdfs:comment "26–28/8 âm (giỗ Cụ Nguyễn)."@vi ;
+    ich:calendarSystem "vn_lunar" ;
+    ich:dayEnd 28 ;
+    ich:dayStart 26 ;
+    ich:monthEnd 8 ;
+    ich:monthStart 8 ;
+    ich:recurrence "annual" ;
+    ich:ruleStrength "soft" ;
+    ich:toleranceDays "1"^^xsd:nonNegativeInteger ;
+    ich:toleranceMonths 0 ;
+    ich:verificationStatus "verified" .
+
+ex:Listing_ChoNoiCaiRang_QG a owl:NamedIndividual,
+        ich:ListingEntry ;
+    rdfs:label "Văn hóa chợ nổi Cái Răng (Danh mục QG)"@vi ;
+    rdfs:comment "CSV: QĐ 829/QĐ-BVHTTDL, ngày 2016-03-10"@vi ;
+    ich:decisionDate "2016-03-10T00:00:00"^^xsd:dateTime ;
+    ich:decisionNumber "829/QĐ-BVHTTDL" ;
+    ich:listType "QG" ;
+    ich:sourceURL "https://baotangtpcantho.cantho.gov.vn/article/di-san-van-hoa-cho-noi-cai-rang/1073.htm"^^xsd:anyURI,
+        "https://dantocmiennui.baotintuc.vn/van-hoa-cho-noi-cai-rang-la-di-san-quoc-gia-post48856.html"^^xsd:anyURI ;
+    ich:verificationStatus "verified" .
+
+ex:Listing_ChroiRumChek_QG a owl:NamedIndividual,
+        ich:ListingEntry ;
+    rdfs:label "Lễ hội Chrôi Rum Chếk (Phước Biển) (Danh mục QG)"@vi ;
+    rdfs:comment "CSV: QĐ 547/QĐ-BVHTTDL, ngày 2025-03-05"@vi ;
+    ich:decisionDate "2025-03-05T00:00:00"^^xsd:dateTime ;
+    ich:decisionNumber "547/QĐ-BVHTTDL" ;
+    ich:listType "QG" ;
+    ich:sourceURL "http://www.vanhoanghethuat.vn/them-3-di-san-duoc-dua-vao-danh-muc-di-san-van-hoa-phi-vat-the-quoc-gia-2025.htm"^^xsd:anyURI,
+        "https://kinhtedothi.vn/bo-vhttdl-ghi-danh-them-3-di-san-van-hoa-phi-vat-the-quoc-gia.html"^^xsd:anyURI ;
+    ich:verificationStatus "verified" .
+
+ex:Listing_CungBienMyLong_QG a owl:NamedIndividual,
+        ich:ListingEntry ;
+    rdfs:label "Lễ hội cúng biển Mỹ Long (Danh mục QG)"@vi ;
+    rdfs:comment "CSV: QĐ 3820/QĐ-BVHTTDL, ngày 2013-10-31"@vi ;
+    ich:decisionDate "2013-10-31T00:00:00"^^xsd:dateTime ;
+    ich:decisionNumber "3820/QĐ-BVHTTDL" ;
+    ich:listType "QG" ;
+    ich:sourceURL "https://dangcongsan.org.vn/travinh/tin-tuc-hoat-dong/di-san-van-hoa-phi-vat-the-quoc-gia-o-tinh-tra-vinh.html"^^xsd:anyURI,
+        "https://dsvh.gov.vn/danh-muc-di-san-van-hoa-phi-vat-the-quoc-gia-1789"^^xsd:anyURI ;
+    ich:verificationStatus "verified" .
+
+ex:Listing_DomLongNeakTa_QG a owl:NamedIndividual,
+        ich:ListingEntry ;
+    rdfs:label "Lễ hội Đom Lơng Néak Tà (Danh mục QG)"@vi ;
+    rdfs:comment "CSV: QĐ 377/QĐ-BVHTTDL (số này từ Prompt 1; chưa đối chiếu độc lập), ngày 2024-02-21"@vi ;
+    ich:decisionDate "2024-02-21T00:00:00"^^xsd:dateTime ;
+    ich:decisionNumber "377/QĐ-BVHTTDL" ;
+    ich:listType "QG" ;
+    ich:sourceURL "https://dangcongsan.org.vn/travinh/tin-tuc-hoat-dong/di-san-van-hoa-phi-vat-the-quoc-gia-o-tinh-tra-vinh.html"^^xsd:anyURI ;
+    ich:verificationStatus "unverified" .
+
+ex:Listing_DonCaTaiTu_QG a owl:NamedIndividual,
+        ich:ListingEntry ;
+    rdfs:label "Đờn ca tài tử Nam Bộ (Danh mục QG)"@vi ;
+    rdfs:comment "CSV: QĐ 5079/QĐ-BVHTTDL, ngày 2012-12-27"@vi ;
+    ich:decisionDate "2012-12-27T00:00:00"^^xsd:dateTime ;
+    ich:decisionNumber "5079/QĐ-BVHTTDL" ;
+    ich:listType "QG" ;
+    ich:sourceURL "https://dsvh.gov.vn/danh-muc-di-san-van-hoa-phi-vat-the-quoc-gia-1789"^^xsd:anyURI ;
+    ich:verificationStatus "verified" .
+
+ex:Listing_DonCaTaiTu_UNESCO a owl:NamedIndividual,
+        ich:ListingEntry ;
+    rdfs:label "Đờn ca tài tử Nam Bộ (UNESCO – Danh sách đại diện)"@vi ;
+    rdfs:comment "CSV other_status: UNESCO Danh sách đại diện: 5/12/2013"@vi ;
+    ich:decisionDate "2013-12-05T00:00:00"^^xsd:dateTime ;
+    ich:listType "UNESCO" ;
+    ich:sourceURL "https://www.vietnamplus.vn/15-di-san-van-hoa-phi-vat-the-cua-viet-nam-duoc-unesco-ghi-danh-post835795.vnp"^^xsd:anyURI ;
+    ich:verificationStatus "unverified" .
+
+ex:Listing_DuKe_QG a owl:NamedIndividual,
+        ich:ListingEntry ;
+    rdfs:label "Nghệ thuật sân khấu Dù Kê (Danh mục QG)"@vi ;
+    rdfs:comment "CSV: QĐ 2684/QĐ-BVHTTDL, ngày 2014-08-25"@vi ;
+    ich:decisionDate "2014-08-25T00:00:00"^^xsd:dateTime ;
+    ich:decisionNumber "2684/QĐ-BVHTTDL" ;
+    ich:listType "QG" ;
+    ich:sourceURL "https://dsvh.gov.vn/danh-muc-di-san-van-hoa-phi-vat-the-quoc-gia-1789"^^xsd:anyURI ;
+    ich:verificationStatus "verified" .
+
+ex:Listing_HoiDuaBoBayNui_QG a owl:NamedIndividual,
+        ich:ListingEntry ;
+    rdfs:label "Hội đua bò Bảy Núi (Danh mục QG)"@vi ;
+    rdfs:comment "CSV: QĐ 246/QĐ-BVHTTDL, ngày 2016-01-19"@vi ;
+    ich:decisionDate "2016-01-19T00:00:00"^^xsd:dateTime ;
+    ich:decisionNumber "246/QĐ-BVHTTDL" ;
+    ich:listType "QG" ;
+    ich:sourceURL "https://dsvh.gov.vn/danh-muc-di-san-van-hoa-phi-vat-the-quoc-gia-1789"^^xsd:anyURI ;
+    ich:verificationStatus "verified" .
+
+ex:Listing_KyYenDinhBinhThuy_QG a owl:NamedIndividual,
+        ich:ListingEntry ;
+    rdfs:label "Lễ hội Kỳ Yên đình Bình Thủy (Danh mục QG)"@vi ;
+    rdfs:comment "CSV: QĐ 266/QĐ-BVHTTDL, ngày 2018-01-30"@vi ;
+    ich:decisionDate "2018-01-30T00:00:00"^^xsd:dateTime ;
+    ich:decisionNumber "266/QĐ-BVHTTDL" ;
+    ich:listType "QG" ;
+    ich:sourceURL "https://baocantho.com.vn/di-san-van-hoa-phi-vat-the-quoc-gia-o-tp-can-tho-a166824.html"^^xsd:anyURI,
+        "https://dsvh.gov.vn/le-hoi-ky-yen-dinh-binh-thuy-3141"^^xsd:anyURI ;
+    ich:verificationStatus "verified" .
+
+ex:Listing_LeHoiDinhNguyenTrungTruc_QG a owl:NamedIndividual,
+        ich:ListingEntry ;
+    rdfs:label "Lễ hội đình thần Nguyễn Trung Trực (Danh mục QG)"@vi ;
+    rdfs:comment "CSV: QĐ 151/QĐ-BVHTTDL, ngày 2023-02-02"@vi ;
+    ich:decisionDate "2023-02-02T00:00:00"^^xsd:dateTime ;
+    ich:decisionNumber "151/QĐ-BVHTTDL" ;
+    ich:listType "QG" ;
+    ich:sourceURL "https://tienphong.vn/le-hoi-nguyen-trung-truc-nhan-bang-di-san-van-hoa-phi-vat-the-quoc-gia-post1576948.tpo"^^xsd:anyURI,
+        "https://www.qdnd.vn/van-hoa/doi-song/don-nhan-bang-di-san-van-hoa-phi-vat-the-quoc-gia-le-hoi-dinh-than-nguyen-trung-truc-tp-rach-gia-tinh-kien-giang-746526"^^xsd:anyURI ;
+    ich:verificationStatus "verified" .
+
+ex:Listing_MuaRomVong_Heritage_QG a owl:NamedIndividual,
+        ich:ListingEntry ;
+    rdfs:label "Múa Rom vong (Danh mục QG)"@vi ;
+    rdfs:comment "CSV: QĐ 4601/QĐ-BVHTTDL, ngày 2019-12-20"@vi ;
+    ich:decisionDate "2019-12-20T00:00:00"^^xsd:dateTime ;
+    ich:decisionNumber "4601/QĐ-BVHTTDL" ;
+    ich:listType "QG" ;
+    ich:sourceURL "https://dsvh.gov.vn/mua-rom-vong-cua-nguoi-khmer-tinh-soc-trang-3205"^^xsd:anyURI ;
+    ich:verificationStatus "verified" .
+
+ex:Listing_NghinhOngSongDoc_QG a owl:NamedIndividual,
+        ich:ListingEntry ;
+    rdfs:label "Lễ hội Nghinh Ông Sông Đốc (Danh mục QG)"@vi ;
+    rdfs:comment "CSV: QĐ 600/QĐ-BVHTTDL, ngày 2021-02-03"@vi ;
+    ich:decisionDate "2021-02-03T00:00:00"^^xsd:dateTime ;
+    ich:decisionNumber "600/QĐ-BVHTTDL" ;
+    ich:listType "QG" ;
+    ich:sourceURL "https://baotintuc.vn/doi-song-van-hoa/le-hoi-nghinh-ong-song-doc-duoc-dua-vao-danh-muc-di-san-van-hoa-phi-vat-the-cap-quoc-gia-20210205224638646.htm"^^xsd:anyURI,
+        "https://dsvh.gov.vn/le-hoi-nghinh-ong-song-doc-3369"^^xsd:anyURI ;
+    ich:verificationStatus "verified" .
+
+ex:Listing_NghinhOngTranDe_QG a owl:NamedIndividual,
+        ich:ListingEntry ;
+    rdfs:label "Lễ hội Nghinh Ông Trần Đề (Danh mục QG)"@vi ;
+    rdfs:comment "CSV: QĐ 446/QĐ-BVHTTDL, ngày 2019-01-29"@vi ;
+    ich:decisionDate "2019-01-29T00:00:00"^^xsd:dateTime ;
+    ich:decisionNumber "446/QĐ-BVHTTDL" ;
+    ich:listType "QG" ;
+    ich:sourceURL "https://dsvh.gov.vn/le-hoi-nghinh-ong-3129"^^xsd:anyURI,
+        "https://mientay.giadinhonline.vn/ngu-dan-can-tho-nao-nuc-don-mung-le-hoi-nghinh-ong-d17414.html"^^xsd:anyURI ;
+    ich:verificationStatus "verified" .
+
+ex:Listing_NhacNguAmSocTrang_QG a owl:NamedIndividual,
+        ich:ListingEntry ;
+    rdfs:label "Nhạc ngũ âm Khmer (Sóc Trăng) (Danh mục QG)"@vi ;
+    rdfs:comment "CSV: QĐ 4602/QĐ-BVHTTDL (nguồn thứ cấp), ngày 2019-12-20 (nguồn thứ cấp)"@vi ;
+    ich:decisionDate "2019-12-20T00:00:00"^^xsd:dateTime ;
+    ich:decisionNumber "4602/QĐ-BVHTTDL" ;
+    ich:listType "QG" ;
+    ich:sourceURL "https://dulichbinhminh.com/nhac-ngu-am-khmer-soc-trang-dan-pinn-peat-nam-thanh-phan"^^xsd:anyURI,
+        "https://vietnamnet.vn/den-soc-trang-me-man-xem-ro-bam-nghe-nhac-ngu-am-cua-nguoi-khmer-797199.html"^^xsd:anyURI ;
+    ich:verificationStatus "unverified" .
+
+ex:Listing_OkOmBokTraVinh_QG a owl:NamedIndividual,
+        ich:ListingEntry ;
+    rdfs:label "Lễ hội Ok Om Bok Trà Vinh (Danh mục QG)"@vi ;
+    rdfs:comment "CSV: QĐ 2684/QĐ-BVHTTDL, ngày 2014-08-25"@vi ;
+    ich:decisionDate "2014-08-25T00:00:00"^^xsd:dateTime ;
+    ich:decisionNumber "2684/QĐ-BVHTTDL" ;
+    ich:listType "QG" ;
+    ich:sourceURL "https://congly.vn/doc-dao-khu-rung-co-thu-nam-trong-long-thanh-pho-426660.html"^^xsd:anyURI,
+        "https://dangcongsan.org.vn/travinh/tin-tuc-hoat-dong/di-san-van-hoa-phi-vat-the-quoc-gia-o-tinh-tra-vinh.html"^^xsd:anyURI,
+        "https://dsvh.gov.vn/danh-muc-di-san-van-hoa-phi-vat-the-quoc-gia-1789"^^xsd:anyURI ;
+    ich:verificationStatus "verified" .
+
+ex:Listing_OocOmBocSocTrang_QG a owl:NamedIndividual,
+        ich:ListingEntry ;
+    rdfs:label "Oóc Om Bóc Sóc Trăng (Danh mục QG)"@vi ;
+    rdfs:comment "CSV: QĐ 74/QĐ-BVHTTDL, ngày 2022-01-12"@vi ;
+    ich:decisionDate "2022-01-12T00:00:00"^^xsd:dateTime ;
+    ich:decisionNumber "74/QĐ-BVHTTDL" ;
+    ich:listType "QG" ;
+    ich:sourceURL "https://dsvh.gov.vn/le-hoi-dua-ghe-ngo-cua-nguoi-khmer-3441"^^xsd:anyURI,
+        "https://dulieuphapluat.vn/cong-cu/di-san-phi-vat-the/dua-ghe-ngo-trong-le-hoi-ooc-om-boc-cua-nguoi-khmer.html"^^xsd:anyURI ;
+    ich:verificationStatus "verified" .
+
+ex:Listing_RoBamSocTrang_QG a owl:NamedIndividual,
+        ich:ListingEntry ;
+    rdfs:label "Nghệ thuật Rô-băm (Sóc Trăng) (Danh mục QG)"@vi ;
+    rdfs:comment "CSV: QĐ 446/QĐ-BVHTTDL, ngày 2019-01-29"@vi ;
+    ich:decisionDate "2019-01-29T00:00:00"^^xsd:dateTime ;
+    ich:decisionNumber "446/QĐ-BVHTTDL" ;
+    ich:listType "QG" ;
+    ich:sourceURL "https://mientay.giadinhonline.vn/ngu-dan-can-tho-nao-nuc-don-mung-le-hoi-nghinh-ong-d17414.html"^^xsd:anyURI,
+        "https://vietnamnet.vn/den-soc-trang-me-man-xem-ro-bam-nghe-nhac-ngu-am-cua-nguoi-khmer-797199.html"^^xsd:anyURI ;
+    ich:verificationStatus "verified" .
+
+ex:Listing_ViaBaChuaXuNuiSam_QG a owl:NamedIndividual,
+        ich:ListingEntry ;
+    rdfs:label "Lễ hội Vía Bà Chúa Xứ núi Sam (Danh mục QG)"@vi ;
+    rdfs:comment "CSV: QĐ 4205/QĐ-BVHTTDL, ngày 2014-12-19"@vi ;
+    ich:decisionDate "2014-12-19T00:00:00"^^xsd:dateTime ;
+    ich:decisionNumber "4205/QĐ-BVHTTDL" ;
+    ich:listType "QG" ;
+    ich:sourceURL "https://dsvh.gov.vn/danh-muc-di-san-van-hoa-phi-vat-the-quoc-gia-1789"^^xsd:anyURI,
+        "https://thuvienphapluat.vn/van-ban/Van-hoa-Xa-hoi/Quyet-dinh-4205-QD-BVHTTDL-Danh-muc-di-san-van-hoa-phi-vat-the-quoc-gia-2014-293998.aspx"^^xsd:anyURI ;
+    ich:verificationStatus "verified" .
+
+ex:Listing_ViaBaChuaXuNuiSam_UNESCO a owl:NamedIndividual,
+        ich:ListingEntry ;
+    rdfs:label "Lễ hội Vía Bà Chúa Xứ núi Sam (UNESCO – Danh sách đại diện)"@vi ;
+    rdfs:comment "CSV other_status: UNESCO Danh sách đại diện: 4/12/2024 (kỳ họp 19, Asunción)"@vi ;
+    ich:decisionDate "2024-12-04T00:00:00"^^xsd:dateTime ;
+    ich:listType "UNESCO" ;
+    ich:sourceURL "https://bvhttdl.gov.vn/le-hoi-via-ba-chua-xu-nui-sam-duoc-ghi-danh-la-di-san-van-hoa-phi-vat-the-dai-dien-cua-nhan-loai-20241204210158448.htm"^^xsd:anyURI ;
+    ich:verificationStatus "unverified" .
+
+ex:Listing_ViaBaThuyLong_QG a owl:NamedIndividual,
+        ich:ListingEntry ;
+    rdfs:label "Lễ hội Vía Bà Thủy Long (Danh mục QG)"@vi ;
+    rdfs:comment "CSV: QĐ [chưa verify], ngày tháng 11/2023 (tin ngày 14/11/2023); ngày/số QĐ [chưa verify]"@vi ;
+    ich:listType "QG" ;
+    ich:sourceURL "https://bacninhtv.vn/tin-tuc/19/156378/nghe-lam-tom-kho-va-le-hoi-via-ba-thuy-long-da-thanh-di-san"^^xsd:anyURI,
+        "https://dantri.com.vn/van-hoa/nghe-lam-tom-kho-va-le-hoi-via-ba-thuy-long-o-ca-mau-vao-di-san-quoc-gia-20231114105821913.htm"^^xsd:anyURI ;
+    ich:verificationStatus "unverified" .
+
+ex:MieuBaChuaXuMyLong a owl:NamedIndividual,
+        ich:CulturalSpace ;
+    rdfs:label "Miếu Bà Chúa Xứ Mỹ Long"@vi ;
+    ich:locatedWithin ex:Place_TraVinhArea ;
+    ich:verificationStatus "unverified" .
+
+ex:MuaRomVong_Heritage a owl:NamedIndividual,
+        ich:PracticeHeritage ;
+    rdfs:label "Múa Rom vong"@vi ;
+    rdfs:comment "Ghi chú (CSV): Múa vòng tròn nhịp 2/4; dùng làm cue 'hoạt động tập thể' chứ không có cue vật phẩm đặc trưng."@vi,
+        "Mức verify (CSV): Cao"@vi,
+        "Quy tắc thời gian (CSV): Gắn các lễ hội cộng đồng Khmer; không có ngày riêng"@vi,
+        "Địa bàn gốc trong Danh mục: tỉnh Sóc Trăng"@vi,
+        "Địa bàn sau 2025 (CSV): [chưa verify]"@vi ;
+    ich:altLabelKhmerTranslit "Rom Vong" ;
+    ich:altLabelNoDiacritics "Mua Rom vong" ;
+    ich:bearerGroup ex:DongBaoKhmer ;
+    ich:datasetId 16 ;
+    ich:featuredInOccurrence ex:OocOmBocSocTrang_2024 ;
+    ich:hasListing ex:Listing_MuaRomVong_Heritage_QG ;
+    ich:hasLocality ex:Place_SocTrangArea ;
+    ich:listingName "Múa Rom vong"@vi ;
+    ich:registryStatus "listed" ;
+    ich:source "https://dsvh.gov.vn/mua-rom-vong-cua-nguoi-khmer-tinh-soc-trang-3205"^^xsd:anyURI,
+        "https://dulieuphapluat.vn/cong-cu/di-san-phi-vat-the/tinh/can-tho.html"^^xsd:anyURI ;
+    ich:unescoDomain ich:PerformingArts ;
+    ich:verificationStatus "unverified" ;
+    ich:vnCategory ich:NgheThuatTrinhDienDanGian .
+
+ex:NghinhOngSongDoc_Rule_Main a owl:NamedIndividual,
+        ich:TemporalRule ;
+    rdfs:label "Quy tắc thời gian – Lễ hội Nghinh Ông Sông Đốc (Main)"@vi ;
+    rdfs:comment "14–16/2 âm; 2025 chuỗi hoạt động 12–18/2 âm."@vi ;
+    ich:calendarSystem "vn_lunar" ;
+    ich:dayEnd 16 ;
+    ich:dayStart 14 ;
+    ich:monthEnd 2 ;
+    ich:monthStart 2 ;
+    ich:recurrence "annual" ;
+    ich:ruleStrength "soft" ;
+    ich:toleranceDays "3"^^xsd:nonNegativeInteger ;
+    ich:toleranceMonths 0 ;
+    ich:verificationStatus "verified" .
+
+ex:NghinhOngTranDe a owl:NamedIndividual,
+        ich:EventHeritage ;
+    rdfs:label "Lễ hội Nghinh Ông Trần Đề"@vi ;
+    rdfs:comment "Ghi chú (CSV): VA CHẠM TÊN: dsvh có ≥3 mục tên 'Lễ hội Nghinh Ông' (Cần Giờ – QĐ 3084/QĐ-BVHTTDL 9/9/2013; Bến Tre – QĐ 829/QĐ-BVHTTDL 10/3/2016; Trần Đề – QĐ 446/2019) → gazetteer phải map alias→nhiều entity, phân biệt bằng địa điểm. Nguồn: https://dsvh.gov.vn/danh-muc-di-san-van-hoa-phi-vat-the-quoc-gia-1789"@vi,
+        "Mức verify (CSV): Cao (QĐ, rule); thiếu occurrence 2023–2025"@vi,
+        "Quy tắc thời gian (CSV): 21–23/3 âm (dsvh: bắt đầu 21/3 âm)"@vi,
+        "Trạng thái khác (CSV): Có số liệu 2026: 7/5/2026 (=21/3 âm), ~100 tàu cá, xã Trần Đề: https://dantocphattrien.vietnamnet.vn/le-hoi-nghinh-ong-net-van-hoa-dac-sac-cua-cu-dan-vung-bien-75182.html"@vi,
+        "Địa bàn gốc trong Danh mục: thị trấn Trần Đề, huyện Trần Đề, tỉnh Sóc Trăng"@vi,
+        "Địa bàn sau 2025 (CSV): xã Trần Đề (← thị trấn Trần Đề + xã Đại Ân 2 + xã Trung Bình)"@vi ;
+    ich:altLabelListing "Lễ hội Nghinh Ông"@vi ;
+    ich:altLabelNoDiacritics "Le hoi Nghinh Ong Tran De" ;
+    ich:confusableWith ex:NghinhOngSongDoc ;
+    ich:datasetId 6 ;
+    ich:hasCue ich:TauCa ;
+    ich:hasListing ex:Listing_NghinhOngTranDe_QG ;
+    ich:hasLocality ex:LangOngNamHaiTranDe ;
+    ich:hasTemporalRule ex:NghinhOngTranDe_Rule_Main ;
+    ich:involvesRole ich:NguDan ;
+    ich:listingName "Lễ hội Nghinh Ông"@vi ;
+    ich:registryStatus "listed" ;
+    ich:source "https://dsvh.gov.vn/le-hoi-nghinh-ong-3129"^^xsd:anyURI,
+        "https://mientay.giadinhonline.vn/ngu-dan-can-tho-nao-nuc-don-mung-le-hoi-nghinh-ong-d17414.html"^^xsd:anyURI ;
+    ich:typicallyIncludes ich:LeNghinhThanNamHai ;
+    ich:unescoDomain ich:SocialPracticesRitualsFestive ;
+    ich:veneratesFigure ex:ThanNamHai ;
+    ich:verificationStatus "verified" ;
+    ich:vnCategory ich:LeHoiTruyenThong .
+
+ex:NghinhOngTranDe_Rule_Main a owl:NamedIndividual,
+        ich:TemporalRule ;
+    rdfs:label "Quy tắc thời gian – Lễ hội Nghinh Ông Trần Đề (Main)"@vi ;
+    rdfs:comment "21–23/3 âm (dsvh: bắt đầu 21/3 âm)."@vi ;
+    ich:calendarSystem "vn_lunar" ;
+    ich:dayEnd 23 ;
+    ich:dayStart 21 ;
+    ich:monthEnd 3 ;
+    ich:monthStart 3 ;
+    ich:recurrence "annual" ;
+    ich:ruleStrength "soft" ;
+    ich:toleranceDays "1"^^xsd:nonNegativeInteger ;
+    ich:toleranceMonths 0 ;
+    ich:verificationStatus "verified" .
+
+ex:NguoiCham a owl:NamedIndividual,
+        ich:CommunityGroup ;
+    rdfs:label "Người Chăm"@vi ;
+    ich:verificationStatus "unverified" .
+
+ex:NguoiHoa a owl:NamedIndividual,
+        ich:CommunityGroup ;
+    rdfs:label "Người Hoa"@vi ;
+    ich:verificationStatus "unverified" .
+
+ex:NguoiKinh a owl:NamedIndividual,
+        ich:CommunityGroup ;
+    rdfs:label "Người Kinh"@vi ;
+    ich:verificationStatus "unverified" .
+
+ex:NguoiNamBo a owl:NamedIndividual,
+        ich:CommunityGroup ;
+    rdfs:label "Người Nam Bộ"@vi ;
+    ich:verificationStatus "unverified" .
+
+ex:NguyenTrungTruc a owl:NamedIndividual,
+        ich:HistoricalFigure ;
+    rdfs:label "Nguyễn Trung Trực"@vi ;
+    ich:verificationStatus "unverified" .
+
+ex:NhacNguAmSocTrang a owl:NamedIndividual,
+        ich:PracticeHeritage ;
+    rdfs:label "Nhạc ngũ âm Khmer (Sóc Trăng)"@vi ;
+    rdfs:comment "Ghi chú (CSV): QĐ 4601 (Rom vong) và 4602 liền số cùng ngày 20/12/2019 là hợp lý nhưng chưa thấy trang dsvh cho Ngũ âm."@vi,
+        "Mức verify (CSV): Trung bình: năm 2019 (cuối năm) có ở vietnamnet; số QĐ 4602 chỉ ở nguồn thương mại → cần đối chiếu dsvh"@vi,
+        "Quy tắc thời gian (CSV): Không cố định"@vi,
+        "Địa bàn gốc trong Danh mục: tỉnh Sóc Trăng"@vi,
+        "Địa bàn sau 2025 (CSV): [chưa verify]"@vi ;
+    ich:altLabelKhmerTranslit "Pinn Peat" ;
+    ich:altLabelNoDiacritics "Nhac ngu am Khmer" ;
+    ich:bearerGroup ex:DongBaoKhmer ;
+    ich:datasetId 17 ;
+    ich:hasCue ich:ChuaKhmer,
+        ich:DanNhacNguAm ;
+    ich:hasListing ex:Listing_NhacNguAmSocTrang_QG ;
+    ich:hasLocality ex:Place_SocTrangArea ;
+    ich:listingName "Nhạc ngũ âm của người Khmer tỉnh Sóc Trăng"@vi ;
+    ich:registryStatus "unverified" ;
+    ich:source "https://baosoctrang.org.vn/van-hoa-the-thao/202311/gin-giu-phat-huy-gia-tri-di-san-van-hoa-phi-vat-the-a1a18e2/"^^xsd:anyURI,
+        "https://dulieuphapluat.vn/cong-cu/di-san-phi-vat-the/tinh/can-tho.html"^^xsd:anyURI ;
+    ich:unescoDomain ich:PerformingArts ;
+    ich:verificationStatus "unverified" ;
+    ich:vnCategory ich:NgheThuatTrinhDienDanGian .
+
+ex:OkOmBokTraVinh_Rule_Khmer a owl:NamedIndividual,
+        ich:TemporalRule ;
+    rdfs:label "Quy tắc thời gian – Lễ hội Ok Om Bok Trà Vinh (Khmer)"@vi ;
+    rdfs:comment "14–15 tháng Ka-đâk lịch Khmer (CSV)."@vi ;
+    ich:calendarSystem "khmer_lunar" ;
+    ich:dayEnd 15 ;
+    ich:dayStart 14 ;
+    ich:monthName "Ka-đâk" ;
+    ich:recurrence "annual" ;
+    ich:ruleStrength "hard" ;
+    ich:toleranceDays "0"^^xsd:nonNegativeInteger ;
+    ich:toleranceMonths 0 ;
+    ich:verificationStatus "verified" .
+
+ex:OkOmBokTraVinh_Rule_VnApprox a owl:NamedIndividual,
+        ich:TemporalRule ;
+    rdfs:label "Quy tắc thời gian – Lễ hội Ok Om Bok Trà Vinh (VnApprox)"@vi ;
+    rdfs:comment "≈ 13–16/10 âm Việt; tuần lễ VH–DL rộng hơn cửa sổ; 2014 và 2025 lệch 1 tháng (CSV notes)."@vi ;
+    ich:calendarSystem "vn_lunar" ;
+    ich:dayEnd 16 ;
+    ich:dayStart 13 ;
+    ich:monthEnd 10 ;
+    ich:monthStart 10 ;
+    ich:recurrence "annual" ;
+    ich:ruleStrength "approx" ;
+    ich:toleranceDays "5"^^xsd:nonNegativeInteger ;
+    ich:toleranceMonths 1 ;
+    ich:verificationStatus "unverified" .
+
+ex:OocOmBocSocTrang_2024 a owl:NamedIndividual,
+        ich:Occurrence ;
+    rdfs:label "Oóc Om Bóc Sóc Trăng 2024"@vi ;
+    rdfs:comment "CSV: Đua 14–15/11/2024 (=14–15/10 âm), Festival ĐBSCL lần VI"@vi ;
+    ich:consistsOf ex:DuaGheNgo_SocTrang_2024 ;
+    ich:endDate "2024-11-15T00:00:00"^^xsd:dateTime ;
+    ich:lunarEndDay 15 ;
+    ich:lunarEndMonth 10 ;
+    ich:lunarStartDay 14 ;
+    ich:lunarStartMonth 10 ;
+    ich:occurrenceOf ex:OocOmBocSocTrang ;
+    ich:source "https://vjst.vn/phat-trien-du-lich-qua-le-hoi-dua-ghe-ngo-cua-dong-bao-khmer-nam-bo-68200.html"^^xsd:anyURI ;
+    ich:startDate "2024-11-14T00:00:00"^^xsd:dateTime ;
+    ich:tookPlaceAt ex:SongMaspero_CauQuay_CauCao ;
+    ich:verificationStatus "unverified" .
+
+ex:OocOmBocSocTrang_Rule_Khmer a owl:NamedIndividual,
+        ich:TemporalRule ;
+    rdfs:label "Quy tắc thời gian – Oóc Om Bóc Sóc Trăng (Khmer)"@vi ;
+    rdfs:comment "Ngày 15 tháng Kadeuk lịch Khmer (CSV). Số thứ tự tháng Khmer chưa chốt nên chỉ ghi monthName."@vi ;
+    ich:calendarSystem "khmer_lunar" ;
+    ich:dayEnd 15 ;
+    ich:dayStart 15 ;
+    ich:monthName "Kadeuk" ;
+    ich:recurrence "annual" ;
+    ich:ruleStrength "hard" ;
+    ich:toleranceDays "0"^^xsd:nonNegativeInteger ;
+    ich:toleranceMonths 0 ;
+    ich:verificationStatus "verified" .
+
+ex:OocOmBocSocTrang_Rule_VnApprox a owl:NamedIndividual,
+        ich:TemporalRule ;
+    rdfs:label "Quy tắc thời gian – Oóc Om Bóc Sóc Trăng (VnApprox)"@vi ;
+    rdfs:comment "Quy đổi xấp xỉ sang âm Việt (rằm tháng 10); năm 2025 lệch 1 tháng (đua 4–5/11/2025 = 15–16/9 âm Việt)."@vi ;
+    ich:calendarSystem "vn_lunar" ;
+    ich:dayEnd 15 ;
+    ich:dayStart 14 ;
+    ich:monthEnd 10 ;
+    ich:monthStart 10 ;
+    ich:recurrence "annual" ;
+    ich:ruleStrength "approx" ;
+    ich:toleranceDays "2"^^xsd:nonNegativeInteger ;
+    ich:toleranceMonths 1 ;
+    ich:verificationStatus "unverified" .
+
+ex:Place_CaiBe a owl:NamedIndividual,
+        ich:Place ;
+    rdfs:label "Vùng Cái Bè"@vi ;
+    ich:verificationStatus "unverified" .
+
+ex:Place_ChoNoiCaiRang a owl:NamedIndividual,
+        ich:Place ;
+    rdfs:label "Vùng chợ nổi Cái Răng"@vi ;
+    geo:hasGeometry ex:Geom_ChoNoiCaiRang ;
+    ich:locatedWithin ex:Place_CanThoOldArea,
+        ex:SongCanTho ;
+    ich:radiusKm 2.0 ;
+    ich:verificationStatus "unverified" .
+
+ex:Place_NgaBay a owl:NamedIndividual,
+        ich:Place ;
+    rdfs:label "Vùng Ngã Bảy"@vi ;
+    ich:verificationStatus "unverified" .
+
+ex:Place_PhongDien a owl:NamedIndividual,
+        ich:Place ;
+    rdfs:label "Vùng Phong Điền"@vi ;
+    ich:verificationStatus "unverified" .
+
+ex:RoBamSocTrang a owl:NamedIndividual,
+        ich:PracticeHeritage ;
+    rdfs:label "Nghệ thuật Rô-băm (Sóc Trăng)"@vi ;
+    rdfs:comment "Ghi chú (CSV): VA CHẠM TÊN: hai mục Rô-băm (Sóc Trăng 2019, Trà Vinh 2017) → hai entity, cùng class."@vi,
+        "Mức verify (CSV): Cao"@vi,
+        "Quy tắc thời gian (CSV): Không cố định"@vi,
+        "Trạng thái khác (CSV): CÒN MỤC RIÊNG: 'Nghệ thuật Rô-băm người Khmer tỉnh Trà Vinh', đưa vào Danh mục 08/5/2017 (số QĐ [chưa verify]) — https://dangcongsan.org.vn/travinh/tin-tuc-hoat-dong/di-san-van-hoa-phi-vat-the-quoc-gia-o-tinh-tra-vinh.html"@vi,
+        "Địa bàn gốc trong Danh mục: xã Tài Văn, huyện Trần Đề, tỉnh Sóc Trăng"@vi,
+        "Địa bàn sau 2025 (CSV): đơn vị cấp xã thay xã Tài Văn: [chưa verify]"@vi ;
+    ich:altLabelKhmerTranslit "Robam" ;
+    ich:altLabelNoDiacritics "Nghe thuat Ro bam" ;
+    ich:bearerGroup ex:DongBaoKhmer ;
+    ich:datasetId 15 ;
+    ich:hasListing ex:Listing_RoBamSocTrang_QG ;
+    ich:hasLocality ex:Place_SocTrangArea ;
+    ich:listingName "Nghệ thuật Rô-băm của người Khmer"@vi ;
+    ich:registryStatus "listed" ;
+    ich:source "https://dulieuphapluat.vn/cong-cu/di-san-phi-vat-the/tinh/can-tho.html"^^xsd:anyURI,
+        "https://sovhtt.hanoi.gov.vn/cong-bo-danh-muc-di-san-van-hoa-phi-vat-the-quoc-gia-dot-26/"^^xsd:anyURI,
+        "https://vietnamnet.vn/den-soc-trang-me-man-xem-ro-bam-nghe-nhac-ngu-am-cua-nguoi-khmer-797199.html"^^xsd:anyURI ;
+    ich:unescoDomain ich:PerformingArts ;
+    ich:verificationStatus "verified" ;
+    ich:vnCategory ich:NgheThuatTrinhDienDanGian .
+
+ex:SanDuaBoVinhTrung a owl:NamedIndividual,
+        ich:Place ;
+    rdfs:label "Sân đua bò xã Vĩnh Trung (Tịnh Biên)"@vi ;
+    ich:locatedWithin ex:Place_AnGiangOldArea ;
+    ich:verificationStatus "unverified" .
+
+ex:SeneDolta_Rule_Khmer a owl:NamedIndividual,
+        ich:TemporalRule ;
+    rdfs:label "Quy tắc thời gian – Lễ Sene Dolta (Khmer)"@vi ;
+    rdfs:comment "3 ngày chính theo lịch Khmer; tên/số tháng Khmer: [chưa verify]."@vi ;
+    ich:calendarSystem "khmer_lunar" ;
+    ich:recurrence "annual" ;
+    ich:ruleStrength "hard" ;
+    ich:toleranceDays "0"^^xsd:nonNegativeInteger ;
+    ich:toleranceMonths 0 ;
+    ich:verificationStatus "unverified" .
+
+ex:SeneDolta_Rule_VnApprox a owl:NamedIndividual,
+        ich:TemporalRule ;
+    rdfs:label "Quy tắc thời gian – Lễ Sene Dolta (VnApprox)"@vi ;
+    rdfs:comment "Việt hóa 29/8–1/9 âm (vắt tháng); đúng 2023, 2024; 2025 lệch 1 tháng (30/7–2/8 âm)."@vi ;
+    ich:calendarSystem "vn_lunar" ;
+    ich:dayEnd 1 ;
+    ich:dayStart 29 ;
+    ich:monthEnd 9 ;
+    ich:monthStart 8 ;
+    ich:recurrence "annual" ;
+    ich:ruleStrength "approx" ;
+    ich:toleranceDays "1"^^xsd:nonNegativeInteger ;
+    ich:toleranceMonths 1 ;
+    ich:verificationStatus "unverified" .
+
+ex:Sig_TaOnMatTrang a owl:NamedIndividual,
+        ich:Significance ;
+    rdfs:label "Tạ ơn Mặt Trăng"@vi ;
+    ich:verificationStatus "unverified" .
+
+ex:SongLongBinh a owl:NamedIndividual,
+        ich:NaturalFeature ;
+    rdfs:label "Sông Long Bình"@vi ;
+    ich:cueKind "place" ;
+    ich:locatedWithin ex:Place_TraVinhArea ;
+    ich:verificationStatus "unverified" .
+
+ex:ThanhHoang a owl:NamedIndividual,
+        ich:MythicalBeing ;
+    rdfs:label "Thành hoàng"@vi ;
+    ich:verificationStatus "unverified" .
+
+ex:TinNguongThoThanhHoang a owl:NamedIndividual,
+        ich:BeliefSystem ;
+    rdfs:label "Tín ngưỡng thờ Thành hoàng"@vi ;
+    ich:verificationStatus "unverified" .
+
+ex:VaiChan a owl:NamedIndividual,
+        ich:ArtisticElement ;
+    rdfs:label "Vai chằn (Dù Kê)"@vi ;
+    ich:verificationStatus "unverified" .
+
+ex:ViaBaChuaXuNuiSam a owl:NamedIndividual,
+        ich:EventHeritage ;
+    rdfs:label "Lễ hội Vía Bà Chúa Xứ núi Sam"@vi ;
+    rdfs:comment "Ghi chú (CSV): Có số liệu 2026: khai hội tối 6/6/2026, rước tượng 7/6 (=22/4 âm): https://angiang.gov.vn/vi/an-giang-chuc-khai-hoi-le-ba-chua-xu-nui-sam-nam-2026 . 'Danh mục QG 2014' xác nhận (QĐ 4205 ngày 19/12/2014). Hai tên mục khác nhau (Vía/Miếu) → thêm alias. UNESCO: https://bvhttdl.gov.vn/le-hoi-via-ba-chua-xu-nui-sam-duoc-ghi-danh-la-di-san-van-hoa-phi-vat-the-dai-dien-cua-nhan-loai-20241204210158448.htm"@vi,
+        "Mức verify (CSV): Cao"@vi,
+        "Quy tắc thời gian (CSV): 22–27/4 âm (một số nguồn: tối 23–27/4); phần lễ hội kéo dài từ tháng Giêng"@vi,
+        "Trạng thái khác (CSV): UNESCO Danh sách đại diện: 4/12/2024 (kỳ họp 19, Asunción)"@vi,
+        "Địa bàn gốc trong Danh mục: phường Núi Sam, TP Châu Đốc, tỉnh An Giang"@vi,
+        "Địa bàn sau 2025 (CSV): phường Vĩnh Tế (Khu du lịch quốc gia Núi Sam)"@vi ;
+    ich:altLabelListing "Lễ hội Miếu Bà Chúa Xứ núi Sam"@vi ;
+    ich:altLabelNoDiacritics "Le hoi Via Ba Chua Xu nui Sam" ;
+    ich:bearerGroup ex:DongBaoKhmer,
+        ex:NguoiCham,
+        ex:NguoiHoa,
+        ex:NguoiKinh ;
+    ich:datasetId 8 ;
+    ich:hasListing ex:Listing_ViaBaChuaXuNuiSam_QG,
+        ex:Listing_ViaBaChuaXuNuiSam_UNESCO ;
+    ich:hasLocality ex:MieuBaChuaXuNuiSam ;
+    ich:hasTemporalRule ex:ViaBaChuaXuNuiSam_Rule_Main ;
+    ich:listingName "Lễ hội Vía Bà Chúa Xứ núi Sam"@vi ;
+    ich:registryStatus "listed" ;
+    ich:source "https://angiang.gov.vn/vi/di-san-le-hoi-ba-chua-xu-nui-sam-la-di-san-van-hoa-phi-vat-dai-dien-cua-nhan-loai"^^xsd:anyURI,
+        "https://angiang.gov.vn/vi/le-hoi-ba-chua-xu-nui-sam-niem-tu-hao-di-san-gioi"^^xsd:anyURI,
+        "https://dsvh.gov.vn/danh-muc-di-san-van-hoa-phi-vat-the-quoc-gia-1789"^^xsd:anyURI,
+        "https://thuvienphapluat.vn/phap-luat-doanh-nghiep/cau-hoi-thuong-gap/le-hoi-via-ba-chua-xu-nui-sam-o-dau-dien-ra-vao-ngay-may-am-lich-8855.html"^^xsd:anyURI,
+        "https://thuvienphapluat.vn/van-ban/Van-hoa-Xa-hoi/Quyet-dinh-4205-QD-BVHTTDL-Danh-muc-di-san-van-hoa-phi-vat-the-quoc-gia-2014-293998.aspx"^^xsd:anyURI,
+        "https://xaydungchinhsach.chinhphu.vn/le-hoi-via-ba-chua-xu-nui-sam-la-di-san-van-hoa-phi-vat-the-dai-dien-cua-nhan-loai-119241204234205429.htm"^^xsd:anyURI ;
+    ich:typicallyIncludes ich:RuocTuongBa ;
+    ich:unescoDomain ich:SocialPracticesRitualsFestive ;
+    ich:veneratesFigure ex:BaChuaXu ;
+    ich:verificationStatus "verified" ;
+    ich:vnCategory ich:LeHoiTruyenThong .
+
+ex:ViaBaChuaXuNuiSam_Rule_Main a owl:NamedIndividual,
+        ich:TemporalRule ;
+    rdfs:label "Quy tắc thời gian – Lễ hội Vía Bà Chúa Xứ núi Sam (Main)"@vi ;
+    rdfs:comment "22–27/4 âm; 2025 cả đợt 14–27/4 âm."@vi ;
+    ich:calendarSystem "vn_lunar" ;
+    ich:dayEnd 27 ;
+    ich:dayStart 22 ;
+    ich:monthEnd 4 ;
+    ich:monthStart 4 ;
+    ich:recurrence "annual" ;
+    ich:ruleStrength "soft" ;
+    ich:toleranceDays "8"^^xsd:nonNegativeInteger ;
+    ich:toleranceMonths 0 ;
+    ich:verificationStatus "verified" .
+
+ex:ViaBaThuyLong_Rule_Main a owl:NamedIndividual,
+        ich:TemporalRule ;
+    rdfs:label "Quy tắc thời gian – Lễ hội Vía Bà Thủy Long (Main)"@vi ;
+    rdfs:comment "15–17/2 âm theo Prompt 1: [chưa verify]."@vi ;
+    ich:calendarSystem "vn_lunar" ;
+    ich:dayEnd 17 ;
+    ich:dayStart 15 ;
+    ich:monthEnd 2 ;
+    ich:monthStart 2 ;
+    ich:recurrence "annual" ;
+    ich:ruleStrength "soft" ;
+    ich:toleranceDays "0"^^xsd:nonNegativeInteger ;
+    ich:toleranceMonths 0 ;
+    ich:verificationStatus "unverified" .
+
+ich:BuonBanTrenSong a owl:NamedIndividual,
+        ich:SocialPractice ;
+    rdfs:label "Buôn bán trên sông"@vi ;
+    ich:cueKind "activity" ;
+    ich:verificationStatus "unverified" .
+
+ich:ComDep a owl:NamedIndividual,
+        ich:Offering ;
+    rdfs:label "Cốm dẹp"@vi ;
+    ich:cueKind "object" ;
+    ich:verificationStatus "unverified" .
+
+ich:DapNuiCat a owl:NamedIndividual,
+        ich:SocialPractice ;
+    rdfs:label "Đắp núi cát"@vi ;
+    ich:altLabelKhmerTranslit "Puôn Phnum Khsách" ;
+    ich:altLabelNoDiacritics "Dap nui cat" ;
+    ich:cueKind "activity" ;
+    ich:verificationStatus "unverified" .
+
+ich:DuaBo a owl:NamedIndividual,
+        ich:SocialPractice ;
+    rdfs:label "Đua bò"@vi ;
+    rdfs:comment "Theo Khung thực thể / cột notes-venue của CSV; chưa đối chiếu hồ sơ gốc."@vi ;
+    ich:cueKind "activity" ;
+    ich:verificationStatus "unverified" .
+
+ich:DungCayBeo a owl:NamedIndividual,
+        ich:SocialPractice ;
+    rdfs:label "Dựng cây bẹo"@vi ;
+    ich:cueKind "activity" ;
+    ich:usedObjectOfType ich:CayBeo ;
+    ich:verificationStatus "unverified" .
+
+ich:LeTamPhat a owl:NamedIndividual,
+        ich:Ritual ;
+    rdfs:label "Lễ tắm Phật"@vi ;
+    ich:cueKind "activity" ;
+    ich:verificationStatus "unverified" .
+
+ich:LeTeThanNong a owl:NamedIndividual,
+        ich:Ritual ;
+    rdfs:label "Lễ tế Thần Nông"@vi ;
+    rdfs:comment "Theo Khung thực thể / cột notes-venue của CSV; chưa đối chiếu hồ sơ gốc."@vi ;
+    ich:cueKind "activity" ;
+    ich:verificationStatus "unverified" .
+
+ich:MatSongDongGhe a owl:NamedIndividual,
+        ich:PracticeVenue ;
+    rdfs:label "Mặt sông đông ghe xuồng"@vi ;
+    ich:cueKind "venue" ;
+    ich:verificationStatus "unverified" .
+
+ich:MieuNeakTa a owl:NamedIndividual,
+        ich:PracticeVenue ;
+    rdfs:label "Miếu Néak Tà (phum sóc)"@vi ;
+    rdfs:comment "Theo Khung thực thể / cột notes-venue của CSV; chưa đối chiếu hồ sơ gốc."@vi ;
+    ich:cueKind "venue" ;
+    ich:verificationStatus "unverified" .
+
+ich:RuocTuongBa a owl:NamedIndividual,
+        ich:Ritual ;
+    rdfs:label "Rước tượng Bà"@vi ;
+    rdfs:comment "Theo Khung thực thể / cột notes-venue của CSV; chưa đối chiếu hồ sơ gốc."@vi ;
+    ich:cueKind "activity" ;
+    ich:verificationStatus "unverified" .
+
+ich:SangSom a owl:NamedIndividual,
+        ich:TemporalCue ;
+    rdfs:label "Sáng sớm"@vi ;
+    ich:cueKind "temporal" ;
+    ich:verificationStatus "unverified" .
+
+ich:TapQuanXaHoiVaTinNguong a owl:NamedIndividual,
+        ich:VnCategory ;
+    rdfs:label "Tập quán xã hội và tín ngưỡng"@vi ;
+    ich:verificationStatus "unverified" .
+
+ich:TauCa a owl:NamedIndividual,
+        ich:VehicleVessel ;
+    rdfs:label "Tàu cá"@vi ;
+    rdfs:comment "Theo Khung thực thể / cột notes-venue của CSV; chưa đối chiếu hồ sơ gốc."@vi ;
+    ich:cueKind "object" ;
+    ich:verificationStatus "unverified" .
+
+ich:ThaDenNuoc a owl:NamedIndividual,
+        ich:Ritual ;
+    rdfs:label "Thả đèn nước"@vi ;
+    rdfs:comment "Phân loại Ritual là đề xuất, khung gốc chưa liệt kê."@vi ;
+    ich:cueKind "activity" ;
+    ich:verificationStatus "unverified" .
+
+ich:ThuongHo a owl:NamedIndividual,
+        ich:RoleType ;
+    rdfs:label "Thương hồ"@vi ;
+    ich:altLabelNoDiacritics "Thuong ho" ;
+    ich:cueKind "role" ;
+    ich:verificationStatus "unverified" .
+
+ich:TongTau a owl:NamedIndividual,
+        ich:Ritual ;
+    rdfs:label "Lễ tống tàu"@vi ;
+    rdfs:comment "Theo Khung thực thể / cột notes-venue của CSV; chưa đối chiếu hồ sơ gốc."@vi ;
+    ich:cueKind "activity" ;
+    ich:verificationStatus "unverified" .
+
+ex:Admin_AnGiang_2025 a owl:NamedIndividual,
+        ich:AdminUnit ;
+    rdfs:label "Tỉnh An Giang (sau sáp nhập)"@vi ;
+    rdfs:comment "Sáp nhập tỉnh theo NQ 202/2025/QH15 (validTo/validFrom theo quy ước đã dùng trong ABox; mốc vận hành [chưa verify])."@vi ;
+    ich:adminLevel "province" ;
+    ich:coversPlace ex:Place_AnGiangNewArea ;
+    ich:validFrom "2025-06-12T00:00:00"^^xsd:dateTime ;
+    ich:verificationStatus "unverified" .
+
+ex:Admin_TPCanTho_2025 a owl:NamedIndividual,
+        ich:AdminUnit ;
+    rdfs:label "Thành phố Cần Thơ (sau sáp nhập)"@vi ;
+    rdfs:comment "Mốc vận hành 1/7/2025: [chưa verify], nên chưa ghi ich:operationalNote."@vi ;
+    ich:adminLevel "province" ;
+    ich:coversPlace ex:Place_CanThoNewArea ;
+    ich:validFrom "2025-06-12T00:00:00"^^xsd:dateTime ;
+    ich:verificationStatus "unverified" .
+
+ex:ChoNoiCaiBe a owl:NamedIndividual,
+        ich:LookalikeElement ;
+    rdfs:label "Chợ nổi Cái Bè"@vi ;
+    ich:hasCue ich:CayBeo,
+        ich:GheThuongHo ;
+    ich:hasLocality ex:Place_CaiBe ;
+    ich:verificationStatus "unverified" .
+
+ex:ChoNoiNgaBay a owl:NamedIndividual,
+        ich:LookalikeElement ;
+    rdfs:label "Chợ nổi Ngã Bảy"@vi ;
+    ich:hasCue ich:CayBeo,
+        ich:GheThuongHo ;
+    ich:hasLocality ex:Place_NgaBay ;
+    ich:verificationStatus "unverified" .
+
+ex:ChoNoiPhongDien a owl:NamedIndividual,
+        ich:LookalikeElement ;
+    rdfs:label "Chợ nổi Phong Điền"@vi ;
+    ich:hasCue ex:SongCanTho,
+        ich:CayBeo,
+        ich:GheThuongHo ;
+    ich:hasLocality ex:Place_PhongDien ;
+    ich:verificationStatus "unverified" .
+
+ex:DinhThanNguyenTrungTruc a owl:NamedIndividual,
+        ich:CulturalSpace ;
+    rdfs:label "Đình thần Nguyễn Trung Trực (Rạch Giá)"@vi ;
+    ich:locatedWithin ex:Place_KienGiangArea ;
+    ich:verificationStatus "unverified" .
+
+ex:DuaGheNgo_SocTrang_2024 a owl:NamedIndividual,
+        ich:CulturalActivity ;
+    rdfs:label "Đua ghe Ngo Sóc Trăng 2024"@vi ;
+    ich:hasActivityType ich:DuaGheNgo ;
+    ich:verificationStatus "unverified" .
+
+ex:LangOngSongDoc a owl:NamedIndividual,
+        ich:CulturalSpace ;
+    rdfs:label "Lăng Ông Nam Hải Đại Tướng quân (Sông Đốc)"@vi ;
+    ich:locatedWithin ex:Place_CaMauOldArea ;
+    ich:verificationStatus "unverified" .
+
+ex:MieuBaChuaXuNuiSam a owl:NamedIndividual,
+        ich:CulturalSpace ;
+    rdfs:label "Miếu Bà Chúa Xứ núi Sam"@vi ;
+    ich:locatedWithin ex:Place_AnGiangOldArea ;
+    ich:verificationStatus "unverified" .
+
+ex:PhatGiaoNamTong a owl:NamedIndividual,
+        ich:BeliefSystem ;
+    rdfs:label "Phật giáo Nam tông"@vi ;
+    ich:verificationStatus "unverified" .
+
+ex:Place_CaMauNewArea a owl:NamedIndividual,
+        ich:Place ;
+    rdfs:label "Vùng tỉnh Cà Mau (sau sáp nhập)"@vi ;
+    ich:locatedWithin ex:Place_DBSCL ;
+    ich:verificationStatus "unverified" .
+
+ex:Place_KienGiangArea a owl:NamedIndividual,
+        ich:Place ;
+    rdfs:label "Vùng tỉnh Kiên Giang (cũ)"@vi ;
+    ich:locatedWithin ex:Place_AnGiangNewArea ;
+    ich:verificationStatus "unverified" .
+
+ex:Place_NamBo a owl:NamedIndividual,
+        ich:Place ;
+    rdfs:label "Vùng Nam Bộ"@vi ;
+    ich:verificationStatus "unverified" .
+
+ex:Place_VinhLongNewArea a owl:NamedIndividual,
+        ich:Place ;
+    rdfs:label "Vùng tỉnh Vĩnh Long (sau sáp nhập)"@vi ;
+    ich:locatedWithin ex:Place_DBSCL ;
+    ich:verificationStatus "unverified" .
+
+ex:ThanNamHai a owl:NamedIndividual,
+        ich:MythicalBeing ;
+    rdfs:label "Thần Nam Hải (Cá Ông)"@vi ;
+    ich:verificationStatus "unverified" .
+
+ex:TrungTamChroiRumChek a owl:NamedIndividual,
+        ich:CulturalSpace ;
+    rdfs:label "Trung tâm hành lễ Chrôi Rum Chếk (Vĩnh Châu)"@vi ;
+    ich:locatedWithin ex:Place_SocTrangArea ;
+    ich:verificationStatus "unverified" .
+
+ich:ConDam a owl:NamedIndividual,
+        ich:RoleType ;
+    rdfs:label "Con dầm"@vi ;
+    ich:altLabelNoDiacritics "Con dam" ;
+    ich:cueKind "role" ;
+    ich:verificationStatus "unverified" .
+
+ich:DanKim a owl:NamedIndividual,
+        ich:MusicalInstrument ;
+    rdfs:label "Đàn kìm"@vi ;
+    rdfs:comment "Theo Khung thực thể / cột notes-venue của CSV; chưa đối chiếu hồ sơ gốc."@vi ;
+    ich:cueKind "object" ;
+    ich:verificationStatus "unverified" .
+
+ich:DanNhacNguAm a owl:NamedIndividual,
+        ich:MusicalInstrument ;
+    rdfs:label "Dàn nhạc Ngũ âm"@vi ;
+    rdfs:comment "Theo Khung thực thể / cột notes-venue của CSV; chưa đối chiếu hồ sơ gốc."@vi ;
+    ich:cueKind "object" ;
+    ich:verificationStatus "unverified" .
+
+ich:DanTranh a owl:NamedIndividual,
+        ich:MusicalInstrument ;
+    rdfs:label "Đàn tranh"@vi ;
+    rdfs:comment "Theo Khung thực thể / cột notes-venue của CSV; chưa đối chiếu hồ sơ gốc."@vi ;
+    ich:cueKind "object" ;
+    ich:verificationStatus "unverified" .
+
+ich:GheNgo a owl:NamedIndividual,
+        ich:VehicleVessel ;
+    rdfs:label "Ghe Ngo"@vi ;
+    ich:altLabelNoDiacritics "Ghe Ngo" ;
+    ich:cueKind "object" ;
+    ich:verificationStatus "unverified" .
+
+ich:GuitarPhimLom a owl:NamedIndividual,
+        ich:MusicalInstrument ;
+    rdfs:label "Guitar phím lõm"@vi ;
+    rdfs:comment "Theo Khung thực thể / cột notes-venue của CSV; chưa đối chiếu hồ sơ gốc."@vi ;
+    ich:cueKind "object" ;
+    ich:verificationStatus "unverified" .
+
+ich:LeCungTrang a owl:NamedIndividual,
+        ich:Ritual ;
+    rdfs:label "Lễ cúng trăng"@vi ;
+    ich:cueKind "activity" ;
+    ich:usedObjectOfType ich:ComDep ;
+    ich:verificationStatus "unverified" .
+
+ich:MuaRomVong a owl:NamedIndividual,
+        ich:Performance ;
+    rdfs:label "Múa Rom vong"@vi ;
+    ich:altLabelKhmerTranslit "Rom Vong" ;
+    ich:altLabelNoDiacritics "Mua Rom vong" ;
+    ich:cueKind "activity" ;
+    ich:realizesPractice ex:MuaRomVong_Heritage ;
+    ich:verificationStatus "unverified" .
+
+ich:NguDan a owl:NamedIndividual,
+        ich:RoleType ;
+    rdfs:label "Ngư dân"@vi ;
+    rdfs:comment "Theo Khung thực thể / cột notes-venue của CSV; chưa đối chiếu hồ sơ gốc."@vi ;
+    ich:cueKind "role" ;
+    ich:verificationStatus "unverified" .
+
+ich:SongLan a owl:NamedIndividual,
+        ich:MusicalInstrument ;
+    rdfs:label "Song lan"@vi ;
+    rdfs:comment "Theo Khung thực thể / cột notes-venue của CSV; chưa đối chiếu hồ sơ gốc."@vi ;
+    ich:cueKind "object" ;
+    ich:verificationStatus "unverified" .
+
+ich:TrangPhucKhmer a owl:NamedIndividual,
+        ich:Costume ;
+    rdfs:label "Trang phục Khmer"@vi ;
+    ich:cueKind "object" ;
+    ich:verificationStatus "unverified" .
+
+ich:TrongGiaDinh a owl:NamedIndividual,
+        ich:PracticeVenue ;
+    rdfs:label "Trong gia đình"@vi ;
+    rdfs:comment "Theo Khung thực thể / cột notes-venue của CSV; chưa đối chiếu hồ sơ gốc."@vi ;
+    ich:cueKind "venue" ;
+    ich:verificationStatus "unverified" .
+
+ex:AoBaOm a owl:NamedIndividual,
+        ich:CulturalSpace ;
+    rdfs:label "Khu di tích danh lam Ao Bà Om"@vi ;
+    ich:locatedWithin ex:Place_TraVinhArea ;
+    ich:verificationStatus "unverified" .
+
+ex:ChoNoiCaiRang a owl:NamedIndividual,
+        ich:PracticeHeritage ;
+    rdfs:label "Văn hóa chợ nổi Cái Răng"@vi ;
+    rdfs:comment "Ghi chú (CSV): Hồ sơ mô tả gồm tập quán – tín ngưỡng Bà–Cậu, Thần tài–Thổ địa, tri thức dân gian (Bảo tàng Cần Thơ). Ngày hội Du lịch là sự kiện du lịch gắn di sản, không phải occurrence của di sản."@vi,
+        "Mốc 2024 trong CSV occurrence bị bỏ qua: Ngày hội Du lịch là sự kiện du lịch gắn di sản, không phải occurrence (CSV notes); PracticeHeritage không có Occurrence."@vi,
+        "Mức verify (CSV): QĐ: xác nhận (nguồn nhà nước địa phương + báo). Loại hình: nguồn thứ cấp."@vi,
+        "Quy tắc thời gian (CSV): Họp hằng ngày; khung đẹp nhất khoảng 5–7h sáng"@vi,
+        "Địa bàn gốc trong Danh mục: quận Cái Răng, TP Cần Thơ"@vi,
+        "Địa bàn sau 2025 (CSV): phường Cái Răng (hợp nhất từ Lê Bình, Ba Láng, Hưng Thạnh, Thường Thạnh; nguồn thứ cấp)"@vi ;
+    ich:altLabelListing "Văn hóa chợ nổi Cái Răng"@vi ;
+    ich:altLabelNoDiacritics "Cho noi Cai Rang" ;
+    ich:confusableWith ex:ChoNoiCaiBe,
+        ex:ChoNoiNgaBay,
+        ex:ChoNoiPhongDien ;
+    ich:datasetId 1 ;
+    ich:hasCue ex:SongCanTho,
+        ich:CayBeo,
+        ich:GheThuongHo ;
+    ich:hasDistinctiveCue ich:MatSongDongGhe ;
+    ich:hasListing ex:Listing_ChoNoiCaiRang_QG ;
+    ich:hasLocality ex:Place_ChoNoiCaiRang ;
+    ich:hasTemporalCue ich:SangSom ;
+    ich:involvesRole ich:ThuongHo ;
+    ich:listingName "Văn hóa chợ nổi Cái Răng"@vi ;
+    ich:registryStatus "listed" ;
+    ich:source "https://baolaocai.vn/ngay-hoi-du-lich-van-hoa-cho-noi-cai-rang-gan-ket-va-bao-ton-di-san-post370604.html"^^xsd:anyURI,
+        "https://baotangtpcantho.cantho.gov.vn/article/di-san-van-hoa-cho-noi-cai-rang/1073.htm"^^xsd:anyURI,
+        "https://dulieuphapluat.vn/cong-cu/di-san-phi-vat-the/tinh/can-tho.html"^^xsd:anyURI,
+        "https://vietshrimp.vn/van-hoa-cho-noi-cai-rang-di-san-van-hoa-phi-vat-the-quoc-gia/"^^xsd:anyURI,
+        "https://www.vietnamplus.vn/trai-nghiem-don-binh-minh-tren-cho-noi-cai-rang-post1124448.vnp"^^xsd:anyURI ;
+    ich:typicallyIncludes ich:BuonBanTrenSong,
+        ich:DungCayBeo ;
+    ich:unescoDomain ich:SocialPracticesRitualsFestive ;
+    ich:verificationStatus "unverified" ;
+    ich:vnCategory ich:TapQuanXaHoiVaTinNguong .
+
+ex:ChroiRumChek a owl:NamedIndividual,
+        ich:EventHeritage ;
+    rdfs:label "Lễ hội Chrôi Rum Chếk (Phước Biển)"@vi ;
+    rdfs:comment "Ghi chú (CSV): Vào Danh mục ngày 5/3/2025 → KHÔNG có trong danh sách 8 di sản Sóc Trăng tháng 11/2023 (đúng, vì chưa ghi danh). Prompt 1 để 'năm [cần kiểm tra]' → 2025. Lệch với trùng cửa sổ #7 (13–15/2 âm vs 14–16/2 âm)."@vi,
+        "Mức verify (CSV): Cao"@vi,
+        "Quy tắc thời gian (CSV): 13–15/2 âm (nguồn trước đó: 14–15/2 âm)"@vi,
+        "Địa bàn gốc trong Danh mục: thị xã Vĩnh Châu, tỉnh Sóc Trăng"@vi,
+        "Địa bàn sau 2025 (CSV): [chưa verify] (2025 tổ chức tại khóm Vĩnh An, phường 2, TX Vĩnh Châu – tên cũ)"@vi ;
+    ich:altLabelLocal "Lễ hội Phước Biển"@vi ;
+    ich:altLabelNoDiacritics "Le hoi Chroi Rum Chek" ;
+    ich:bearerGroup ex:DongBaoKhmer ;
+    ich:datasetId 19 ;
+    ich:hasListing ex:Listing_ChroiRumChek_QG ;
+    ich:hasLocality ex:TrungTamChroiRumChek ;
+    ich:hasTemporalRule ex:ChroiRumChek_Rule_Main ;
+    ich:listingName "Lễ hội Chrôi Rum Chếk"@vi ;
+    ich:registryStatus "listed" ;
+    ich:source "http://www.vanhoanghethuat.vn/them-3-di-san-duoc-dua-vao-danh-muc-di-san-van-hoa-phi-vat-the-quoc-gia-2025.htm"^^xsd:anyURI,
+        "https://baosoctrang.org.vn/van-hoa-the-thao-du-lich/202503/le-hoi-chroi-rum-chek-net-dep-van-hoa-cua-dong-bao-khmer-fb802b5/"^^xsd:anyURI,
+        "https://soctrangtourism.vn/vi/detailnews/?t=thi-xa-vinh-chau-to-chuc-le-hoi-cung-phuoc-bien-nam-2025-va-don-bang-chung-nhan-di-san-van-hoa-phi-vat-the-quoc-gia&id=news_3807"^^xsd:anyURI ;
+    ich:unescoDomain ich:SocialPracticesRitualsFestive ;
+    ich:verificationStatus "verified" ;
+    ich:vnCategory ich:LeHoiTruyenThong .
+
+ex:KyYenDinhBinhThuy a owl:NamedIndividual,
+        ich:EventHeritage ;
+    rdfs:label "Lễ hội Kỳ Yên đình Bình Thủy"@vi ;
+    rdfs:comment "Ghi chú (CSV): Ba mốc 2023–2025 khớp hoàn toàn với âm lịch Việt (đã kiểm bằng converter). Khoảng ngày thực tế dao động 3–5 ngày tùy năm (2025 bắt đầu từ 11/4 âm) → rule thời gian nên để soft."@vi,
+        "Mức verify (CSV): Cao"@vi,
+        "Quy tắc thời gian (CSV): Thượng điền: 12–14/4 âm (dsvh ghi 12–15/4 âm); Hạ điền: 14(–15)/12 âm"@vi,
+        "Trạng thái khác (CSV): 2026: 28–31/5/2026 (12/4 âm) — https://baovanhoa.vn/van-hoa/khai-mac-le-hoi-ky-yen-thuong-dien-dinh-binh-thuy-2026-232344.html"@vi,
+        "Địa bàn gốc trong Danh mục: phường Bình Thủy, quận Bình Thủy, TP Cần Thơ"@vi,
+        "Địa bàn sau 2025 (CSV): phường Bình Thủy (đã xác nhận trong tin 2026; các đơn vị hợp nhất: [chưa verify])"@vi ;
+    ich:altLabelNoDiacritics "Le hoi Ky Yen dinh Binh Thuy" ;
+    ich:datasetId 2 ;
+    ich:hasBelief ex:TinNguongThoThanhHoang ;
+    ich:hasListing ex:Listing_KyYenDinhBinhThuy_QG ;
+    ich:hasLocality ex:DinhBinhThuy ;
+    ich:hasTemporalRule ex:KyYenDinhBinhThuy_Rule_HaDien,
+        ex:KyYenDinhBinhThuy_Rule_ThuongDien ;
+    ich:listingName "Lễ hội Kỳ Yên đình Bình Thủy"@vi ;
+    ich:registryStatus "listed" ;
+    ich:source "https://baocantho.com.vn/cong-bo-di-san-van-hoa-phi-vat-the-quoc-gia-doi-voi-le-hoi-ky-yen-dinh-binh-thuy-a102656.html"^^xsd:anyURI,
+        "https://dsvh.gov.vn/le-hoi-ky-yen-dinh-binh-thuy-3141"^^xsd:anyURI,
+        "https://mytour.vn/vi/blog/bai-viet/kham-pha-bi-an-kien-truc-va-qua-khu-cua-dinh-binh-thuy.html"^^xsd:anyURI ;
+    ich:unescoDomain ich:SocialPracticesRitualsFestive ;
+    ich:veneratesFigure ex:ThanhHoang ;
+    ich:verificationStatus "verified" ;
+    ich:vnCategory ich:LeHoiTruyenThong .
+
+ex:Place_AnGiangNewArea a owl:NamedIndividual,
+        ich:Place ;
+    rdfs:label "Vùng tỉnh An Giang (sau sáp nhập)"@vi ;
+    ich:locatedWithin ex:Place_DBSCL ;
+    ich:verificationStatus "unverified" .
+
+ex:Place_CaMauOldArea a owl:NamedIndividual,
+        ich:Place ;
+    rdfs:label "Vùng tỉnh Cà Mau (cũ)"@vi ;
+    ich:locatedWithin ex:Place_CaMauNewArea ;
+    ich:verificationStatus "unverified" .
+
+ex:Place_CanThoNewArea a owl:NamedIndividual,
+        ich:Place ;
+    rdfs:label "Vùng Cần Thơ (sau sáp nhập)"@vi ;
+    ich:locatedWithin ex:Place_DBSCL ;
+    ich:verificationStatus "unverified" .
+
+ex:Place_CanThoOldArea a owl:NamedIndividual,
+        ich:Place ;
+    rdfs:label "Vùng TP Cần Thơ (trước sáp nhập)"@vi ;
+    ich:locatedWithin ex:Place_CanThoNewArea ;
+    ich:verificationStatus "unverified" .
+
+ex:SanDuaBoTaPa a owl:NamedIndividual,
+        ich:Place ;
+    rdfs:label "Sân đua bò Tà Pạ – Soài Chek (Tri Tôn)"@vi ;
+    ich:locatedWithin ex:Place_AnGiangOldArea ;
+    ich:verificationStatus "unverified" .
+
+ex:SongCanTho a owl:NamedIndividual,
+        ich:NaturalFeature ;
+    rdfs:label "Sông Cần Thơ"@vi ;
+    ich:altLabelNoDiacritics "Song Can Tho" ;
+    ich:cueKind "place" ;
+    ich:verificationStatus "unverified" .
+
+ich:ChuaKhmer a owl:NamedIndividual,
+        ich:PracticeVenue ;
+    rdfs:label "Chùa Khmer / sân chùa"@vi ;
+    rdfs:comment "Theo Khung thực thể / cột notes-venue của CSV; chưa đối chiếu hồ sơ gốc."@vi ;
+    ich:cueKind "venue" ;
+    ich:verificationStatus "unverified" .
+
+ich:DuaGheNgo a owl:NamedIndividual,
+        ich:SocialPractice ;
+    rdfs:label "Đua ghe Ngo"@vi ;
+    ich:cueKind "activity" ;
+    ich:usedObjectOfType ich:GheNgo ;
+    ich:verificationStatus "unverified" .
+
+ich:LeNghinhThanNamHai a owl:NamedIndividual,
+        ich:Ritual ;
+    rdfs:label "Lễ Nghinh Thần Nam Hải"@vi ;
+    rdfs:comment "Theo Khung thực thể / cột notes-venue của CSV; chưa đối chiếu hồ sơ gốc."@vi ;
+    ich:cueKind "activity" ;
+    ich:verificationStatus "unverified" .
+
+ex:CholChnamThmay a owl:NamedIndividual,
+        ich:EventHeritage ;
+    rdfs:label "Tết Chôl Chnăm Thmây"@vi ;
+    rdfs:comment "Ghi chú (CSV): Đừng gán 'di sản QG' cho Chôl Chnăm Thmây ĐBSCL. Mục Tây Ninh chỉ có nguồn thứ cấp, nên đối chiếu dsvh. Với KG: nên có node 'Tết Chôl Chnăm Thmây' (cultural event) không gắn QĐ, hoặc gắn trạng thái 'not_in_registry'."@vi,
+        "Mức verify (CSV): Trung bình: KHÔNG có mục ĐBSCL trong Danh mục (suy từ danh sách Sóc Trăng 11/2023 và Trà Vinh 6/2025, chưa quét hết các tỉnh)"@vi,
+        "Quy tắc thời gian (CSV): Giữa tháng 4 dương lịch, 3 ngày (Chôl Sangkran – Wanabot – Lơn Sak)"@vi,
+        "Địa bàn gốc trong Danh mục: Tây Ninh (không phải ĐBSCL)"@vi,
+        "Địa bàn sau 2025 (CSV): Không áp dụng"@vi,
+        "Đối chứng với Oóc Om Bóc (ứng viên B trong khung gốc)."@vi ;
+    ich:altLabelNoDiacritics "Tet Chol Chnam Thmay" ;
+    ich:bearerGroup ex:DongBaoKhmer ;
+    ich:datasetId 12 ;
+    ich:hasBelief ex:PhatGiaoNamTong ;
+    ich:hasCue ich:ChuaKhmer,
+        ich:TrangPhucKhmer,
+        ich:TrongGiaDinh ;
+    ich:hasLocality ex:Place_DBSCL ;
+    ich:hasTemporalRule ex:CholChnamThmay_Rule_Main ;
+    ich:registryStatus "not_listed" ;
+    ich:source "https://hoinguoicaotuoitayninh.vn/tet-chol-chnam-thmay-di-san-khmer-giua-long-tay-ninh/"^^xsd:anyURI,
+        "https://vietnamnet.vn/nhung-nghi-le-chinh-cua-tet-chol-chnam-thmay-2391081.html"^^xsd:anyURI ;
+    ich:typicallyIncludes ich:DapNuiCat,
+        ich:LeTamPhat,
+        ich:MuaRomVong ;
+    ich:unescoDomain ich:SocialPracticesRitualsFestive ;
+    ich:verificationStatus "unverified" .
+
+ex:DinhBinhThuy a owl:NamedIndividual,
+        ich:CulturalSpace ;
+    rdfs:label "Đình Bình Thủy"@vi ;
+    ich:locatedWithin ex:Place_CanThoOldArea ;
+    ich:verificationStatus "unverified" .
+
+ex:HoiDuaBoBayNui a owl:NamedIndividual,
+        ich:EventHeritage ;
+    rdfs:label "Hội đua bò Bảy Núi"@vi ;
+    rdfs:comment "Ghi chú (CSV): Hội đua do ATV/Sở VH tổ chức theo lịch riêng, không trùng đúng ngày Sene Dolta → rule cứng sẽ sai cả 3 năm. Mối quan hệ part_of #13 là 'gắn với', không phải nằm trong."@vi,
+        "Mức verify (CSV): Cao (QĐ, occurrence); quy tắc thời gian: lỏng"@vi,
+        "Quy tắc thời gian (CSV): Tổ chức 'nhân dịp' Sene Dolta, trước/giữa lễ; quy tắc 29/8–1/9 âm của Prompt 1 không thấy trong nguồn nhà nước; thực tế lệch (xem cột occ)"@vi,
+        "Địa bàn gốc trong Danh mục: tỉnh An Giang (dsvh không nêu cấp huyện/xã ở dòng trích)"@vi,
+        "Địa bàn sau 2025 (CSV): xã Tri Tôn (sân Tà Pạ – Soài Chek; 2025); phường Tịnh Biên (vùng thi đấu)"@vi ;
+    ich:altLabelNoDiacritics "Hoi dua bo Bay Nui" ;
+    ich:associatedWithEvent ex:SeneDolta ;
+    ich:bearerGroup ex:DongBaoKhmer ;
+    ich:confusableWith ex:SeneDolta ;
+    ich:datasetId 5 ;
+    ich:hasListing ex:Listing_HoiDuaBoBayNui_QG ;
+    ich:hasLocality ex:SanDuaBoTaPa ;
+    ich:hasTemporalRule ex:HoiDuaBoBayNui_Rule_VnApprox ;
+    ich:listingName "Hội đua bò Bảy Núi"@vi ;
+    ich:registryStatus "listed" ;
+    ich:source "https://dantocphattrien.vietnamnet.vn/hoi-dua-bo-bay-nui-nam-2025-se-dien-ra-vao-ngay-20-9-69222.html"^^xsd:anyURI,
+        "https://dsvh.gov.vn/danh-muc-di-san-van-hoa-phi-vat-the-quoc-gia-1789"^^xsd:anyURI,
+        "https://nhandan.vn/hao-hung-dua-bo-bay-nui-an-giang-post833793.html"^^xsd:anyURI,
+        "https://vov.gov.vn/an-giang-tung-bung-hoi-dua-bo-bay-nui-dtnew-1114568"^^xsd:anyURI ;
+    ich:typicallyIncludes ich:DuaBo ;
+    ich:unescoDomain ich:SocialPracticesRitualsFestive ;
+    ich:verificationStatus "verified" ;
+    ich:vnCategory ich:LeHoiTruyenThong .
+
+ex:NghinhOngSongDoc a owl:NamedIndividual,
+        ich:EventHeritage ;
+    rdfs:label "Lễ hội Nghinh Ông Sông Đốc"@vi ;
+    rdfs:comment "Ghi chú (CSV): Năm 2025 lễ hội kéo dài 7 ngày (chuỗi hoạt động) rộng hơn cửa sổ 14–16/2 âm → rule thời gian phải soft. Cùng tên 'Nghinh Ông' với #6."@vi,
+        "Mức verify (CSV): Cao (QĐ); cấp xã mới chưa verify"@vi,
+        "Quy tắc thời gian (CSV): 14–16/2 âm (dsvh ghi lễ chính 15 và 16/2 âm)"@vi,
+        "Địa bàn gốc trong Danh mục: thị trấn Sông Đốc, huyện Trần Văn Thời, tỉnh Cà Mau"@vi,
+        "Địa bàn sau 2025 (CSV): xã/phường mới thay thị trấn Sông Đốc: [chưa verify]"@vi ;
+    ich:altLabelNoDiacritics "Le hoi Nghinh Ong Song Doc" ;
+    ich:confusableWith ex:ChroiRumChek ;
+    ich:datasetId 7 ;
+    ich:hasListing ex:Listing_NghinhOngSongDoc_QG ;
+    ich:hasLocality ex:LangOngSongDoc ;
+    ich:hasTemporalRule ex:NghinhOngSongDoc_Rule_Main ;
+    ich:involvesRole ich:NguDan ;
+    ich:listingName "Lễ hội Nghinh Ông Sông Đốc"@vi ;
+    ich:registryStatus "listed" ;
+    ich:source "https://baotintuc.vn/doi-song-van-hoa/le-hoi-nghinh-ong-song-doc-duoc-dua-vao-danh-muc-di-san-van-hoa-phi-vat-the-cap-quoc-gia-20210205224638646.htm"^^xsd:anyURI,
+        "https://dsvh.gov.vn/le-hoi-nghinh-ong-song-doc-3369"^^xsd:anyURI,
+        "https://www.vietnamplus.vn/tim-hieu-net-dep-van-hoa-ngu-dan-ca-mau-qua-le-hoi-nghinh-ong-post718747.vnp"^^xsd:anyURI ;
+    ich:typicallyIncludes ich:LeNghinhThanNamHai ;
+    ich:unescoDomain ich:SocialPracticesRitualsFestive ;
+    ich:veneratesFigure ex:ThanNamHai ;
+    ich:verificationStatus "verified" ;
+    ich:vnCategory ich:LeHoiTruyenThong .
+
+ex:OkOmBokTraVinh a owl:NamedIndividual,
+        ich:EventHeritage ;
+    rdfs:label "Lễ hội Ok Om Bok Trà Vinh"@vi ;
+    rdfs:comment "Ghi chú (CSV): Bài nvsk.vnanet.vn (2014) ghi năm 2014 lễ hội tổ chức rằm tháng 9 do năm nhuận tháng 9 âm: https://nvsk.vnanet.vn/le-hoi-ok-om-bok-nhan-danh-hieu-di-san-van-hoa-phi-vat-the-quoc-gia-1-136101.vna → tiền lệ 'Khmer ≠ rằm 10 âm Việt'."@vi,
+        "Mức verify (CSV): Cao (QĐ, loại hình, lịch); thiếu occurrence 2023"@vi,
+        "Quy tắc thời gian (CSV): 14, 15 tháng Ka-đâk Khmer (khoảng 13–16/10 âm Việt)"@vi,
+        "Địa bàn gốc trong Danh mục: tỉnh Trà Vinh"@vi,
+        "Địa bàn sau 2025 (CSV): phường Nguyệt Hóa (Khu VH–DL ao Bà Om)"@vi ;
+    ich:altLabelKhmerTranslit "Ok Om Bok" ;
+    ich:altLabelLocal "Lễ cúng trăng"@vi ;
+    ich:altLabelNoDiacritics "Ok Om Bok Tra Vinh" ;
+    ich:bearerGroup ex:DongBaoKhmer ;
+    ich:datasetId 4 ;
+    ich:hasCue ex:SongLongBinh ;
+    ich:hasListing ex:Listing_OkOmBokTraVinh_QG ;
+    ich:hasLocality ex:AoBaOm ;
+    ich:hasTemporalRule ex:OkOmBokTraVinh_Rule_Khmer,
+        ex:OkOmBokTraVinh_Rule_VnApprox ;
+    ich:listingName "Lễ hội Ok Om Bok của người Khmer"@vi ;
+    ich:registryStatus "listed" ;
+    ich:source "http://dulichtravinhda12nnaa.weebly.com/l7877-h7897i.html"^^xsd:anyURI,
+        "https://dangcongsan.org.vn/travinh/tin-tuc-hoat-dong/di-san-van-hoa-phi-vat-the-quoc-gia-o-tinh-tra-vinh.html"^^xsd:anyURI,
+        "https://dsvh.gov.vn/danh-muc-di-san-van-hoa-phi-vat-the-quoc-gia-1789"^^xsd:anyURI,
+        "https://dulieuphapluat.vn/cong-cu/di-san-phi-vat-the/dua-ghe-ngo-trong-le-hoi-ooc-om-boc-cua-nguoi-khmer.html"^^xsd:anyURI ;
+    ich:typicallyIncludes ich:DuaGheNgo,
+        ich:LeCungTrang ;
+    ich:unescoDomain ich:SocialPracticesRitualsFestive ;
+    ich:verificationStatus "verified" ;
+    ich:vnCategory ich:LeHoiTruyenThong .
+
+ex:Place_AnGiangOldArea a owl:NamedIndividual,
+        ich:Place ;
+    rdfs:label "Vùng tỉnh An Giang (cũ)"@vi ;
+    ich:locatedWithin ex:Place_AnGiangNewArea ;
+    ich:verificationStatus "unverified" .
+
+ex:SongMaspero_CauQuay_CauCao a owl:NamedIndividual,
+        ich:NaturalFeature ;
+    rdfs:label "Sông Maspéro (đoạn Cầu Quay - Cầu Cao)"@vi ;
+    geo:hasGeometry ex:Geom_SongMaspero ;
+    ich:locatedWithin ex:Place_SocTrangArea ;
+    ich:radiusKm 1.0 ;
+    ich:verificationStatus "unverified" .
+
+ich:GheThuongHo a owl:NamedIndividual,
+        ich:VehicleVessel ;
+    rdfs:label "Ghe thương hồ"@vi ;
+    rdfs:comment "Tên \"ghe hàng\" chưa tìm thấy như thuật ngữ: [chưa verify]."@vi ;
+    ich:altLabelLocal "ghe hàng"@vi ;
+    ich:altLabelNoDiacritics "Ghe thuong ho" ;
+    ich:cueKind "object" ;
+    ich:verificationStatus "unverified" .
+
+ex:OocOmBocSocTrang a owl:NamedIndividual,
+        ich:EventHeritage ;
+    rdfs:label "Oóc Om Bóc Sóc Trăng"@vi ;
+    rdfs:comment "Ghi chú (CSV): MÂU THUẪN '2015 vs 2022': dsvh.gov.vn + Nhân Dân ghi QĐ 74/QĐ-BVHTTDL ngày 12/01/2022; số 'năm 2015' chỉ thấy ở duaghengo.vn (cổng không phải nhà nước): https://duaghengo.vn/ ; vài bài báo gõ nhầm 02/01/2021 hoặc 12/1/2021 (vjst.vn, baosoctrang). Chọn 12/01/2022. Tên mục trong QĐ là lễ hội đua ghe Ngo; Oóc Om Bóc là lễ hội chứa nó, tách `part_of`. Từ 2025 tổ chức dưới tên Cần Thơ: https://duaghengo.vn/ nêu 2026 khai mạc 22/11, đua 23–24/11 (nguồn không phải nhà nước)."@vi,
+        "Mức verify (CSV): Cao"@vi,
+        "Quy tắc thời gian (CSV): Gắn Oóc Om Bóc: ngày 15 tháng Kadeuk (xấp xỉ rằm tháng 10 âm Việt). Đua ghe 2 ngày quanh rằm"@vi,
+        "Địa bàn gốc trong Danh mục: huyện Thạnh Trị, huyện Châu Thành, huyện Mỹ Xuyên, TP Sóc Trăng, tỉnh Sóc Trăng"@vi,
+        "Địa bàn sau 2025 (CSV): phường Sóc Trăng (← phường 5,6,7,8), phường Phú Lợi; các xã còn lại: [chưa verify]"@vi ;
+    ich:altLabelKhmerTranslit "Ok Om Bok" ;
+    ich:altLabelListing "Lễ hội Đua ghe Ngo của người Khmer tỉnh Sóc Trăng"@vi ;
+    ich:altLabelLocal "Lễ hội Cúng Trăng"@vi ;
+    ich:altLabelNoDiacritics "Ooc Om Boc Soc Trang" ;
+    ich:bearerGroup ex:DongBaoKhmer ;
+    ich:confusableWith ex:OkOmBokTraVinh ;
+    ich:datasetId 3 ;
+    ich:hasCue ich:TrangPhucKhmer ;
+    ich:hasDistinctiveCue ich:GheNgo ;
+    ich:hasListing ex:Listing_OocOmBocSocTrang_QG ;
+    ich:hasLocality ex:SongMaspero_CauQuay_CauCao ;
+    ich:hasSignificance ex:Sig_TaOnMatTrang ;
+    ich:hasTemporalRule ex:OocOmBocSocTrang_Rule_Khmer,
+        ex:OocOmBocSocTrang_Rule_VnApprox ;
+    ich:involvesRole ich:ConDam ;
+    ich:listingName "Lễ hội Đua ghe Ngo của người Khmer tỉnh Sóc Trăng"@vi ;
+    ich:registryStatus "listed" ;
+    ich:source "https://baodautu.vn/sap-dien-ra-le-hoi-ooc-om-boc---dua-ghe-ngo-tp-can-tho-nam-2025-d425136.html"^^xsd:anyURI,
+        "https://baosoctrang.org.vn/van-hoa-the-thao/202311/gin-giu-phat-huy-gia-tri-di-san-van-hoa-phi-vat-the-a1a18e2/"^^xsd:anyURI,
+        "https://dsvh.gov.vn/le-hoi-dua-ghe-ngo-cua-nguoi-khmer-3441"^^xsd:anyURI,
+        "https://dulieuphapluat.vn/cong-cu/di-san-phi-vat-the/dua-ghe-ngo-trong-le-hoi-ooc-om-boc-cua-nguoi-khmer.html"^^xsd:anyURI,
+        "https://heritagevietnamairlines.com/mon-the-thao-vua-vung-song-nuoc-nam-bo/"^^xsd:anyURI ;
+    ich:typicallyIncludes ich:DuaGheNgo,
+        ich:LeCungTrang,
+        ich:MuaRomVong,
+        ich:ThaDenNuoc ;
+    ich:unescoDomain ich:SocialPracticesRitualsFestive ;
+    ich:verificationStatus "unverified" ;
+    ich:vnCategory ich:LeHoiTruyenThong .
+
+ex:Place_TraVinhArea a owl:NamedIndividual,
+        ich:Place ;
+    rdfs:label "Vùng tỉnh Trà Vinh (cũ)"@vi ;
+    ich:locatedWithin ex:Place_VinhLongNewArea ;
+    ich:verificationStatus "unverified" .
+
+ich:CayBeo a owl:NamedIndividual,
+        ich:ToolEquipment ;
+    rdfs:label "Cây bẹo"@vi ;
+    ich:altLabelNoDiacritics "Cay beo" ;
+    ich:cueKind "object" ;
+    ich:verificationStatus "unverified" .
+
+ich:NgheThuatTrinhDienDanGian a owl:NamedIndividual,
+        ich:VnCategory ;
+    rdfs:label "Nghệ thuật trình diễn dân gian"@vi ;
+    ich:verificationStatus "unverified" .
+
+ex:SeneDolta a owl:NamedIndividual,
+        ich:EventHeritage ;
+    rdfs:label "Lễ Sene Dolta"@vi ;
+    rdfs:comment "Ghi chú (CSV): Chưa tìm thấy hồ sơ Danh mục cho Sene Dolta; Prompt 1 đã cảnh báo đúng. Đây là ca lệch lịch rõ nhất: 2025 Sene Dolta rơi 21–23/9 chứ không phải 20–22/10."@vi,
+        "Mức verify (CSV): Trung bình: chưa thấy mục trong Danh mục"@vi,
+        "Quy tắc thời gian (CSV): 3 ngày chính; Việt hóa là 29/8–1/9 âm"@vi,
+        "Địa bàn gốc trong Danh mục: [chưa verify]"@vi,
+        "Địa bàn sau 2025 (CSV): Không áp dụng"@vi ;
+    ich:altLabelNoDiacritics "Sene Dolta" ;
+    ich:bearerGroup ex:DongBaoKhmer ;
+    ich:datasetId 13 ;
+    ich:hasBelief ex:PhatGiaoNamTong ;
+    ich:hasCue ich:ChuaKhmer,
+        ich:TrongGiaDinh ;
+    ich:hasLocality ex:Place_DBSCL ;
+    ich:hasTemporalRule ex:SeneDolta_Rule_Khmer,
+        ex:SeneDolta_Rule_VnApprox ;
+    ich:registryStatus "not_listed" ;
+    ich:source "https://baomoi.com/dac-sac-le-sen-dolta-cua-nguoi-khmer-nam-bo-c50391358.epi"^^xsd:anyURI,
+        "https://baosoctrang.org.vn/van-hoa-the-thao/202311/gin-giu-phat-huy-gia-tri-di-san-van-hoa-phi-vat-the-a1a18e2/"^^xsd:anyURI,
+        "https://baovanhoa.vn/dan-toc-ton-giao/dong-bao-khmer-vui-don-le-sene-don-ta-dam-am-170419.html"^^xsd:anyURI,
+        "https://dangcongsan.org.vn/travinh/tin-tuc-hoat-dong/di-san-van-hoa-phi-vat-the-quoc-gia-o-tinh-tra-vinh.html"^^xsd:anyURI ;
+    ich:unescoDomain ich:SocialPracticesRitualsFestive ;
+    ich:verificationStatus "unverified" .
+
+ex:Place_SocTrangArea a owl:NamedIndividual,
+        ich:Place ;
+    rdfs:label "Vùng Sóc Trăng"@vi ;
+    ich:locatedWithin ex:Place_CanThoNewArea ;
+    ich:verificationStatus "unverified" .
+
+ich:LeHoiTruyenThong a owl:NamedIndividual,
+        ich:VnCategory ;
+    rdfs:label "Lễ hội truyền thống"@vi ;
+    ich:verificationStatus "unverified" .
+
+ex:DongBaoKhmer a owl:NamedIndividual,
+        ich:CommunityGroup ;
+    rdfs:label "Đồng bào Khmer"@vi ;
+    ich:verificationStatus "unverified" .
+
+ex:Place_DBSCL a owl:NamedIndividual,
+        ich:Place ;
+    rdfs:label "Vùng Đồng bằng sông Cửu Long"@vi ;
+    ich:locatedWithin ex:Place_NamBo ;
+    ich:verificationStatus "unverified" .
+
